@@ -3,12 +3,12 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <TextView
+        android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="信息"
         android:textColor="#fff"
-        android:gravity="center"
-        android:textSize="45sp"
+        android:textSize="18sp"
         android:background="#0DBDD1"/>
 
 </FrameLayout>

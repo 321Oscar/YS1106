@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import weidong.com.ys1106.Activity.RegisterActivity;
-import weidong.com.ys1106.Activity.VideosActivity;
+import weidong.com.ys1106.Activity.HomeActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         mBtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,VideosActivity.class);
+                Intent intent = new Intent(MainActivity.this,HomeActivity.class);
                 startActivity(intent);
             }
         });

@@ -8,9 +8,10 @@
         android:text="首页"
         android:textColor="#fff"
         android:gravity="center"
-        android:textSize="45sp"
+        android:textSize="18sp"
         android:background="#0DBDD1"
         android:layout_alignParentTop="true"
+        android:padding="10dp"
         android:id="@+id/tv_home"/>
 
     <android.support.v7.widget.RecyclerView
