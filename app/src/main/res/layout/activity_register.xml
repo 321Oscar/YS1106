@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activity.RegisterActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/topbar">
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="注册界面"
+                android:textSize="25sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="120dp"
+                android:layout_height="47.5dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center|right"
+                android:text="用户名："
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+            <EditText
+                android:id="@+id/et_name"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:hint="必填"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toRightOf="@+id/tv_name"
+                app:layout_constraintTop_toTopOf="@+id/tv_name" />
+
+            <TextView
+                android:id="@+id/tv_pass"
+                android:layout_width="120dp"
+                android:layout_height="49dp"
+                android:layout_marginTop="15dp"
+                android:gravity="right|center"
+                android:text="密码："
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+
+            <EditText
+                android:id="@+id/et_pass"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:hint="必填(限数字)"
+                android:inputType="numberPassword"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toRightOf="@+id/tv_pass"
+                app:layout_constraintTop_toTopOf="@+id/tv_pass" />
+
+            <TextView
+                android:id="@+id/tv_age"
+                android:layout_width="120dp"
+                android:layout_height="49dp"
+                android:layout_marginTop="15dp"
+                android:gravity="right|center"
+                android:text="年龄："
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@+id/tv_pass" />
+
+            <EditText
+                android:id="@+id/et_age"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:hint="选填"
+                android:inputType="number"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toRightOf="@+id/tv_age"
+                app:layout_constraintTop_toTopOf="@+id/tv_age" />
+
+            <TextView
+                android:id="@+id/tv_sex"
+                android:layout_width="120dp"
+                android:layout_height="49dp"
+                android:layout_marginTop="15dp"
+                android:gravity="right|center"
+                android:text="性别："
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@+id/tv_age" />
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="49dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toRightOf="@+id/tv_sex"
+                app:layout_constraintTop_toTopOf="@+id/tv_sex">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="10dp"
+                    android:text="男"
+                    android:textSize="20sp" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="女"
+                    android:textSize="20sp" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/tv_phone"
+                android:layout_width="120dp"
+                android:layout_height="49dp"
+                android:layout_marginTop="15dp"
+                android:gravity="right|center"
+                android:text="手机："
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@+id/tv_sex" />
+
+            <EditText
+                android:id="@+id/et_phone"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:hint="选填"
+                android:inputType="phone"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toRightOf="@+id/tv_phone"
+                app:layout_constraintTop_toTopOf="@+id/tv_phone" />
+
+            <TextView
+                android:id="@+id/tv_qq"
+                android:layout_width="120dp"
+                android:layout_height="49dp"
+                android:layout_marginTop="15dp"
+                android:gravity="right|center"
+                android:text="QQ："
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@+id/tv_phone" />
+
+            <EditText
+                android:id="@+id/et_qq"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:hint="选填"
+                android:inputType="phone"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toRightOf="@+id/tv_qq"
+                app:layout_constraintTop_toTopOf="@+id/tv_qq" />
+
+            <TextView
+                android:id="@+id/tv_email"
+                android:layout_width="120dp"
+                android:layout_height="49dp"
+                android:layout_marginTop="15dp"
+                android:gravity="right|center"
+                android:text="邮箱："
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@+id/tv_qq" />
+
+            <EditText
+                android:id="@+id/et_email"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:hint="选填"
+                android:inputType="textEmailAddress"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toRightOf="@+id/tv_email"
+                app:layout_constraintTop_toTopOf="@+id/tv_email" />
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:id="@+id/topbar">
+
+        <Button
+            android:layout_marginLeft="5dp"
+            android:id="@+id/btn_finish"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="返回"/>
+
+        <Button
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="提交"
+            android:id="@+id/btn_commit"/>
+
+    </RelativeLayout>
+
+
+</LinearLayout>
