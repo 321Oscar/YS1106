@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity.RegisterActivity" />
-        <activity android:name=".Activity.VideosActivity"></activity>
+        <activity android:name=".Activity.HomeActivity"></activity>
     </application>
 
 </manifest>
