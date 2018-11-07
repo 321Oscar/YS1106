@@ -8,7 +8,7 @@
         android:text="关注"
         android:textColor="#fff"
         android:gravity="center"
-        android:textSize="45sp"
-        android:background="#000"/>
+        android:textSize="40sp"
+        android:background="#0DBDD1"/>
 
 </FrameLayout>

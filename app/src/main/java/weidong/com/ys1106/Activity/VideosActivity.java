@@ -30,10 +30,13 @@ public class VideosActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
                     case R.id.rb_home:
+                        changeFragment(HomeFragment.class.getName());
                         break;
                     case R.id.rb_myown:
+                        changeFragment(MyOwnFragment.class.getName());
                         break;
                     case R.id.rb_guanzhu:
+                        changeFragment(GuanzhuFragment.class.getName());
                         break;
                 }
             }
