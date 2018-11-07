@@ -6,3 +6,4 @@
 增加了主页home页面的布局
 利用RecyclerView 实现LinearLayout布局
 增加 Video Info类
+改变主页的fragment的切换方式为滑动
