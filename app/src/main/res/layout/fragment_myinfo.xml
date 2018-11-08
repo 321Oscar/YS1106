@@ -13,191 +13,199 @@
         android:textColor="#fff"
         android:textSize="18sp" />
 
-    <TableLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/frag_myOwn_tv_title"
-        android:padding="20dp">
+        android:layout_below="@id/frag_myOwn_tv_title">
 
-        <TableRow android:padding="@dimen/margindp_5">
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/frag_myOwn_tv_title"
+            android:padding="20dp">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.3"
-                android:text="用户名"
-                android:textColor="#999"
-                android:textSize="20sp" />
+            <TableRow android:padding="@dimen/margindp_5">
 
-            <View
-                android:layout_width="0.5dp"
-                android:layout_height="match_parent"
-                android:background="#999"></View>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:text="用户名"
+                    android:textColor="#999"
+                    android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/frag_myOwn_tv_account"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.7"
-                android:gravity="center"
-                android:textColor="#000"
-                android:textSize="20sp" />
-        </TableRow>
+                <View
+                    android:layout_width="0.5dp"
+                    android:layout_height="match_parent"
+                    android:background="#999"></View>
 
-        <TableRow android:padding="@dimen/margindp_5">
+                <TextView
+                    android:id="@+id/frag_myOwn_tv_account"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:gravity="center"
+                    android:textColor="#000"
+                    android:textSize="20sp" />
+            </TableRow>
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.3"
-                android:text="性别"
-                android:textColor="#999"
-                android:textSize="20sp" />
+            <TableRow android:padding="@dimen/margindp_5">
 
-            <View
-                android:layout_width="0.5dp"
-                android:layout_height="match_parent"
-                android:background="#999"></View>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:text="性别"
+                    android:textColor="#999"
+                    android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/frag_myOwn_tv_sex"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.7"
-                android:gravity="center"
-                android:textColor="#000"
-                android:textSize="20sp" />
-        </TableRow>
+                <View
+                    android:layout_width="0.5dp"
+                    android:layout_height="match_parent"
+                    android:background="#999"></View>
 
-        <TableRow android:padding="@dimen/margindp_5">
+                <TextView
+                    android:id="@+id/frag_myOwn_tv_sex"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:gravity="center"
+                    android:textColor="#000"
+                    android:textSize="20sp" />
+            </TableRow>
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.3"
-                android:text="年龄"
-                android:textColor="#999"
-                android:textSize="20sp" />
+            <TableRow android:padding="@dimen/margindp_5">
 
-            <View
-                android:layout_width="0.5dp"
-                android:layout_height="match_parent"
-                android:background="#999"></View>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:text="年龄"
+                    android:textColor="#999"
+                    android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/frag_myOwn_tv_age"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.7"
-                android:gravity="center"
-                android:textColor="#000"
-                android:textSize="20sp" />
-        </TableRow>
+                <View
+                    android:layout_width="0.5dp"
+                    android:layout_height="match_parent"
+                    android:background="#999"></View>
 
-        <TableRow android:padding="@dimen/margindp_5">
+                <TextView
+                    android:id="@+id/frag_myOwn_tv_age"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:gravity="center"
+                    android:textColor="#000"
+                    android:textSize="20sp" />
+            </TableRow>
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.3"
-                android:text="真实姓名"
-                android:textColor="#999"
-                android:textSize="20sp" />
+            <TableRow android:padding="@dimen/margindp_5">
 
-            <View
-                android:layout_width="0.5dp"
-                android:layout_height="match_parent"
-                android:background="#999"></View>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:text="真实姓名"
+                    android:textColor="#999"
+                    android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/frag_myOwn_tv_name"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.7"
-                android:gravity="center"
-                android:textColor="#000"
-                android:textSize="20sp" />
-        </TableRow>
+                <View
+                    android:layout_width="0.5dp"
+                    android:layout_height="match_parent"
+                    android:background="#999"></View>
 
-        <TableRow android:padding="@dimen/margindp_5">
+                <TextView
+                    android:id="@+id/frag_myOwn_tv_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:gravity="center"
+                    android:textColor="#000"
+                    android:textSize="20sp" />
+            </TableRow>
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.3"
-                android:text="QQ"
-                android:textColor="#999"
-                android:textSize="20sp" />
+            <TableRow android:padding="@dimen/margindp_5">
 
-            <View
-                android:layout_width="0.5dp"
-                android:layout_height="match_parent"
-                android:background="#999"></View>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:text="QQ"
+                    android:textColor="#999"
+                    android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/frag_myOwn_tv_qq"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.7"
-                android:gravity="center"
-                android:textColor="#000"
-                android:textSize="20sp" />
-        </TableRow>
+                <View
+                    android:layout_width="0.5dp"
+                    android:layout_height="match_parent"
+                    android:background="#999"></View>
 
-
-        <TableRow android:padding="@dimen/margindp_5">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.3"
-                android:text="Email"
-                android:textColor="#999"
-                android:textSize="20sp" />
-
-            <View
-                android:layout_width="0.5dp"
-                android:layout_height="match_parent"
-                android:background="#999"></View>
-
-            <TextView
-                android:id="@+id/frag_myOwn_tv_email"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.7"
-                android:gravity="center"
-                android:textColor="#000"
-                android:textSize="20sp" />
-        </TableRow>
+                <TextView
+                    android:id="@+id/frag_myOwn_tv_qq"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:gravity="center"
+                    android:textColor="#000"
+                    android:textSize="20sp" />
+            </TableRow>
 
 
-        <TableRow android:padding="@dimen/margindp_5">
+            <TableRow android:padding="@dimen/margindp_5">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.3"
-                android:text="手机"
-                android:textColor="#999"
-                android:textSize="20sp" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:text="Email"
+                    android:textColor="#999"
+                    android:textSize="20sp" />
 
-            <View
-                android:layout_width="0.5dp"
-                android:layout_height="match_parent"
-                android:background="#999"></View>
+                <View
+                    android:layout_width="0.5dp"
+                    android:layout_height="match_parent"
+                    android:background="#999"></View>
 
-            <TextView
-                android:id="@+id/frag_myOwn_tv_ph"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.7"
-                android:gravity="center"
-                android:textColor="#000"
-                android:textSize="20sp" />
-        </TableRow>
+                <TextView
+                    android:id="@+id/frag_myOwn_tv_email"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:gravity="center"
+                    android:textColor="#000"
+                    android:textSize="20sp" />
+            </TableRow>
 
 
-    </TableLayout>
+            <TableRow android:padding="@dimen/margindp_5">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:text="手机"
+                    android:textColor="#999"
+                    android:textSize="20sp" />
+
+                <View
+                    android:layout_width="0.5dp"
+                    android:layout_height="match_parent"
+                    android:background="#999"></View>
+
+                <TextView
+                    android:id="@+id/frag_myOwn_tv_ph"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:gravity="center"
+                    android:textColor="#000"
+                    android:textSize="20sp" />
+            </TableRow>
+
+
+        </TableLayout>
+
+    </ScrollView>
+
 
 
 </RelativeLayout>

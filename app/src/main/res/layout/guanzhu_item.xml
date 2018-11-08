@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/item_gz_iv"
+        android:layout_marginTop="@dimen/margindp_5"
+        android:layout_marginLeft="@dimen/margindp_5"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="#5463"/>
+
+    <TextView
+        android:layout_marginTop="@dimen/margindp_5"
+        android:layout_marginRight="@dimen/margindp_5"
+        android:layout_marginLeft="@dimen/margindp_5"
+        android:layout_toLeftOf="@+id/item_gz_cb"
+        android:layout_toRightOf="@+id/item_gz_iv"
+        android:id="@+id/item_gz_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <CheckBox
+        android:id="@+id/item_gz_cb"
+        android:layout_marginTop="@dimen/margindp_5"
+        android:layout_marginRight="@dimen/margindp_5"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:button="@null"
+        android:text="关注checkbox"
+        android:textSize="@dimen/textsize"
+        android:textColor="@color/main_tab_text_selector_tab"/>
+
+</RelativeLayout>
