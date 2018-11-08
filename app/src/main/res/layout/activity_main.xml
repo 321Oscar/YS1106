@@ -59,7 +59,7 @@
                 android:layout_marginTop="50dp"
                 android:gravity="center"
                 android:textColor="#415612"
-                android:text="没有账号？点我注册" />
+                android:text="@string/register" />
 
         </LinearLayout>
     </ScrollView>

@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <TextView
-        android:padding="10dp"
+        android:id="@+id/frag_gz_tv_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="关注"
+        android:background="#0DBDD1"
+        android:padding="10dp"
+        android:text="@string/frag_gz_title"
         android:textColor="#fff"
-        android:textSize="18sp"
-        android:background="#0DBDD1"/>
+        android:textSize="18sp" />
 
-</FrameLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/frag_gz_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/frag_gz_tv_title"
+        ></android.support.v7.widget.RecyclerView>
+
+</RelativeLayout>

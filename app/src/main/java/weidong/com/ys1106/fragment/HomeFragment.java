@@ -55,16 +55,16 @@ public class HomeFragment extends Fragment {
     public void initData() {
         for (int i = 0; i < 5; i++) {
             VideoInfo videoInfo = new VideoInfo();
-            videoInfo.setChecked(1);
-            videoInfo.setVideodetail("detail" + i);
-            videoInfo.setVideotitle("title" + i);
+            videoInfo.setVideoType("养生类型"+i);
+            videoInfo.setVideodetail("描述" + i);
+            videoInfo.setVideotitle("标题" + i);
             videoInfoList.add(videoInfo);
         }
     }
 
     public void initRecyclerView() {
         //获取RecyclerView
-        mRvvideo = view.findViewById(R.id.rv_home);
+        mRvvideo = view.findViewById(R.id.frag_home_rv);
         //创建adapter
         homeadapter = new HomeInfoAdapter(getActivity(), videoInfoList);
         //给RecyclerView设置adapter

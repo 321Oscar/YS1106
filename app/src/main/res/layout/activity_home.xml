@@ -24,13 +24,13 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:button="@null"
-            android:textSize="15sp"
-            android:drawablePadding="3dp"
+            android:textSize="@dimen/textsize"
+            android:drawablePadding="@dimen/homeimgpadding"
             android:gravity="center"
             android:textColor="@color/main_tab_text_selector_tab"
             android:id="@+id/rb_guanzhu"
             android:drawableTop="@drawable/rb_guanzhu"
-            android:text="关注"
+            android:text="@string/Gz"
             />
 
         <RadioButton
@@ -39,10 +39,10 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:button="@null"
-            android:textSize="15sp"
-            android:drawablePadding="3dp"
+            android:textSize="@dimen/textsize"
+            android:drawablePadding="@dimen/homeimgpadding"
             android:gravity="center"
-            android:text="首页"
+            android:text="@string/homeInfo"
             android:checked="true"
             android:drawableTop="@drawable/rb_home"
             android:textColor="@color/main_tab_text_selector_tab"
@@ -53,12 +53,12 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:button="@null"
-            android:textSize="15sp"
-            android:drawablePadding="3dp"
+            android:textSize="@dimen/textsize"
+            android:drawablePadding="@dimen/homeimgpadding"
             android:gravity="center"
             android:textColor="@color/main_tab_text_selector_tab"
             android:drawableTop="@drawable/rb_myown"
-            android:text="我的"
+            android:text="@string/myOwn"
             android:id="@+id/rb_myown"/>
 
     </RadioGroup>

@@ -5,9 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.ImageView;
-import android.widget.RadioButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -51,15 +49,8 @@ public class HomeInfoAdapter extends RecyclerView.Adapter<HomeInfoAdapter.Linear
         //根据点击位置绑定数据
         VideoInfo data = videoInfos.get(i);
 
-//        viewHolder.mVideoImg = data.getImgUrl();//设置图片的URL
-        //设置是否关注
-        if (1 == data.checked){
-            viewHolder.mChecked.setChecked(true);
-        }else {
-            viewHolder.mChecked.setChecked(false);
-        }
-        viewHolder.mChecked.setText("关注");
-
+//        viewHolder.mVideoImg = data.getAccount();//设置图片的URL
+        viewHolder.mType.setText(data.getVideoType());
         viewHolder.mDetails.setText(data.getVideodetail());
         viewHolder.mTitle.setText(data.getVideotitle());
 
@@ -74,16 +65,15 @@ public class HomeInfoAdapter extends RecyclerView.Adapter<HomeInfoAdapter.Linear
     //linear view holder
     class LinearViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView mTitle, mDetails;
+        private TextView mTitle, mDetails,mType;
         private ImageView mVideoImg;
-        private CheckBox mChecked;
 
         public LinearViewHolder(@NonNull View itemView) {
             super(itemView);
-            mTitle = itemView.findViewById(R.id.tv_title);
-            mDetails = itemView.findViewById(R.id.tv_detail);
-            mVideoImg = itemView.findViewById(R.id.iv_title);
-            mChecked = itemView.findViewById(R.id.cb_checked);
+            mTitle = itemView.findViewById(R.id.item_home_title);
+            mDetails = itemView.findViewById(R.id.item_home_detail);
+            mVideoImg = itemView.findViewById(R.id.item_home_iv);
+            mType = itemView.findViewById(R.id.item_home_type);
 
             //
             itemView.setOnClickListener(new View.OnClickListener() {

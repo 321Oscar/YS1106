@@ -49,6 +49,13 @@ public class VideoInfo {
         this.videotitle = videotitle;
     }
 
+    public String getVideoType() {
+        return VideoType;
+    }
+
+    public void setVideoType(String videoType) {
+        VideoType = videoType;
+    }
 
     @Override
     public String toString() {
