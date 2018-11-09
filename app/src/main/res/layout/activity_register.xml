@@ -7,10 +7,38 @@
     android:orientation="vertical"
     tools:context=".Activity.RegisterActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/btn_finish"
+            android:padding="10dp"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="0.5"
+            android:src="@mipmap/back"
+            android:background="#0DBDD1"/>
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="5"
+            android:background="#0DBDD1"
+            android:padding="10dp"
+            android:text="@string/reg_title"
+            android:textColor="#fff"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/topbar">
+        android:layout_below="@+id/tv_title">
 
         <TableLayout
             android:layout_width="match_parent"
@@ -18,19 +46,13 @@
             android:layout_gravity="center">
 
             <TableRow android:padding="10dp">
-                <TextView
-                    android:id="@+id/tv_title"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/reg_title"
-                    android:textSize="25sp" />
+
             </TableRow>
+
             <TableRow android:padding="@dimen/margindp_5">
 
                 <TextView
-                    android:id="@+id/tv_name"
+                    android:id="@+id/tv_acc"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -39,7 +61,7 @@
                     android:textSize="20sp" />
 
                 <EditText
-                    android:id="@+id/et_name"
+                    android:id="@+id/et_acc"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2.5"
@@ -66,6 +88,28 @@
                     android:layout_weight="2.5"
                     android:hint="必填(限数字)"
                     android:inputType="numberPassword"
+                    android:textSize="20sp" />
+            </TableRow>
+
+            <TableRow android:padding="@dimen/margindp_5">
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right|center"
+                    android:text="@string/reg_name"
+                    android:textSize="20sp"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_pass" />
+
+                <EditText
+                    android:id="@+id/et_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.5"
+                    android:hint="@string/canNull"
+                    android:inputType="number"
                     android:textSize="20sp" />
             </TableRow>
 
@@ -103,6 +147,7 @@
                     android:textSize="20sp" />
 
                 <RadioGroup
+                    android:id="@+id/rg_sex"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2.5"
@@ -110,14 +155,17 @@
                     android:orientation="horizontal">
 
                     <RadioButton
+                        android:id="@+id/rb_sex_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="10dp"
+                        android:checked="true"
                         android:text="@string/reg_sex_1"
                         android:textSize="20sp" />
 
                     <RadioButton
+                        android:id="@+id/rb_sex_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/reg_sex_2"
@@ -189,22 +237,16 @@
                     android:textSize="20sp" />
             </TableRow>
 
-            <TableRow android:padding="@dimen/margindp_5">
-
-                <Button
-                    android:id="@+id/btn_finish"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="50dp"
-                    android:text="@string/back" />
-
+            <TableRow android:padding="@dimen/margindp_5"
+                android:gravity="center">
+                <TextView android:layout_weight="1"/>
                 <Button
                     android:id="@+id/btn_commit"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:layout_height="50dp"
                     android:text="@string/reg_com" />
-
+                <TextView android:layout_weight="1"/>
             </TableRow>
 
         </TableLayout>

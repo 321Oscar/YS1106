@@ -25,18 +25,16 @@
                 android:textSize="50sp" />
 
 
-
             <EditText
-                android:id="@+id/et_name"
+                android:id="@+id/login_et_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:hint="用户名"
-                android:inputType="text|number"
                 android:singleLine="true" />
 
             <EditText
-                android:id="@+id/et_pass"
+                android:id="@+id/login_et_pass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"

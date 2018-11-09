@@ -6,11 +6,19 @@ public class YangShInfo {
     public String Type;
     public int checked;
 
-    public YangShInfo(){
+    public String getType() {
+        return Type;
+    }
+
+    public void setType(String type) {
+        Type = type;
+    }
+
+    public YangShInfo() {
 
     }
 
-    public YangShInfo(String imgUrl,  String name, int checked){
+    public YangShInfo(String imgUrl, String name, int checked) {
         this.checked = checked;
         this.ImgUrl = imgUrl;
         this.name = name;

@@ -5,11 +5,12 @@
     <string name="homeInfo">首页</string>
     <string name="myOwn">我的</string>
     <string name="register">没有账号？点我注册</string>
-    <string name="reg_title">注册界面</string>
+    <string name="reg_title">注册</string>
     <string name="reg_username">用户名：</string>
     <string name="notNull">必填</string>
     <string name="reg_pass">密码：</string>
     <string name="reg_age">年龄：</string>
+    <string name="reg_name">真实姓名：</string>
     <string name="canNull">选填</string>
     <string name="reg_sex">性别：</string>
     <string name="reg_sex_1">男</string>
@@ -18,7 +19,7 @@
     <string name="reg_q">QQ：</string>
     <string name="reg_em">邮箱：</string>
     <string name="back">返回</string>
-    <string name="reg_com">提交</string>
+    <string name="reg_com">提     交</string>
     <string name="frag_gz_title">关注</string>
     <string name="frag_home_title">首页</string>
 </resources>
