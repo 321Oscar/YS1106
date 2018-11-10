@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,21 @@ public class HomeActivity extends AppCompatActivity {
     private ViewPager vp;
     private List<Fragment> mFragmentList = new ArrayList<>();
     private FragmentAdapter mFragmentAdapter;
+
+    private long lastBack =0;
+
+    /*
+    * 再次返回键退出程序*/
+    @Override
+    public void onBackPressed() {
+        if(lastBack == 0 || System.currentTimeMillis() - lastBack > 2000){
+            Toast.makeText(HomeActivity.this,"再按一次退出程序",
+                    Toast.LENGTH_SHORT).show();
+            lastBack = System.currentTimeMillis();
+            return;
+        }
+        super.onBackPressed();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

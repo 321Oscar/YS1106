@@ -14,11 +14,18 @@ public class UserInfo {
 
     }
 
-    public UserInfo(String account, String name, String qq, String pss) {
-        this.qq = qq;
-        this.Account = account;
+    public UserInfo(String account, String name,
+                    String qq, String pass,
+                    String age, String email,
+                    String ph, String sex) {
+        Account = account;
         this.name = name;
-        this.Pass = pss;
+        this.qq = qq;
+        Pass = pass;
+        this.age = age;
+        this.email = email;
+        this.ph = ph;
+        this.sex = sex;
     }
 
     public String getAge() {
@@ -46,7 +53,13 @@ public class UserInfo {
     }
 
     public String getSex() {
-        return sex;
+        String sexname="" ;
+        if("1".equals(sex)){
+            sexname = "男";
+        }else if("0".equals(sex)){
+            sexname ="女";
+        }
+        return sexname;
     }
 
     public void setSex(String sex) {

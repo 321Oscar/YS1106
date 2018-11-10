@@ -1,5 +1,7 @@
 package weidong.com.ys1106.fragment;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,21 +11,32 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import weidong.com.ys1106.R;
+import weidong.com.ys1106.Utils.CommonRequest;
+import weidong.com.ys1106.Utils.CommonResponse;
+import weidong.com.ys1106.Utils.Constant;
+import weidong.com.ys1106.Utils.GetData;
+import weidong.com.ys1106.Utils.MyToast;
+import weidong.com.ys1106.Utils.ResponseHandle;
 import weidong.com.ys1106.Utils.UserInfo;
+import weidong.com.ys1106.Utils.VideoInfo;
 
-public class MyOwnFragment extends Fragment {
-
+public class MyOwnFragment extends BasicFragment {
 
     private View view;
+    private UserInfo userInfos = new UserInfo();
+    private SharedPreferences sharedPreferences;
 
     public MyOwnFragment() {
 
     }
 
-    public static MyOwnFragment NewInstance(){
+    public static MyOwnFragment NewInstance() {
         MyOwnFragment fragment = new MyOwnFragment();
-        return  fragment;
+        return fragment;
     }
 
     @Override
@@ -34,33 +47,59 @@ public class MyOwnFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_myinfo,container,false);
-        //get  user tag
-        String tag = "user1";
-        initData(tag);
+        view = inflater.inflate(R.layout.fragment_myinfo, container, false);
+
+        initData();
+
         return view;
     }
 
     /*
-    * @param tag 用户标识*/
-    public void initData(String tag){
-        //账号，姓名，年龄，性别，QQ，手机，邮箱
-        String[] userinfos = new String[]{"userAccount1","userName1","qq1","age","sex","ph","email"};
-        UserInfo  info = new UserInfo();
-        info.setAccount(userinfos[0]);
-        info.setName(userinfos[1]);
-        info.setQq(userinfos[2]);
+     *获取数据
+      *  */
+    public void initData() {
+        final TextView name = view.findViewById(R.id.frag_myOwn_tv_name);
+        final TextView account = view.findViewById(R.id.frag_myOwn_tv_account);
+        final TextView age = view.findViewById(R.id.frag_myOwn_tv_age);
+        final TextView sex = view.findViewById(R.id.frag_myOwn_tv_sex);
+        final TextView qq = view.findViewById(R.id.frag_myOwn_tv_qq);
+        final TextView ph = view.findViewById(R.id.frag_myOwn_tv_ph);
+        final TextView email = view.findViewById(R.id.frag_myOwn_tv_email);
 
-        TextView name = view.findViewById(R.id.frag_myOwn_tv_name);
-        TextView account = view.findViewById(R.id.frag_myOwn_tv_account);
-        TextView age = view.findViewById(R.id.frag_myOwn_tv_age);
-        TextView sex = view.findViewById(R.id.frag_myOwn_tv_sex);
-        TextView qq = view.findViewById(R.id.frag_myOwn_tv_qq);
-        TextView ph = view.findViewById(R.id.frag_myOwn_tv_ph);
-        TextView email = view.findViewById(R.id.frag_myOwn_tv_email);
+        CommonRequest request = new CommonRequest();
+        //请求码：4 —— 查找用户基本信息
+        request.setRequestCode("4");
+        //使用用户的用户名查找
+        sharedPreferences = getActivity().getSharedPreferences("userinfo",Context.MODE_PRIVATE);
+        String acccount = sharedPreferences.getString("account","");
+        System.out.println("account:"+acccount);
 
-        name.setText(info.getName());
-        account.setText(info.getAccount());
-        qq.setText(info.getQq());
+        request.addRequestParam("account",acccount);
+
+        sendHttpPostRequst(Constant.URL_Login, request, new ResponseHandle() {
+            @Override
+            public void success(CommonResponse response) {
+                if (response.getDataList().size() > 0){
+                    name.setText(response.getDataList().get(0).get("name"));
+                    account.setText(sharedPreferences.getString("account",""));
+                    age.setText(response.getDataList().get(0).get("age"));
+                    if("1".equals(response.getDataList().get(0).get("sex"))){
+                        sex.setText("男");
+                    }else if("0".equals(response.getDataList().get(0).get("sex"))){
+                        sex.setText("女");
+                    }
+                    qq.setText(response.getDataList().get(0).get("qq"));
+                    ph.setText(response.getDataList().get(0).get("phone"));
+                    email.setText(response.getDataList().get(0).get("email"));
+                }else {
+                    MyToast.MyToastShow(getActivity(),"列表无数据");
+                }
+            }
+
+            @Override
+            public void failure(String failCode, String failMsg) {
+                MyToast.MyToastShow(getActivity(),"数据库连接失败");
+            }
+        });
     }
 }
