@@ -1,10 +1,20 @@
 package weidong.com.ys1106.Utils;
 
 public class VideoInfo {
-    public String ImgUrl;
-    public String videotitle,videodetail;
-    public String VideoType;
-    public int checked;
+    private String ImgUrl;
+    private String videotitle,videodetail;
+    private String VideoType;
+
+    public String getVideoURL() {
+        return VideoURL;
+    }
+
+    public void setVideoURL(String videoURL) {
+        VideoURL = videoURL;
+    }
+
+    private String VideoURL;
+    private int checked;
 
     public VideoInfo(){
 

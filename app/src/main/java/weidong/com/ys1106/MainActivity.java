@@ -1,6 +1,6 @@
 package weidong.com.ys1106;
 
-import android.accounts.Account;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,10 +16,10 @@ import android.widget.Toast;
 import weidong.com.ys1106.Activity.BasicActivity;
 import weidong.com.ys1106.Activity.RegisterActivity;
 import weidong.com.ys1106.Activity.HomeActivity;
+import weidong.com.ys1106.Utils.AnalysisUtils;
 import weidong.com.ys1106.Utils.CommonRequest;
 import weidong.com.ys1106.Utils.CommonResponse;
 import weidong.com.ys1106.Utils.Constant;
-import weidong.com.ys1106.Utils.MyToast;
 import weidong.com.ys1106.Utils.ResponseHandle;
 import weidong.com.ys1106.Utils.UserInfo;
 
@@ -31,6 +31,9 @@ public class MainActivity extends BasicActivity {
     private CheckBox cb_rem;
     private CheckBox cb_auto;
     private SharedPreferences sp;
+    private ProgressDialog loginwait = null;
+
+    private long lastBack = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,27 +47,20 @@ public class MainActivity extends BasicActivity {
         cb_auto = findViewById(R.id.login_cb_auto);
         sp = getSharedPreferences("userinfo", MODE_PRIVATE);
 
-        System.out.println("是否记住:" + sp.getString("rem", "") +
-                "————是否自动登录：" + sp.getString("auto_login", ""));
-        System.out.println("账户:" + sp.getString("account", "") +
-                "————密码：" + sp.getString("pass", ""));
 
         //是否记住密码和自动登录
         if (sp.getString("rem", "").equals("1")) {
             cb_rem.setChecked(true);
-            Account.setText(sp.getString("account", ""));
-            pass.setText(sp.getString("pass", ""));
-            if ((sp.getString("auto_login", "").equals("1"))) {
+            Account.setText(AnalysisUtils.readloginUserName(MainActivity.this));
+            pass.setText(AnalysisUtils.readloginpass(MainActivity.this));
+            if ((AnalysisUtils.readloginauto(MainActivity.this).equals("1"))) {
                 cb_auto.setChecked(true);
                 UserInfo autoinfo = new UserInfo();
-                autoinfo.setAccount(sp.getString("account", ""));
-                autoinfo.setPass(sp.getString("pass", ""));
+                autoinfo.setAccount(AnalysisUtils.readloginUserName(MainActivity.this));
+                autoinfo.setPass(AnalysisUtils.readloginpass(MainActivity.this));
                 login(autoinfo);
             }
-        }else{
-            MyToast.MyToastShow(MainActivity.this,"cuowu");
         }
-
 
         //自动登录选中则自动选中记住密码
         cb_auto.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -76,6 +72,17 @@ public class MainActivity extends BasicActivity {
             }
         });
 
+        //若没有选中记住密码，则自动登录也设为未选中
+        cb_rem.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(!isChecked){
+                    cb_auto.setChecked(false);
+                }
+            }
+        });
+
+        //跳转到注册界面
         mTvRegister = findViewById(R.id.register);
         mTvRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +92,7 @@ public class MainActivity extends BasicActivity {
             }
         });
 
-        //登录 用MySQL+servlet
+        //登录
         mBtnLogin = findViewById(R.id.login);
         mBtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,36 +110,55 @@ public class MainActivity extends BasicActivity {
         });
     }
 
+    //实现登录 用MySQL+servlet
     private void login(final UserInfo info) {
         //请求数据集
         CommonRequest request = new CommonRequest();
         request.addRequestParam("account", info.getAccount());
         request.addRequestParam("password", info.getPass());
-        request.setRequestCode("1");//标识登录
+        request.setRequestCode("1");//标识 登录
 
-        final ProgressDialog loginwait = new ProgressDialog(MainActivity.this);
+        loginwait = new ProgressDialog(MainActivity.this);
         loginwait.setMessage("登录中...");
         loginwait.show();
 
         sendHttpPostRequst(Constant.URL_Login, request, new ResponseHandle() {
             @Override
             public void success(CommonResponse response) {
-                loginwait.setMessage("成功");
-                loginwait.cancel();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        int progress = 0;
+                        while (progress < 5) {
+                            try {
+                                Thread.sleep(1000);
+                                progress++;
+                                loginwait.incrementProgressBy(progress);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            loginwait.setMessage("登录成功");
+                            loginwait.cancel();
+                        }
+                    }
+                }).start();
+
 
                 //将用户信息保存
                 sp = getSharedPreferences("userinfo", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sp.edit();
                 editor.putString("account", info.getAccount());
                 editor.putString("pass", info.getPass());
+
+                //如果用户选择记住密码，则在存储用户的选择
                 if (cb_rem.isChecked()) {
                     editor.putString("rem", "1");
                     if (cb_auto.isChecked()) {
                         editor.putString("auto_login", "1");
-                    }else {
-                        editor.putString("auto_login","0");
+                    } else {
+                        editor.putString("auto_login", "0");
                     }
-                }else{
+                } else {
                     editor.putString("rem", "0");
                 }
                 editor.apply();
@@ -156,12 +182,32 @@ public class MainActivity extends BasicActivity {
                         Msg = "账号不存在";
                         break;
                     case "0":
-                        Msg = "大错误";
+                        Msg = "数据库错误";
                         break;
                 }
                 Toast.makeText(MainActivity.this, Msg, Toast.LENGTH_SHORT).show();
             }
         });
 
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        if (lastBack == 0 || System.currentTimeMillis() - lastBack > 2000) {
+            Toast.makeText(MainActivity.this, "再按一次退出程序",
+                    Toast.LENGTH_SHORT).show();
+            lastBack = System.currentTimeMillis();
+            return;
+        }
+        super.onBackPressed();
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (loginwait != null) {
+            loginwait.dismiss();
+        }
+        super.onDestroy();
     }
 }

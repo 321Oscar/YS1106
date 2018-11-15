@@ -1,10 +1,21 @@
 package weidong.com.ys1106.Utils;
 
 public class YangShInfo {
-    public String ImgUrl;
-    public String name;
-    public String Type;
-    public int checked;
+    private String ImgUrl;
+    private String name;
+    private String Type;
+    private int checked;
+    private String Des;
+
+    public String getDes() {
+        return Des;
+    }
+
+    public void setDes(String des) {
+        Des = des;
+    }
+
+
 
     public String getType() {
         return Type;

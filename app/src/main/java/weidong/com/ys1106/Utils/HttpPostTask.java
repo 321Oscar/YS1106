@@ -63,11 +63,9 @@ public class HttpPostTask extends AsyncTask<String, String, String> {
                 return resultBuf.toString();
             } else {
 //                mhandle.obtainMessage(Constant)
-                // TODO: 2018/11/1
             }
         } catch (IOException e) {
             //网络请求过程中发生IO异常 mhandle
-            // TODO: 2018/11/1
             e.printStackTrace();
         }
         return resultBuf.toString();
@@ -78,7 +76,6 @@ public class HttpPostTask extends AsyncTask<String, String, String> {
         if(rHandle != null){
             if(!"".equals(s)){
                 CommonResponse response = new CommonResponse(s);
-
                 //这里的业务完成的判断Code也是与服务器约定好的
                 if("11".equals(response.getResCode())){//正确
                     rHandle.success(response);

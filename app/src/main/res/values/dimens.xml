@@ -3,4 +3,7 @@
     <dimen name="textsize">15sp</dimen>
     <dimen name="homeimgpadding">3dp</dimen>
     <dimen name="margindp_5">5dp</dimen>
+    <dimen name="margindp_10">10dp</dimen>
+    <dimen name="itemdp_top">10dp</dimen>
+    <dimen name="itemdp_left">7.5dp</dimen>
 </resources>

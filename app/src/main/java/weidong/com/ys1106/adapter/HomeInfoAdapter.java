@@ -8,9 +8,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 import weidong.com.ys1106.R;
+import weidong.com.ys1106.Utils.Constant;
 import weidong.com.ys1106.Utils.VideoInfo;
 
 /*
@@ -48,9 +51,12 @@ public class HomeInfoAdapter extends RecyclerView.Adapter<HomeInfoAdapter.Linear
     public void onBindViewHolder(@NonNull HomeInfoAdapter.LinearViewHolder viewHolder, int i) {
         //根据点击位置绑定数据
         VideoInfo data = videoInfos.get(i);
-
-//        viewHolder.mVideoImg = data.getAccount();//设置图片的URL
-        viewHolder.mType.setText(data.getVideoType());
+        System.out.println("视频数据：" + data.getVideoType());
+        //设置图片的URL
+        if (null != data.getImgUrl()){
+            Glide.with(context).load(Constant.UEL_Img + data.getImgUrl()).into(viewHolder.mVideoImg);
+        }
+//        viewHolder.mType.setText(data.getVideoType());
         viewHolder.mDetails.setText(data.getVideodetail());
         viewHolder.mTitle.setText(data.getVideotitle());
 
@@ -65,7 +71,7 @@ public class HomeInfoAdapter extends RecyclerView.Adapter<HomeInfoAdapter.Linear
     //linear view holder
     class LinearViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView mTitle, mDetails,mType;
+        private TextView mTitle, mDetails;
         private ImageView mVideoImg;
 
         public LinearViewHolder(@NonNull View itemView) {
@@ -73,15 +79,15 @@ public class HomeInfoAdapter extends RecyclerView.Adapter<HomeInfoAdapter.Linear
             mTitle = itemView.findViewById(R.id.item_home_title);
             mDetails = itemView.findViewById(R.id.item_home_detail);
             mVideoImg = itemView.findViewById(R.id.item_home_iv);
-            mType = itemView.findViewById(R.id.item_home_type);
+//            mType = itemView.findViewById(R.id.item_home_type);
 
             //
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (onItemClickListener !=null){
+                    if (onItemClickListener != null) {
                         //此处回传点击监听事件
-                        onItemClickListener.OnItemClick(v,videoInfos.get(getLayoutPosition()));
+                        onItemClickListener.OnItemClick(v, videoInfos.get(getLayoutPosition()));
                     }
                 }
             });
@@ -89,21 +95,21 @@ public class HomeInfoAdapter extends RecyclerView.Adapter<HomeInfoAdapter.Linear
     }
 
     /*
-    * 设置Item的监听事件的接口
-    * */
-    public interface OnItemClickListener{
+     * 设置Item的监听事件的接口
+     * */
+    public interface OnItemClickListener {
         /*
-        * 接口中的点击每一项的实现方法，参数自己定义
-        * @param view 点击的item的视图
-        * @param videoInfo 点击的item的数据
-        * */
-        public void OnItemClick(View view,VideoInfo videoInfo);
+         * 接口中的点击每一项的实现方法，参数自己定义
+         * @param view 点击的item的视图
+         * @param videoInfo 点击的item的数据
+         * */
+        void OnItemClick(View view, VideoInfo videoInfo);
     }
 
     //需要外部访问，所以需要设置set方法，方便调用
     private OnItemClickListener onItemClickListener;
 
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener){
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
     }
 }

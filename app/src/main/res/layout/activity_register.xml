@@ -19,7 +19,7 @@
             android:layout_height="50dp"
             android:layout_weight="0.5"
             android:src="@mipmap/back"
-            android:background="#0DBDD1"/>
+            android:background="@color/color_blue_1"/>
 
         <TextView
             android:id="@+id/tv_title"
@@ -91,151 +91,151 @@
                     android:textSize="20sp" />
             </TableRow>
 
-            <TableRow android:padding="@dimen/margindp_5">
+            <!--<TableRow android:padding="@dimen/margindp_5">-->
 
-                <TextView
-                    android:id="@+id/tv_name"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="right|center"
-                    android:text="@string/reg_name"
-                    android:textSize="20sp"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_pass" />
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_name"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:gravity="right|center"-->
+                    <!--android:text="@string/reg_name"-->
+                    <!--android:textSize="20sp"-->
+                    <!--app:layout_constraintTop_toBottomOf="@+id/tv_pass" />-->
 
-                <EditText
-                    android:id="@+id/et_name"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2.5"
-                    android:hint="@string/canNull"
-                    android:inputType="number"
-                    android:textSize="20sp" />
-            </TableRow>
+                <!--<EditText-->
+                    <!--android:id="@+id/et_name"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="2.5"-->
+                    <!--android:hint="@string/canNull"-->
+                    <!--android:inputType="number"-->
+                    <!--android:textSize="20sp" />-->
+            <!--</TableRow>-->
 
-            <TableRow android:padding="@dimen/margindp_5">
+            <!--<TableRow android:padding="@dimen/margindp_5">-->
 
-                <TextView
-                    android:id="@+id/tv_age"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="right|center"
-                    android:text="@string/reg_age"
-                    android:textSize="20sp"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_pass" />
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_age"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:gravity="right|center"-->
+                    <!--android:text="@string/reg_age"-->
+                    <!--android:textSize="20sp"-->
+                    <!--app:layout_constraintTop_toBottomOf="@+id/tv_pass" />-->
 
-                <EditText
-                    android:id="@+id/et_age"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2.5"
-                    android:hint="@string/canNull"
-                    android:inputType="number"
-                    android:textSize="20sp" />
-            </TableRow>
+                <!--<EditText-->
+                    <!--android:id="@+id/et_age"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="2.5"-->
+                    <!--android:hint="@string/canNull"-->
+                    <!--android:inputType="number"-->
+                    <!--android:textSize="20sp" />-->
+            <!--</TableRow>-->
 
-            <TableRow android:padding="@dimen/margindp_5">
+            <!--<TableRow android:padding="@dimen/margindp_5">-->
 
-                <TextView
-                    android:id="@+id/tv_sex"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="right|center"
-                    android:text="@string/reg_sex"
-                    android:textSize="20sp" />
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_sex"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:gravity="right|center"-->
+                    <!--android:text="@string/reg_sex"-->
+                    <!--android:textSize="20sp" />-->
 
-                <RadioGroup
-                    android:id="@+id/rg_sex"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2.5"
-                    android:gravity="left"
-                    android:orientation="horizontal">
+                <!--<RadioGroup-->
+                    <!--android:id="@+id/rg_sex"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="2.5"-->
+                    <!--android:gravity="left"-->
+                    <!--android:orientation="horizontal">-->
 
-                    <RadioButton
-                        android:id="@+id/rb_sex_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="10dp"
-                        android:checked="true"
-                        android:text="@string/reg_sex_1"
-                        android:textSize="20sp" />
+                    <!--<RadioButton-->
+                        <!--android:id="@+id/rb_sex_1"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="5dp"-->
+                        <!--android:layout_marginRight="10dp"-->
+                        <!--android:checked="true"-->
+                        <!--android:text="@string/reg_sex_1"-->
+                        <!--android:textSize="20sp" />-->
 
-                    <RadioButton
-                        android:id="@+id/rb_sex_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/reg_sex_2"
-                        android:textSize="20sp" />
-                </RadioGroup>
+                    <!--<RadioButton-->
+                        <!--android:id="@+id/rb_sex_2"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/reg_sex_2"-->
+                        <!--android:textSize="20sp" />-->
+                <!--</RadioGroup>-->
 
-            </TableRow>
+            <!--</TableRow>-->
 
-            <TableRow android:padding="@dimen/margindp_5">
+            <!--<TableRow android:padding="@dimen/margindp_5">-->
 
-                <TextView
-                    android:id="@+id/tv_phone"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="right|center"
-                    android:text="@string/reg_ph"
-                    android:textSize="20sp"></TextView>
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_phone"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:gravity="right|center"-->
+                    <!--android:text="@string/reg_ph"-->
+                    <!--android:textSize="20sp"></TextView>-->
 
-                <EditText
-                    android:id="@+id/et_phone"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2.5"
-                    android:hint="@string/canNull"
-                    android:inputType="phone"
-                    android:textSize="20sp" />
-            </TableRow>
+                <!--<EditText-->
+                    <!--android:id="@+id/et_phone"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="2.5"-->
+                    <!--android:hint="@string/canNull"-->
+                    <!--android:inputType="phone"-->
+                    <!--android:textSize="20sp" />-->
+            <!--</TableRow>-->
 
-            <TableRow android:padding="@dimen/margindp_5">
+            <!--<TableRow android:padding="@dimen/margindp_5">-->
 
-                <TextView
-                    android:id="@+id/tv_qq"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="right|center"
-                    android:text="@string/reg_q"
-                    android:textSize="20sp" />
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_qq"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:gravity="right|center"-->
+                    <!--android:text="@string/reg_q"-->
+                    <!--android:textSize="20sp" />-->
 
-                <EditText
-                    android:id="@+id/et_qq"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2.5"
-                    android:hint="@string/canNull"
-                    android:inputType="phone"
-                    android:textSize="20sp" />
-            </TableRow>
+                <!--<EditText-->
+                    <!--android:id="@+id/et_qq"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="2.5"-->
+                    <!--android:hint="@string/canNull"-->
+                    <!--android:inputType="phone"-->
+                    <!--android:textSize="20sp" />-->
+            <!--</TableRow>-->
 
-            <TableRow android:padding="@dimen/margindp_5">
+            <!--<TableRow android:padding="@dimen/margindp_5">-->
 
-                <TextView
-                    android:id="@+id/tv_email"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="right|center"
-                    android:text="@string/reg_em"
-                    android:textSize="20sp" />
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_email"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:gravity="right|center"-->
+                    <!--android:text="@string/reg_em"-->
+                    <!--android:textSize="20sp" />-->
 
-                <EditText
-                    android:id="@+id/et_email"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2.5"
-                    android:hint="@string/canNull"
-                    android:inputType="textEmailAddress"
-                    android:textSize="20sp" />
-            </TableRow>
+                <!--<EditText-->
+                    <!--android:id="@+id/et_email"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="2.5"-->
+                    <!--android:hint="@string/canNull"-->
+                    <!--android:inputType="textEmailAddress"-->
+                    <!--android:textSize="20sp" />-->
+            <!--</TableRow>-->
 
             <TableRow android:padding="@dimen/margindp_5"
                 android:gravity="center">

@@ -5,14 +5,15 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
 import weidong.com.ys1106.R;
-import weidong.com.ys1106.Utils.VideoInfo;
+import weidong.com.ys1106.Utils.Constant;
 import weidong.com.ys1106.Utils.YangShInfo;
 
 /*
@@ -51,14 +52,12 @@ public class YangShInfoAdapter extends RecyclerView.Adapter<YangShInfoAdapter.Li
         //根据点击位置绑定数据
         YangShInfo data = yangShInfos.get(i);
 
-//        viewHolder.mVideoImg = data.getAccount();//设置图片的URL
-        //设置是否关注
-        if (1 == data.checked){
-            viewHolder.mChecked.setChecked(true);
-        }else {
-            viewHolder.mChecked.setChecked(false);
+        //设置图片的URL
+        System.out.println(data.getImgUrl());
+        if(data.getImgUrl()!=null){
+            Glide.with(context).load(Constant.UEL_Img + data.getImgUrl()).into(viewHolder.mImg);
         }
-        viewHolder.mChecked.setText("关注");
+        viewHolder.mDes.setText(data.getDes());
         viewHolder.mName.setText(data.getName());
 
     }
@@ -72,15 +71,14 @@ public class YangShInfoAdapter extends RecyclerView.Adapter<YangShInfoAdapter.Li
     //linear view holder
     class LinearViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView mName;
+        private TextView mName,mDes;
         private ImageView mImg;
-        private CheckBox mChecked;
 
         public LinearViewHolder(@NonNull View itemView) {
             super(itemView);
             mName = itemView.findViewById(R.id.item_gz_tv);
             mImg = itemView.findViewById(R.id.item_gz_iv);
-            mChecked = itemView.findViewById(R.id.item_gz_cb);
+            mDes= itemView.findViewById(R.id.item_gz_tv_des);
 
             //
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -104,7 +102,7 @@ public class YangShInfoAdapter extends RecyclerView.Adapter<YangShInfoAdapter.Li
         * @param view 点击的item的视图
         * @param videoInfo 点击的item的数据
         * */
-        public void OnItemClick(View view, YangShInfo Info);
+        void OnItemClick(View view, YangShInfo Info);
     }
 
     //需要外部访问，所以需要设置set方法，方便调用

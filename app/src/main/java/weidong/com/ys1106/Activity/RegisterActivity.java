@@ -1,18 +1,20 @@
 package weidong.com.ys1106.Activity;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RadioGroup;
-import android.widget.Toast;
 
 import weidong.com.ys1106.MainActivity;
 import weidong.com.ys1106.R;
+import weidong.com.ys1106.Utils.AnalysisUtils;
 import weidong.com.ys1106.Utils.CommonRequest;
 import weidong.com.ys1106.Utils.CommonResponse;
 import weidong.com.ys1106.Utils.Constant;
+import weidong.com.ys1106.Utils.MyToast;
 import weidong.com.ys1106.Utils.ResponseHandle;
 import weidong.com.ys1106.Utils.UserInfo;
 
@@ -40,7 +42,7 @@ public class RegisterActivity extends BasicActivity {
                 if (res1 == 1) {
                     register(userInfo);
                 } else {
-
+                    MyToast.MyToastShow(RegisterActivity.this, "填写有误！");
                 }
             }
         });
@@ -50,23 +52,23 @@ public class RegisterActivity extends BasicActivity {
     private int getInfo() {
         userInfo = new UserInfo();
         EditText acc = findViewById(R.id.et_acc);
-        EditText name = findViewById(R.id.et_name);
+//        EditText name = findViewById(R.id.et_name);
         EditText pass = findViewById(R.id.et_pass);
-        EditText qq = findViewById(R.id.et_qq);
-        RadioGroup rg = findViewById(R.id.rg_sex);
+//        EditText qq = findViewById(R.id.et_qq);
+//        RadioGroup rg = findViewById(R.id.rg_sex);
 
         if (acc.getText().toString().isEmpty() || pass.getText().toString().isEmpty()) {
             return 0;
         } else {
             userInfo.setAccount(acc.getText().toString());
             userInfo.setPass(pass.getText().toString());
-            userInfo.setName(name.getText().toString());
-            userInfo.setQq(qq.getText().toString());
-            if (rg.getCheckedRadioButtonId() == R.id.rb_sex_1) {
-                userInfo.setSex("1");//男
-            } else if (rg.getCheckedRadioButtonId() == R.id.rb_sex_2) {
-                userInfo.setSex("0");
-            }
+//            userInfo.setName(name.getText().toString());
+//            userInfo.setQq(qq.getText().toString());
+//            if (rg.getCheckedRadioButtonId() == R.id.rb_sex_1) {
+//                userInfo.setSex("1");//男
+//            } else if (rg.getCheckedRadioButtonId() == R.id.rb_sex_2) {
+//                userInfo.setSex("0");
+//            }
             return 1;
         }
     }
@@ -77,23 +79,29 @@ public class RegisterActivity extends BasicActivity {
         //写入参数的顺序为，0账户名，1密码，2真实姓名，3性别，4年龄，5手机，6qq，7邮箱
         String[] params = new String[]{
                 info.getAccount(),
-                info.getPass(),
-                info.getName(),
-                info.getSex(),
-                info.getAge(),
-                info.getPh(),
-                info.getQq(),
-                info.getEmail()};
-        for(int i = 0;i<8;i++){
+                info.getPass()};
+//                info.getName(),
+//                info.getSex(),
+//                info.getAge(),
+//                info.getPh(),
+//                info.getQq(),
+//                info.getEmail()};
+        for (int i = 0; i < 2; i++) {
             String code = Integer.toString(i);
-            request.addRequestParam(code,params[i]);
+            request.addRequestParam(code, params[i]);
         }
-        request.setRequestCode("2");//标识登录
+        request.setRequestCode("2");//标识注册
+
+        ProgressDialog wait1 = new ProgressDialog(RegisterActivity.this);
 
         sendHttpPostRequst(Constant.URL_Login, request, new ResponseHandle() {
             @Override
             public void success(CommonResponse response) {
                 //成功之后跳转到首页
+                save();
+                Intent intent = new Intent(RegisterActivity.this,HomeActivity.class);
+                startActivity(intent);
+                finish();
             }
 
             @Override
@@ -111,9 +119,15 @@ public class RegisterActivity extends BasicActivity {
                         Msg = "大错误";
                         break;
                 }
-                Toast.makeText(RegisterActivity.this, Msg, Toast.LENGTH_SHORT).show();
+                MyToast.MyToastShow(RegisterActivity.this, Msg);
             }
         });
 
+    }
+
+    //基本信息存入本地
+    private void save(){
+        AnalysisUtils.addloginUsername(RegisterActivity.this,userInfo.getAccount());
+        AnalysisUtils.addloginPass(RegisterActivity.this,userInfo.getPass());
     }
 }

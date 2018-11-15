@@ -1,54 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    >
-
-    <ImageView
-        android:id="@+id/item_home_iv"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_margin="@dimen/margindp_5"
-        android:background="#5463"
-        />
-
-    <TextView
-        android:id="@+id/item_home_title"
+    android:orientation="vertical"
+    android:background="#fff">
+    <FrameLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margindp_5"
-        android:layout_toLeftOf="@+id/item_home_type"
-        android:layout_toRightOf="@+id/item_home_iv"
-        android:textSize="25sp"
-        android:textColor="#000"
-        android:maxLines="1"
-        android:ellipsize="end"
-        />
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/item_home_iv"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            />
+
+        <TextView
+            android:id="@+id/item_home_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margindp_5"
+            android:layout_marginLeft="5dp"
+            android:text="标题1234564"
+            android:textSize="12sp"
+            android:textColor="#fff"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_gravity="bottom"
+            />
+
+    </FrameLayout>
 
     <TextView
         android:id="@+id/item_home_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/item_home_title"
-        android:layout_marginLeft="@dimen/margindp_5"
-        android:layout_marginRight="@dimen/margindp_5"
-        android:layout_toLeftOf="@+id/item_home_type"
-        android:layout_toRightOf="@+id/item_home_iv"
+        android:layout_marginLeft="5dp"
         android:ellipsize="end"
-        android:maxLines="3"
-        android:textSize="18sp"
-        android:textColor="#999"
-        />
+        android:maxLines="1"
+        android:textSize="15sp"
+        android:textColor="#000"
+        android:text="描述1231515132"
+        android:layout_marginBottom="5dp"/>
 
-
-    <TextView
-        android:id="@+id/item_home_type"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="@dimen/margindp_5"
-        android:layout_marginRight="@dimen/margindp_5"
-        android:gravity="center"
-        />
-
-</RelativeLayout>
+</LinearLayout>

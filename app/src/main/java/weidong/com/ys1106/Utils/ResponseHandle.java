@@ -7,6 +7,8 @@ public interface ResponseHandle {
     * */
     void success(CommonResponse response);
 
+
+
     /*
     * 报文通信正常，但交易内容失败的处理
     * @param failCode 返回的交易状态码
