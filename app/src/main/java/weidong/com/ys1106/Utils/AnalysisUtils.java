@@ -8,9 +8,7 @@ public class AnalysisUtils {
      * 本地的用户配置
      *  account 用户名
      *  pass 密码
-     * loginStatus
-     * auto_login (1表示自动登录)，是否自动登录
-     * rem（1表示记住） 是否记住密码
+     * boolean loginStatus (true/false)
      * */
 
     //读取用户名
@@ -21,52 +19,41 @@ public class AnalysisUtils {
     }
 
     //存入用户名
-    public static void addloginUsername(Context context,String name) {
+    public static void saveLoginStatus(Context context,boolean status,String account){
         SharedPreferences sp = context.getSharedPreferences("userinfo", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
-        editor.putString("account",name);
-        editor.commit();
+        editor.putBoolean("loginStatus",status);
+        editor.putString("account",account);
+        editor.apply();
     }
 
-    //读取密码
-    public static String readloginpass(Context context) {
+    //根据用户名读取密码
+    public static String readloginpass(Context context,String account) {
         SharedPreferences sp = context.getSharedPreferences("userinfo", Context.MODE_PRIVATE);
-        String UserName = sp.getString("pass", "");
-        return UserName;
+        String psw = sp.getString(account, "");
+        return psw;
     }
 
-    //存入用户名
-    public static void addloginPass(Context context,String pass) {
+    //以用户名作为key存入密码
+    public static void addloginPass(Context context,String pass,String account) {
         SharedPreferences sp = context.getSharedPreferences("userinfo", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
-        editor.putString("pass",pass);
-        editor.commit();
+        editor.putString(account,pass);
+        editor.apply();
     }
 
     //读取登录状态
-
-    //读取记住密码与否
-    public static String readloginrem(Context context) {
-        SharedPreferences sp = context.getSharedPreferences("userinfo", Context.MODE_PRIVATE);
-        String UserName = sp.getString("rem", "");
-        return UserName;
-    }
-
-    //读取自动登录与否
-    public static String readloginauto(Context context) {
-        SharedPreferences sp = context.getSharedPreferences("userinfo", Context.MODE_PRIVATE);
-        String UserName = sp.getString("auto_login", "");
-        return UserName;
+    public static boolean readLoginStatus(Context context){
+        SharedPreferences sp = context.getSharedPreferences("userinfo",Context.MODE_PRIVATE);
+        return sp.getBoolean("loginStatus",false);
     }
 
     //清除登录状态
     public static void cleanlogin(Context context) {
         SharedPreferences sp = context.getSharedPreferences("userinfo", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
-        editor.putString("account", "");
-        editor.putString("pass", "");
-        editor.putString("auto_login", "");
-        editor.putString("rem", "");
-        editor.commit();
+        editor.putBoolean("loginStatus",false);
+        editor.putString(AnalysisUtils.readloginUserName(context),"");
+        editor.apply();
     }
 }

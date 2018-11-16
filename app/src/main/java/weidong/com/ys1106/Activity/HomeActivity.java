@@ -1,6 +1,7 @@
 package weidong.com.ys1106.Activity;
 
 
+import android.content.pm.ActivityInfo;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -45,11 +46,16 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        //设置此界面为竖屏
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         initViews();
 
         mFragmentAdapter = new FragmentAdapter(this.getSupportFragmentManager(),mFragmentList);
-        vp.setOffscreenPageLimit(3);
+        //设置为三块
+       vp.setOffscreenPageLimit(3);
         vp.setAdapter(mFragmentAdapter);
+        //默认为首页
         vp.setCurrentItem(1);
 
         vp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {

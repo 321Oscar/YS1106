@@ -27,7 +27,7 @@
             android:layout_weight="5"
             android:background="#0DBDD1"
             android:padding="10dp"
-            android:text="修改密码"
+            android:text="修改个人信息"
             android:textColor="#fff"
             android:textSize="20sp" />
 

@@ -47,13 +47,15 @@ public class HttpPostTask extends AsyncTask<String, String, String> {
 
             //如果是POST方法，需要在获取输入流之前向连接写入POST参数
             DataOutputStream out = new DataOutputStream(connection.getOutputStream());
-            out.writeBytes(request.getJsonStr());
+//            out.writeBytes(request.getJsonStr());
+            //上面的方法 中文传输出现乱码 改为下面的方法
+            out.write(request.getJsonStr().getBytes());
             out.flush();
 
             //step3：打开连接输入流读取返回报文 （在此步骤才真正开始网络请求）
             int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {
-                //通过连接的输入流获取下发报文，然后就是Java的流处理
+                //通过连接的输入流 获取 下发报文，然后就是Java的流处理
                 InputStream inputStream = connection.getInputStream();
                 BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
                 String line;

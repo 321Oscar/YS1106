@@ -13,4 +13,8 @@ public class MyToast {
         }
         myToast.show();
     }
+
+    public static void SysInfo(String msg){
+        System.out.println(msg);
+    }
 }

@@ -7,14 +7,35 @@ import java.util.HashMap;
 
 public class CommonRequest {
 
-    /*请求码，类似于接口号*/
+    /*请求码，类似于接口号
+    * 1 -- 登录
+    * 2 -- 注册
+    * 3 -- 用户关注视频的信息
+    * 4 -- 用户基本信息
+    * 5 -- 用户关注的类型
+    * 6 -- 修改密码
+    * 7 -- 修改基本信息
+    * */
     private String requestCode;
+
+    /*用户更新数据请求码
+    * 1 —— 用户名
+    *
+    * 3 —— 性别
+    * 4 —— 年龄
+    * 5 —— qq
+    * 6 —— 手机
+    * 7 —— 邮箱
+    * 8 -- 姓名
+    * */
+    private String requestUpCode;
 
     /*请求参数*/
     private HashMap<String,String> requestParam;
 
     public CommonRequest(){
         requestCode = "";
+        requestUpCode = "";
         requestParam = new HashMap<>();
     }
 
@@ -30,6 +51,7 @@ public class CommonRequest {
     * */
     public void addRequestParam(String paramkey,String paramvalue) {
         requestParam.put(paramkey,paramvalue);
+        System.out.println("---参数---"+requestParam.get(paramkey));
     }
 
     /*
@@ -41,11 +63,17 @@ public class CommonRequest {
         JSONObject param = new JSONObject(requestParam);//参数列表
         try {
             object.put("ActionType",requestCode);
+            object.put("UpdateCode",requestUpCode);
             object.put("params",param);//参数列表的name以及内容
+            System.out.println("---参数列表---"+object.getJSONObject("params").toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
         return object.toString();
+    }
+
+    public void setRequestUpCode(String requestUpCode) {
+        this.requestUpCode = requestUpCode;
     }
 }
 
