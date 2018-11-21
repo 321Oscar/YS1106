@@ -1,6 +1,5 @@
 package weidong.com.ys1106.Activity;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -20,15 +19,16 @@ public class BasicActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
     }
 
-    protected void sendHttpPostRequst(String url, CommonRequest request, ResponseHandle rHandle){
-        new HttpPostTask(request,mHandle,rHandle).execute(url);
+    protected void sendHttpPostRequst(String url, CommonRequest request, ResponseHandle rHandle) {
+        new HttpPostTask(request, mHandle, rHandle).execute(url);
     }
 
     private MyHandle mHandle = new MyHandle(this);
 
-    static class MyHandle extends  Handler{
+    static class MyHandle extends Handler {
         WeakReference weakReference;
-        public MyHandle(BasicActivity activity){
+
+        public MyHandle(BasicActivity activity) {
             weakReference = new WeakReference(activity);
         }
 

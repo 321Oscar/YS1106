@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,9 +27,11 @@
         <activity android:name=".Activity.HomeActivity" />
         <activity android:name=".Activity.ChangePassActivity" />
         <activity android:name=".Activity.ChangeInfoActivity" />
-        <activity android:name=".Activity.VideoPlayActivity"
+        <activity
+            android:name=".Activity.VideoPlayActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+        <activity android:name=".Activity.TypeVideosActivity"></activity>
     </application>
 
 </manifest>

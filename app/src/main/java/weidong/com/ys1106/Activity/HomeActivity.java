@@ -26,14 +26,14 @@ public class HomeActivity extends AppCompatActivity {
     private List<Fragment> mFragmentList = new ArrayList<>();
     private FragmentAdapter mFragmentAdapter;
 
-    private long lastBack =0;
+    private long lastBack = 0;
 
     /*
-    * 再次返回键退出程序*/
+     * 再次返回键退出程序*/
     @Override
     public void onBackPressed() {
-        if(lastBack == 0 || System.currentTimeMillis() - lastBack > 2000){
-            Toast.makeText(HomeActivity.this,"再按一次退出程序",
+        if (lastBack == 0 || System.currentTimeMillis() - lastBack > 2000) {
+            Toast.makeText(HomeActivity.this, "再按一次退出程序",
                     Toast.LENGTH_SHORT).show();
             lastBack = System.currentTimeMillis();
             return;
@@ -51,9 +51,9 @@ public class HomeActivity extends AppCompatActivity {
 
         initViews();
 
-        mFragmentAdapter = new FragmentAdapter(this.getSupportFragmentManager(),mFragmentList);
+        mFragmentAdapter = new FragmentAdapter(this.getSupportFragmentManager(), mFragmentList);
         //设置为三块
-       vp.setOffscreenPageLimit(3);
+        vp.setOffscreenPageLimit(3);
         vp.setAdapter(mFragmentAdapter);
         //默认为首页
         vp.setCurrentItem(1);
@@ -86,15 +86,15 @@ public class HomeActivity extends AppCompatActivity {
         mRgTab.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId){
+                switch (checkedId) {
                     case R.id.rb_guanzhu:
-                        vp.setCurrentItem(0,true);
+                        vp.setCurrentItem(0, true);
                         break;
                     case R.id.rb_home:
-                        vp.setCurrentItem(1,true);
+                        vp.setCurrentItem(1, true);
                         break;
                     case R.id.rb_myown:
-                        vp.setCurrentItem(2,true);
+                        vp.setCurrentItem(2, true);
                         break;
                 }
             }
@@ -107,14 +107,14 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     /*改变按钮的选中状态*/
-    public void changeRadioChecked(int index){
-        if(index == 0){
+    public void changeRadioChecked(int index) {
+        if (index == 0) {
             RadioButton rb = findViewById(R.id.rb_guanzhu);
             rb.setChecked(true);
-        }else if (index == 1){
+        } else if (index == 1) {
             RadioButton rb = findViewById(R.id.rb_home);
             rb.setChecked(true);
-        }else if (index == 2){
+        } else if (index == 2) {
             RadioButton rb = findViewById(R.id.rb_myown);
             rb.setChecked(true);
         }

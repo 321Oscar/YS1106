@@ -25,8 +25,6 @@ public class CommonResponse {
     //列表类信息
     private ArrayList<HashMap<String,String>> mapList;
 
-    private ArrayList<VideoInfo> videoInfoList;
-
     //报文返回构造函数
     public CommonResponse(String responseString){
         propertyMap = new HashMap<>();

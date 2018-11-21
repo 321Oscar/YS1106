@@ -11,7 +11,7 @@ import weidong.com.ys1106.Utils.HttpPostTask;
 import weidong.com.ys1106.Utils.ResponseHandle;
 
 public class BasicFragment extends Fragment {
-    protected void sendHttpPostRequst(String url, CommonRequest request, ResponseHandle rHandle){
+    protected void sendHttpPostRequest(String url, CommonRequest request, ResponseHandle rHandle){
         new HttpPostTask(request,mHandle,rHandle).execute(url);
     }
 

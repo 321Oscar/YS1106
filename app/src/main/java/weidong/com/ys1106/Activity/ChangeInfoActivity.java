@@ -56,7 +56,7 @@ public class ChangeInfoActivity extends BasicActivity {
         mChangeInfo.setText(bundle.getString("oldInfo"));
 
         //确定是更改那个类型，设置EditText的输入类型
-        switch (bundle.getString("type")){
+        switch (bundle.getString("type")) {
             case "account":
                 break;
             case "age":
@@ -81,10 +81,10 @@ public class ChangeInfoActivity extends BasicActivity {
         mCommitChange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!IsSame()){
+                if (!IsSame()) {
                     UpdateInfo();
-                }else{
-                    MyToast.MyToastShow(ChangeInfoActivity.this,"不能和以前的信息相同！");
+                } else {
+                    MyToast.MyToastShow(ChangeInfoActivity.this, "不能和以前的信息相同！");
                 }
 
             }
@@ -93,40 +93,40 @@ public class ChangeInfoActivity extends BasicActivity {
     }
 
     //判断新的信息和旧的信息是否相同
-    private boolean IsSame(){
-        if(mChangeInfo.getText().toString().equals(bundle.getString("oldInfo"))){
+    private boolean IsSame() {
+        if (mChangeInfo.getText().toString().equals(bundle.getString("oldInfo"))) {
             return true;
         }
         return false;
     }
 
     //更新信息
-    private void UpdateInfo(){
+    private void UpdateInfo() {
         //根据类型判断需要改变的是哪种信息
-        switch (bundle.getString("type")){
+        switch (bundle.getString("type")) {
             case "account":
-                ChangeAccount("1");
+                ChangeInfos("1");
                 break;
             case "age":
-                ChangeAccount("4");
+                ChangeInfos("4");
                 break;
             case "name":
-                ChangeAccount("8");
+                ChangeInfos("8");
                 break;
             case "qq":
-                ChangeAccount("5");
+                ChangeInfos("5");
                 break;
             case "email":
-                ChangeAccount("7");
+                ChangeInfos("7");
                 break;
             case "ph":
-                ChangeAccount("6");
+                ChangeInfos("6");
                 break;
 
         }
     }
 
-    private void ChangeAccount(String updateCode){
+    private void ChangeInfos(String updateCode) {
         CommonRequest request = new CommonRequest();
 
         //设置用户更新信息码
@@ -136,41 +136,42 @@ public class ChangeInfoActivity extends BasicActivity {
         request.setRequestUpCode(updateCode);
 
         //添加用户更改的参数 account --用户名, param -- 新的信息
-        request.addRequestParam("account",AnalysisUtils.readloginUserName(ChangeInfoActivity.this));
-        request.addRequestParam("param",mChangeInfo.getText().toString());
+        request.addRequestParam("account", AnalysisUtils.readloginUserName(ChangeInfoActivity.this));
+        request.addRequestParam("param", mChangeInfo.getText().toString());
 
         sendHttpPostRequst(Constant.URL_Login, request, new ResponseHandle() {
             @Override
             public void success(CommonResponse response) {
-                dosuccess();
+                DoSuccess();
             }
 
             @Override
             public void failure(String failCode, String failMsg) {
-                dofail();
+                DoFail();
             }
         });
     }
 
-    private void dosuccess(){
+    private void DoSuccess() {
         //如果修改的是用户名，则要修改在本地的信息，用户名，以及重新设置新的用户名密码组合
-        if(bundle.getString("type").equals("account")){
-            AnalysisUtils.saveLoginStatus(ChangeInfoActivity.this,true,mChangeInfo.getText().toString());
+        if (bundle.getString("type").equals("account")) {
+            AnalysisUtils.saveLoginStatus(ChangeInfoActivity.this, true, mChangeInfo.getText().toString());
             AnalysisUtils.addloginPass(ChangeInfoActivity.this,
-                    AnalysisUtils.readloginpass(ChangeInfoActivity.this,bundle.getString("oldInfo")),
+                    AnalysisUtils.readloginpass(ChangeInfoActivity.this, bundle.getString("oldInfo")),
                     mChangeInfo.getText().toString());
         }
-        MyToast.MyToastShow(ChangeInfoActivity.this,"修改成功！");
+        MyToast.MyToastShow(ChangeInfoActivity.this, "修改成功！");
         //设置成功的返回Code ，以便判断是否需要刷新数据
         CODE = 0x711;
     }
-    private void dofail(){
-        MyToast.MyToastShow(ChangeInfoActivity.this,"修改失败！");
+
+    private void DoFail() {
+        MyToast.MyToastShow(ChangeInfoActivity.this, "修改失败！");
     }
 
     @Override
     public void finish() {
-        setResult(CODE,intent);
+        setResult(CODE, intent);
         super.finish();
     }
 }

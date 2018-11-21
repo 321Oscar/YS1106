@@ -64,7 +64,9 @@ public class HttpPostTask extends AsyncTask<String, String, String> {
                 }
                 return resultBuf.toString();
             } else {
-//                mhandle.obtainMessage(Constant)
+                //异常情况，如404/500
+                mHandle.obtainMessage(Constant.HANDLER_HTTP_RECEIVE_FIAL,
+                        "["+responseCode+"]"+connection.getResponseMessage()).sendToTarget();
             }
         } catch (IOException e) {
             //网络请求过程中发生IO异常 mhandle

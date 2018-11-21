@@ -44,64 +44,27 @@ public class MainActivity extends BasicActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         //设置此界面为竖屏
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        //绑定控件
         final EditText Account = findViewById(R.id.login_et_name);
         final EditText pass = findViewById(R.id.login_et_pass);
+        mTvRegister = findViewById(R.id.register);
+        mBtnLogin = findViewById(R.id.login);
 
         //判断是否已经登录
         if (AnalysisUtils.readLoginStatus(MainActivity.this)) {
             UserInfo info = new UserInfo();
             info.setAccount(AnalysisUtils.readloginUserName(MainActivity.this));
-            MyToast.SysInfo("----password-----" + AnalysisUtils.readloginpass(MainActivity.this, AnalysisUtils.readloginUserName(MainActivity.this)));
             info.setPass(AnalysisUtils.readloginpass(MainActivity.this, AnalysisUtils.readloginUserName(MainActivity.this)));
             Account.setText(info.getAccount());
             pass.setText(info.getPass());
             login(info);
         }
-//        //自动登录
-//        cb_rem = findViewById(R.id.login_cb_rem);
-//        cb_auto = findViewById(R.id.login_cb_auto);
-//        sp = getSharedPreferences("userinfo", MODE_PRIVATE);
-//
-//
-//        //是否记住密码和自动登录
-//        if (sp.getString("rem", "").equals("1")) {
-//            cb_rem.setChecked(true);
-//            Account.setText(AnalysisUtils.readloginUserName(MainActivity.this));
-//            pass.setText(AnalysisUtils.readloginpass(MainActivity.this));
-//            if ((AnalysisUtils.readloginauto(MainActivity.this).equals("1"))) {
-//                cb_auto.setChecked(true);
-//                UserInfo autoinfo = new UserInfo();
-//                autoinfo.setAccount(AnalysisUtils.readloginUserName(MainActivity.this));
-//                autoinfo.setPass(AnalysisUtils.readloginpass(MainActivity.this));
-//                login(autoinfo);
-//            }
-//        }
-//
-//        //自动登录选中则自动选中记住密码
-//        cb_auto.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                if (isChecked) {
-//                    cb_rem.setChecked(true);
-//                }
-//            }
-//        });
-//
-//        //若没有选中记住密码，则自动登录也设为未选中
-//        cb_rem.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                if(!isChecked){
-//                    cb_auto.setChecked(false);
-//                }
-//            }
-//        });
 
-        //跳转到注册界面
-        mTvRegister = findViewById(R.id.register);
+        //注册界面
         mTvRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,10 +74,10 @@ public class MainActivity extends BasicActivity {
         });
 
         //登录事件
-        mBtnLogin = findViewById(R.id.login);
         mBtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //非空判断
                 if (Account.getText().toString().isEmpty() || pass.getText().toString().isEmpty()) {
                     MyToast.MyToastShow(MainActivity.this, "用户名和密码不能为空！");
                 } else {
@@ -174,21 +137,6 @@ public class MainActivity extends BasicActivity {
                 AnalysisUtils.saveLoginStatus(MainActivity.this, true, info.getAccount());
                 AnalysisUtils.addloginPass(MainActivity.this, info.getPass(), info.getAccount());
 
-                MyToast.SysInfo("----passwordsave----" + AnalysisUtils.readloginpass(MainActivity.this, info.getAccount()));
-
-//                //如果用户选择记住密码，则在存储用户的选择
-//                if (cb_rem.isChecked()) {
-//                    editor.putString("rem", "1");
-//                    if (cb_auto.isChecked()) {
-//                        editor.putString("auto_login", "1");
-//                    } else {
-//                        editor.putString("auto_login", "0");
-//                    }
-//                } else {
-//                    editor.putString("rem", "0");
-//                }
-//                editor.apply();
-
                 //成功之后跳转到首页
                 Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                 startActivity(intent);
@@ -200,6 +148,7 @@ public class MainActivity extends BasicActivity {
             //登录失败
             @Override
             public void failure(String failCode, String failMsg) {
+                //dailog延时
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -217,8 +166,8 @@ public class MainActivity extends BasicActivity {
                     }
                 }).start();
 
-                String Msg = "";
                 //10,00,0 解析失败结果码
+                String Msg = "";
                 switch (failCode) {
                     case "10":
                         Msg = "密码错误";
@@ -232,8 +181,6 @@ public class MainActivity extends BasicActivity {
                 }
                 //显示登录失败原因
                 setfaildialog(Msg);
-
-//                Toast.makeText(MainActivity.this, Msg, Toast.LENGTH_SHORT).show();
             }
         });
 

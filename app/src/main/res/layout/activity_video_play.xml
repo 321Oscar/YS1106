@@ -3,41 +3,66 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.VideoPlayActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".Activity.VideoPlayActivity">
 
-    <TextView
-        android:id="@+id/play_back"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:textColor="@color/color_white"
-        android:text="返回"
-        android:layout_gravity="top|left"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_blue_1"
+        android:orientation="horizontal"
+        android:padding="@dimen/margindp_10">
+
+        <TextView
+            android:id="@+id/play_back"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|left"
+            android:layout_weight="0.5"
+            android:text="返回"
+            android:textColor="@color/color_white"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/videotype"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="type"
+            android:gravity="center"
+            android:textSize="18sp"/>
+
+    </LinearLayout>
 
 
-        <cn.jzvd.JzvdStd
-            android:id="@+id/play"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"></cn.jzvd.JzvdStd>
-
-
+    <cn.jzvd.JzvdStd
+        android:id="@+id/play"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"></cn.jzvd.JzvdStd>
 
 
     <TextView
         android:id="@+id/play_title"
-        android:layout_marginLeft="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
         android:text="Biaoti"
-        android:textSize="18sp"
-        android:textColor="@color/color_black"/>
+        android:textColor="@color/color_black"
+        android:textSize="18sp" />
+
     <TextView
         android:id="@+id/play_des"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="miaoshu"
         android:layout_marginLeft="10dp"
-        android:textColor="@color/color_gray"
-        />
+        android:text="miaoshu"
+        android:textColor="@color/color_gray" />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/sameType">
+
+    </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>

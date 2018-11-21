@@ -1,5 +1,17 @@
 package weidong.com.ys1106.Utils;
 
+/*
+ * 用户信息
+ * 账号
+ * 姓名
+ * 性别
+ * qq
+ * 密码
+ * 年龄
+ * 邮箱
+ * 手机号
+ * */
+
 public class UserInfo {
     private String Account;
     private String name;
@@ -53,11 +65,11 @@ public class UserInfo {
     }
 
     public String getSex() {
-        String sexname="" ;
-        if("1".equals(sex)){
+        String sexname = "";
+        if ("1".equals(sex)) {
             sexname = "男";
-        }else if("0".equals(sex)){
-            sexname ="女";
+        } else if ("0".equals(sex)) {
+            sexname = "女";
         }
         return sexname;
     }

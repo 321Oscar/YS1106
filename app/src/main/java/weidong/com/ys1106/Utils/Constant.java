@@ -5,4 +5,5 @@ public class Constant {
     public static String URL_Register = URL + "ServletTest/RegisterServlet";
     public static String URL_Login = URL + "ServletTest/LoginServlet";
     public static String UEL_Img = URL + "";
+    public static int HANDLER_HTTP_RECEIVE_FIAL = 404;
 }

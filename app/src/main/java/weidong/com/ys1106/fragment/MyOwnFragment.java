@@ -23,7 +23,6 @@ import weidong.com.ys1106.Utils.AnalysisUtils;
 import weidong.com.ys1106.Utils.CommonRequest;
 import weidong.com.ys1106.Utils.CommonResponse;
 import weidong.com.ys1106.Utils.Constant;
-import weidong.com.ys1106.Utils.MD5Utils;
 import weidong.com.ys1106.Utils.MyToast;
 import weidong.com.ys1106.Utils.ResponseHandle;
 import weidong.com.ys1106.Utils.UserInfo;
@@ -65,10 +64,10 @@ public class MyOwnFragment extends BasicFragment implements View.OnClickListener
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == CODE && resultCode == 0x711){//修改成功之后要重新刷新数据
+        if (requestCode == CODE && resultCode == 0x711) {//修改成功之后要重新刷新数据
             initData();
-        }else if(requestCode == CODE && resultCode == 0x710){
-            MyToast.MyToastShow(getActivity(),"未更改");
+        } else if (requestCode == CODE && resultCode == 0x710) {
+            MyToast.MyToastShow(getActivity(), "未更改");
         }
     }
 
@@ -93,7 +92,7 @@ public class MyOwnFragment extends BasicFragment implements View.OnClickListener
         switch (v.getId()) {
             //更换用户名
             case R.id.change_account:
-                updateUserInfo("account",mChangeAccount);
+                updateUserInfo("account", mChangeAccount);
                 break;
             //更改性别
             case R.id.change_sex:
@@ -101,23 +100,23 @@ public class MyOwnFragment extends BasicFragment implements View.OnClickListener
                 break;
             //更改用户年龄
             case R.id.change_age:
-                updateUserInfo("age",mChangeAge);
+                updateUserInfo("age", mChangeAge);
                 break;
 //          更改用户姓名
             case R.id.change_name:
-                updateUserInfo("name",mChangeName);
+                updateUserInfo("name", mChangeName);
                 break;
 //          更改qq
             case R.id.change_qq:
-                updateUserInfo("qq",mChangeqq);
+                updateUserInfo("qq", mChangeqq);
                 break;
 //          更改邮箱
             case R.id.change_email:
-                updateUserInfo("email",mChangeEmail);
+                updateUserInfo("email", mChangeEmail);
                 break;
 //          更改手机
             case R.id.change_ph:
-                updateUserInfo("ph",mChangePh);
+                updateUserInfo("ph", mChangePh);
                 break;
             //注销账户
             case R.id.deleteaccount:
@@ -143,15 +142,15 @@ public class MyOwnFragment extends BasicFragment implements View.OnClickListener
      *  */
     public void initData() {
         CommonRequest request = new CommonRequest();
+
         //请求码：4 —— 查找用户基本信息
         request.setRequestCode("4");
+
         //使用用户的用户名查找
         String acccount = AnalysisUtils.readloginUserName(getActivity());
-        System.out.println("account:" + acccount);
-
         request.addRequestParam("account", acccount);
 
-        sendHttpPostRequst(Constant.URL_Login, request, new ResponseHandle() {
+        sendHttpPostRequest(Constant.URL_Login, request, new ResponseHandle() {
             @Override
             public void success(CommonResponse response) {
                 if (response.getDataList().size() > 0) {
@@ -176,34 +175,34 @@ public class MyOwnFragment extends BasicFragment implements View.OnClickListener
     }
 
     /*
-    * 将数据显示在textview里
-    * */
-    private void initTextViewData(UserInfo info){
+     * 将数据显示在textview里
+     * */
+    private void initTextViewData(UserInfo info) {
         mChangeAccount.setText(AnalysisUtils.readloginUserName(getActivity()));
         mChangesex.setText(info.getSex());
-        if(info.getAge().equals("null")){
+        if (info.getAge().equals("null")) {
             mChangeAge.setText("未填");
-        }else{
+        } else {
             mChangeAge.setText(info.getAge());
         }
-        if(info.getName().equals("null")){
+        if (info.getName().equals("null")) {
             mChangeName.setText("未填");
-        }else{
+        } else {
             mChangeName.setText(info.getName());
         }
-        if(info.getQq().equals("null")){
+        if (info.getQq().equals("null")) {
             mChangeqq.setText("未填");
-        }else{
+        } else {
             mChangeqq.setText(info.getQq());
         }
-        if(info.getEmail().equals("null")){
+        if (info.getEmail().equals("null")) {
             mChangeEmail.setText("未填");
-        }else{
+        } else {
             mChangeEmail.setText(info.getEmail());
         }
-        if(info.getPh().equals("null")){
+        if (info.getPh().equals("null")) {
             mChangePh.setText("未填");
-        }else{
+        } else {
             mChangePh.setText(info.getPh());
         }
     }
@@ -242,7 +241,6 @@ public class MyOwnFragment extends BasicFragment implements View.OnClickListener
         mEmail.setOnClickListener(this);
 
         mChangeAccount = view.findViewById(R.id.frag_myOwn_tv_account);
-        mChangeUser = view.findViewById(R.id.frag_myOwn_tv_account);
         mChangeAge = view.findViewById(R.id.frag_myOwn_tv_age);
         mChangesex = view.findViewById(R.id.frag_myOwn_tv_sex);
         mChangeName = view.findViewById(R.id.frag_myOwn_tv_name);
@@ -262,6 +260,7 @@ public class MyOwnFragment extends BasicFragment implements View.OnClickListener
     private void ChangeUser() {
         //清除当前账号信息
         AnalysisUtils.cleanlogin(getActivity());
+
         //打开新的登录界面
         Intent intent = new Intent(getActivity(), MainActivity.class);
         startActivity(intent);
@@ -302,9 +301,11 @@ public class MyOwnFragment extends BasicFragment implements View.OnClickListener
             @Override
             public void onClick(View v) {
                 if (!pass.getText().toString().isEmpty()) {
-                    if (MD5Utils.ToMD5(pass.getText().toString().trim()).equals(AnalysisUtils.readloginpass(getActivity(),AnalysisUtils.readloginUserName(getActivity())))) {
+                    if ((pass.getText().toString().trim()).
+                            equals(AnalysisUtils.readloginpass(getActivity(), AnalysisUtils.readloginUserName(getActivity())))) {
                         //注销
                         MyToast.MyToastShow(getActivity(), "密码正确！");
+                        //返回到登录界面
                     } else {
                         MyToast.MyToastShow(getActivity(), "密码不正确！");
                     }
@@ -317,18 +318,18 @@ public class MyOwnFragment extends BasicFragment implements View.OnClickListener
     }
 
     /*
-    * 更改用户基本信息
-    * @param type 更改的类型
-    * @param content 更改的textview
-    * */
-    private void updateUserInfo(String type,TextView content){
+     * 更改用户基本信息 跳转到新的Activity中更改相应的信息
+     * @param type 更改的类型
+     * @param content 更改的textView
+     * */
+    private void updateUserInfo(String type, TextView content) {
         //更改信息
-        Intent intent = new Intent(getActivity(),ChangeInfoActivity.class);
+        Intent intent = new Intent(getActivity(), ChangeInfoActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putString("type",type);
-        bundle.putString("oldInfo",content.getText().toString());
+        bundle.putString("type", type);
+        bundle.putString("oldInfo", content.getText().toString());
         intent.putExtras(bundle);
-        startActivityForResult(intent,CODE);
+        startActivityForResult(intent, CODE);
     }
 
     /*
@@ -360,13 +361,13 @@ public class MyOwnFragment extends BasicFragment implements View.OnClickListener
     }
 
     /*
-    * @param sex 在dialog中的选择，0为男性，1为女性
-    * */
-    private void ChangeSexInSql(final int sex){
+     * @param sex 在dialog中的选择，0为男性，1为女性
+     * */
+    private void ChangeSexInSql(final int sex) {
         String Sex;
-        if(sex == 0){ //dialog中显示为男
+        if (sex == 0) { //dialog中显示为男
             Sex = "1"; //数据库中 1 表示男
-        }else{
+        } else {
             Sex = "0";
         }
 
@@ -379,10 +380,10 @@ public class MyOwnFragment extends BasicFragment implements View.OnClickListener
         request.setRequestUpCode("3");
 
         //添加用户更改的参数 account --用户名, param -- 新的信息
-        request.addRequestParam("account",AnalysisUtils.readloginUserName(getActivity()));
-        request.addRequestParam("param",Sex);
+        request.addRequestParam("account", AnalysisUtils.readloginUserName(getActivity()));
+        request.addRequestParam("param", Sex);
 
-        sendHttpPostRequst(Constant.URL_Login, request, new ResponseHandle() {
+        sendHttpPostRequest(Constant.URL_Login, request, new ResponseHandle() {
             @Override
             public void success(CommonResponse response) {
                 SexSuccess(sex);
@@ -390,14 +391,14 @@ public class MyOwnFragment extends BasicFragment implements View.OnClickListener
 
             @Override
             public void failure(String failCode, String failMsg) {
-                MyToast.MyToastShow(getActivity(),"更改失败！");
+                MyToast.MyToastShow(getActivity(), "更改失败！");
             }
         });
     }
 
     /*修改成功 将text View中的显示也改变*/
-    private void SexSuccess(int intsex){
-        ChangeSexInView(intsex,mChangesex);
+    private void SexSuccess(int intsex) {
+        ChangeSexInView(intsex, mChangesex);
     }
 
     /*

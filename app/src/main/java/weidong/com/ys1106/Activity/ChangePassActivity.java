@@ -22,8 +22,8 @@ import weidong.com.ys1106.Utils.ResponseHandle;
 
 public class ChangePassActivity extends BasicActivity {
 
-    private EditText mOldPsw,mOldPsw_1;
-    private EditText mNewPsw,mNewPsw_1;
+    private EditText mOldPsw, mOldPsw_1;
+    private EditText mNewPsw, mNewPsw_1;
     private Button mChangePsw;
     private ImageView mBack;
 
@@ -35,12 +35,12 @@ public class ChangePassActivity extends BasicActivity {
         init();
     }
 
-    private void init(){
+    private void init() {
         mOldPsw = findViewById(R.id.et_oldpass);
         mOldPsw_1 = findViewById(R.id.et_oldpass_confirm);
         mNewPsw = findViewById(R.id.et_newpass);
         mNewPsw_1 = findViewById(R.id.et_newpass_confirm);
-        mBack =findViewById(R.id.btn_finish);
+        mBack = findViewById(R.id.btn_finish);
         //返回键
         mBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,15 +53,15 @@ public class ChangePassActivity extends BasicActivity {
         mChangePsw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(PswEmpty()){
-                    MyToast.MyToastShow(ChangePassActivity.this,"请填写完整的信息！");
-                }else if(!OldPswSame()){
-                    MyToast.MyToastShow(ChangePassActivity.this,"两次输入的旧密码不一致！");
-                }else if (!NewPswSame()){
-                    MyToast.MyToastShow(ChangePassActivity.this,"两次输入的新密码不一致！");
-                }else if(SameOldNew()){
-                    MyToast.MyToastShow(ChangePassActivity.this,"新旧密码不能相同");
-                }else {
+                if (PswEmpty()) {
+                    MyToast.MyToastShow(ChangePassActivity.this, "请填写完整的信息！");
+                } else if (!OldPswSame()) {
+                    MyToast.MyToastShow(ChangePassActivity.this, "两次输入的旧密码不一致！");
+                } else if (!NewPswSame()) {
+                    MyToast.MyToastShow(ChangePassActivity.this, "两次输入的新密码不一致！");
+                } else if (SameOldNew()) {
+                    MyToast.MyToastShow(ChangePassActivity.this, "新旧密码不能相同");
+                } else {
                     //change pass
                     DoChange(AnalysisUtils.readloginUserName(ChangePassActivity.this),
                             MD5Utils.ToMD5(mNewPsw.getText().toString().trim()),
@@ -72,16 +72,16 @@ public class ChangePassActivity extends BasicActivity {
         });
     }
 
-    private void DoChange(String name,String psw,String oldpsw){
+    private void DoChange(String name, String psw, String oldpsw) {
         CommonRequest request = new CommonRequest();
 
         //设置更新用户信息码
         request.setRequestCode("6");
 
         //设置需要更新的用户的用户名、旧密码和新密码
-        request.addRequestParam("account",name);
-        request.addRequestParam("oldpass",oldpsw);
-        request.addRequestParam("newpass",psw);
+        request.addRequestParam("account", name);
+        request.addRequestParam("oldpass", oldpsw);
+        request.addRequestParam("newpass", psw);
 
         sendHttpPostRequst(Constant.URL_Login, request, new ResponseHandle() {
             @Override
@@ -96,64 +96,66 @@ public class ChangePassActivity extends BasicActivity {
         });
     }
 
-    private void doFail(String fialCode){
-        switch (fialCode){
+    private void doFail(String fialCode) {
+        switch (fialCode) {
             case "10":
-                MyToast.MyToastShow(ChangePassActivity.this,"遗憾，修改失败");
+                MyToast.MyToastShow(ChangePassActivity.this, "遗憾，修改失败");
                 break;
             case "01":
-                MyToast.MyToastShow(ChangePassActivity.this,"遗憾，旧密码错误");
+                MyToast.MyToastShow(ChangePassActivity.this, "遗憾，旧密码错误");
                 break;
         }
     }
 
-    private void doSuccess(){
-        AlertDialog.Builder successbuilder = new AlertDialog.Builder(ChangePassActivity.this);
-        successbuilder.setTitle("修改成功").setMessage("请重新登录").setPositiveButton("确定", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //清除登录状态
-                AnalysisUtils.cleanlogin(ChangePassActivity.this);
-                Intent intent = new Intent(ChangePassActivity.this,MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        }).setCancelable(false).show();
+    private void doSuccess() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(ChangePassActivity.this);
+        builder.setTitle("修改成功").
+                setMessage("请重新登录").
+                setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //清除登录状态
+                        AnalysisUtils.cleanlogin(ChangePassActivity.this);
+                        Intent intent = new Intent(ChangePassActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                }).setCancelable(false).show();
     }
 
     //旧密码和新密码是否相同
-    private boolean SameOldNew(){
-        if(mOldPsw.getText().toString().equals(mNewPsw.getText().toString())){
+    private boolean SameOldNew() {
+        if (mOldPsw.getText().toString().equals(mNewPsw.getText().toString())) {
             return true;
         }
         return false;
     }
 
     //两次旧密码是否填写一致
-    private boolean OldPswSame(){
-        if(mOldPsw.getText().toString().equals(mOldPsw_1.getText().toString())){
+    private boolean OldPswSame() {
+        if (mOldPsw.getText().toString().equals(mOldPsw_1.getText().toString())) {
             return true;
         }
         return false;
     }
 
     //两次新密码是否填写一致
-    private boolean NewPswSame(){
-        if(mNewPsw.getText().toString().equals(mNewPsw_1.getText().toString())){
+    private boolean NewPswSame() {
+        if (mNewPsw.getText().toString().equals(mNewPsw_1.getText().toString())) {
             return true;
         }
         return false;
     }
 
     //是否为空
-    private boolean PswEmpty(){
-        if(mOldPsw.getText().toString().isEmpty()){
+    private boolean PswEmpty() {
+        if (mOldPsw.getText().toString().isEmpty()) {
             return true;
-        }else if(mOldPsw_1.getText().toString().isEmpty()){
+        } else if (mOldPsw_1.getText().toString().isEmpty()) {
             return true;
-        }else if(mNewPsw.getText().toString().isEmpty()){
+        } else if (mNewPsw.getText().toString().isEmpty()) {
             return true;
-        }else if(mNewPsw_1.getText().toString().isEmpty()){
+        } else if (mNewPsw_1.getText().toString().isEmpty()) {
             return true;
         }
         return false;

@@ -3,6 +3,7 @@ package weidong.com.ys1106.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -17,9 +18,16 @@ import weidong.com.ys1106.Utils.Constant;
 import weidong.com.ys1106.Utils.YangShInfo;
 
 /*
- * 传入一个范型
+ * 养生类型展示 Adapter
  * */
-public class YangShInfoAdapter extends RecyclerView.Adapter<YangShInfoAdapter.LinearViewHolder> {
+public class YangShInfoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
+    /*
+    * viewType -- 分别为item以及空item
+    * */
+    public static final int VIEW_TYPE_ITEM = 1;
+    public static final int VIEW_TYPE_EMPTY = 0;
+
 
     private Context context;
     private ArrayList<YangShInfo> yangShInfos;
@@ -39,42 +47,66 @@ public class YangShInfoAdapter extends RecyclerView.Adapter<YangShInfoAdapter.Li
      * */
     @NonNull
     @Override
-    public YangShInfoAdapter.LinearViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        //根据不同的viewType引入不同的布局
+        if(i == VIEW_TYPE_EMPTY ){
+            View emptyView = LayoutInflater.from(context).inflate(R.layout.layout_empty,viewGroup,false);
+            return new RecyclerView.ViewHolder(emptyView) {
+            };
+        }
+        //其他的引入正常的
         View homeInfo = View.inflate(context, R.layout.guanzhu_item, null);
-        return new LinearViewHolder(homeInfo);
+        return new YangShViewHolder(homeInfo);
     }
 
     /*
-     * 绑定View Holder
+     * 绑定ViewHolder
      * */
     @Override
-    public void onBindViewHolder(@NonNull YangShInfoAdapter.LinearViewHolder viewHolder, int i) {
-        //根据点击位置绑定数据
-        YangShInfo data = yangShInfos.get(i);
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+        if (viewHolder instanceof YangShViewHolder){
+            YangShViewHolder hd = (YangShViewHolder) viewHolder;
+            //根据点击位置绑定数据
+            YangShInfo data = yangShInfos.get(i);
 
-        //设置图片的URL
-        System.out.println(data.getImgUrl());
-        if(data.getImgUrl()!=null){
-            Glide.with(context).load(Constant.UEL_Img + data.getImgUrl()).into(viewHolder.mImg);
+            //设置图片的URL
+            if(data.getImgUrl()!=null){
+                Glide.with(context).load(Constant.UEL_Img + data.getImgUrl()).into(hd.mImg);
+            }
+            hd.mDes.setText(data.getDes());
+            hd.mName.setText(data.getName());
         }
-        viewHolder.mDes.setText(data.getDes());
-        viewHolder.mName.setText(data.getName());
+
 
     }
 
     //列表的长度
     @Override
     public int getItemCount() {
+        //这里也需要引入判断，如果数据为空的话，只引入emptylayout
+        //那么，这个recyclerView的itemCount就为1
+        if (yangShInfos.size() == 0){
+            return 1;
+        }
         return yangShInfos.size();
     }
 
-    //linear view holder
-    class LinearViewHolder extends RecyclerView.ViewHolder {
+    @Override
+    public int getItemViewType(int position) {
+        //再这里进行判断，如果数据集为空，则使用空布局
+        if (yangShInfos.size() == 0){
+            return VIEW_TYPE_EMPTY;
+        }
+        return VIEW_TYPE_ITEM;
+    }
+
+    //linearView holder
+    class YangShViewHolder extends RecyclerView.ViewHolder {
 
         private TextView mName,mDes;
         private ImageView mImg;
 
-        public LinearViewHolder(@NonNull View itemView) {
+        public YangShViewHolder(@NonNull View itemView) {
             super(itemView);
             mName = itemView.findViewById(R.id.item_gz_tv);
             mImg = itemView.findViewById(R.id.item_gz_iv);

@@ -17,15 +17,15 @@ import weidong.com.ys1106.Utils.Constant;
 import weidong.com.ys1106.Utils.VideoInfo;
 
 /*
- * 传入一个范型
+ *
  * */
-public class HomeInfoAdapter extends RecyclerView.Adapter<HomeInfoAdapter.LinearViewHolder> {
+public class VideoInfoAdapter extends RecyclerView.Adapter<VideoInfoAdapter.LinearViewHolder> {
 
     private Context context;
     private ArrayList<VideoInfo> videoInfos;
 
     //创建构造函数
-    public HomeInfoAdapter(Context context, ArrayList<VideoInfo> videoInfos) {
+    public VideoInfoAdapter(Context context, ArrayList<VideoInfo> videoInfos) {
         this.context = context;
         this.videoInfos = videoInfos;
     }
@@ -39,7 +39,7 @@ public class HomeInfoAdapter extends RecyclerView.Adapter<HomeInfoAdapter.Linear
      * */
     @NonNull
     @Override
-    public HomeInfoAdapter.LinearViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public VideoInfoAdapter.LinearViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View homeInfo = View.inflate(context, R.layout.home_item, null);
         return new LinearViewHolder(homeInfo);
     }
@@ -48,7 +48,7 @@ public class HomeInfoAdapter extends RecyclerView.Adapter<HomeInfoAdapter.Linear
      * 绑定View Holder
      * */
     @Override
-    public void onBindViewHolder(@NonNull HomeInfoAdapter.LinearViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull VideoInfoAdapter.LinearViewHolder viewHolder, int i) {
         //根据点击位置绑定数据
         VideoInfo data = videoInfos.get(i);
         System.out.println("视频数据：" + data.getVideoType());
@@ -57,8 +57,8 @@ public class HomeInfoAdapter extends RecyclerView.Adapter<HomeInfoAdapter.Linear
             Glide.with(context).load(Constant.UEL_Img + data.getImgUrl()).into(viewHolder.mVideoImg);
         }
 //        viewHolder.mType.setText(data.getVideoType());
-        viewHolder.mDetails.setText(data.getVideodetail());
-        viewHolder.mTitle.setText(data.getVideotitle());
+        viewHolder.mDetails.setText(data.getVideoDes());
+        viewHolder.mTitle.setText(data.getVideoTitle());
 
     }
 

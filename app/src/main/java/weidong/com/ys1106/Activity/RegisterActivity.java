@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import weidong.com.ys1106.MainActivity;
 import weidong.com.ys1106.R;
 import weidong.com.ys1106.Utils.AnalysisUtils;
 import weidong.com.ys1106.Utils.CommonRequest;
@@ -65,7 +64,7 @@ public class RegisterActivity extends BasicActivity {
         } else {
             userInfo.setAccount(acc.getText().toString());
             //存入MD5加密之后的密码
-            userInfo.setPass(MD5Utils.ToMD5(pass.getText().toString().trim()));
+            userInfo.setPass(pass.getText().toString().trim());
 //            userInfo.setName(name.getText().toString());
 //            userInfo.setQq(qq.getText().toString());
 //            if (rg.getCheckedRadioButtonId() == R.id.rb_sex_1) {
@@ -83,7 +82,7 @@ public class RegisterActivity extends BasicActivity {
         //写入参数的顺序为，0账户名，1密码，2真实姓名，3性别，4年龄，5手机，6qq，7邮箱
         String[] params = new String[]{
                 info.getAccount(),
-                info.getPass()};
+                MD5Utils.ToMD5(info.getPass())};
 //                info.getName(),
 //                info.getSex(),
 //                info.getAge(),
@@ -114,9 +113,7 @@ public class RegisterActivity extends BasicActivity {
 
             @Override
             public void failure(String failCode, String failMsg) {
-
                 DelyWait(wait1);
-
                 String Msg = "";
                 //10,01,0
                 switch (failCode) {
@@ -130,7 +127,7 @@ public class RegisterActivity extends BasicActivity {
                         Msg = "数据库出错";
                         break;
                 }
-                setfaildialog(Msg);
+                SetFailDialog(Msg);
             }
         });
 
@@ -162,7 +159,7 @@ public class RegisterActivity extends BasicActivity {
         }).start();
     }
 
-    private void setfaildialog(String Msg){
+    private void SetFailDialog(String Msg){
         AlertDialog.Builder builder= new AlertDialog.Builder(RegisterActivity.this);
         builder.setTitle("登录失败").setMessage(Msg).setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override

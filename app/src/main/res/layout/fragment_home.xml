@@ -17,12 +17,20 @@
         android:textColor="#fff"
         android:textSize="18sp" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/frag_home_rv"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/frag_home_refresh"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/frag_home_tv_title"
-        android:padding="7.5dp"
-        ></android.support.v7.widget.RecyclerView>
+        android:layout_height="match_parent"
+        android:layout_below="@+id/frag_home_tv_title">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/frag_home_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="7.5dp"
+            ></android.support.v7.widget.RecyclerView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
 
 </RelativeLayout>

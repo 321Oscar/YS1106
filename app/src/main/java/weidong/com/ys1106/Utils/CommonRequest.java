@@ -10,17 +10,20 @@ public class CommonRequest {
     /*请求码，类似于接口号
     * 1 -- 登录
     * 2 -- 注册
-    * 3 -- 用户关注视频的信息
+    * 3 -- 所有视频的信息
+    * 32 -- 某一类的视频
     * 4 -- 用户基本信息
     * 5 -- 用户关注的类型
     * 6 -- 修改密码
     * 7 -- 修改基本信息
+    * 80 -- 关注某一类
+    * 81 -- 取消关注某一类
     * */
     private String requestCode;
 
     /*用户更新数据请求码
     * 1 —— 用户名
-    *
+    * //2 —— 密码 （修改密码与其不是一样的业务操作，删除）
     * 3 —— 性别
     * 4 —— 年龄
     * 5 —— qq
@@ -51,7 +54,6 @@ public class CommonRequest {
     * */
     public void addRequestParam(String paramkey,String paramvalue) {
         requestParam.put(paramkey,paramvalue);
-        System.out.println("---参数---"+requestParam.get(paramkey));
     }
 
     /*
@@ -65,7 +67,6 @@ public class CommonRequest {
             object.put("ActionType",requestCode);
             object.put("UpdateCode",requestUpCode);
             object.put("params",param);//参数列表的name以及内容
-            System.out.println("---参数列表---"+object.getJSONObject("params").toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }

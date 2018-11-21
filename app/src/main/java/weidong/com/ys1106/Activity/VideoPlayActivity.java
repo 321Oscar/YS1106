@@ -20,18 +20,21 @@ public class VideoPlayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_play);
         Bundle bundle = this.getIntent().getExtras();
-        String VideoUrl = Constant.UEL_Img+bundle.getString("url");
+        String VideoUrl = Constant.UEL_Img + bundle.getString("url");
         String Title = bundle.getString("title");
         String Des = bundle.getString("des");
+        String Type = bundle.getString("type");
 
         TextView mTvTitle = findViewById(R.id.play_title);
         TextView mTvDes = findViewById(R.id.play_des);
         TextView back = findViewById(R.id.play_back);
         JzvdStd play = findViewById(R.id.play);
+        TextView mVideoType = findViewById(R.id.videotype);
 
-        play.setUp(VideoUrl,null,Jzvd.SCREEN_WINDOW_NORMAL);
+        play.setUp(VideoUrl, null, Jzvd.SCREEN_WINDOW_NORMAL);
         mTvDes.setText(Des);
         mTvTitle.setText(Title);
+        mVideoType.setText(Type);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,7 +47,7 @@ public class VideoPlayActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if(Jzvd.backPress()){
+        if (Jzvd.backPress()) {
             return;
         }
         super.onBackPressed();

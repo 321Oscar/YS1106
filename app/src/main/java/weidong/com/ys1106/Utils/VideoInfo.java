@@ -1,9 +1,20 @@
 package weidong.com.ys1106.Utils;
 
+/*
+ * 视频信息
+ * 图片URL
+ * 视频URL
+ * 视频标题
+ * 视频简介
+ * 视频类型
+ * */
+
 public class VideoInfo {
     private String ImgUrl;
-    private String videotitle,videodetail;
+    private String videoTitle;
+    private String videoDes;
     private String VideoType;
+    private String VideoURL;
 
     public String getVideoURL() {
         return VideoURL;
@@ -13,26 +24,12 @@ public class VideoInfo {
         VideoURL = videoURL;
     }
 
-    private String VideoURL;
-    private int checked;
+    public VideoInfo(){}
 
-    public VideoInfo(){
-
-    }
-
-    public VideoInfo(String imgUrl,String videodetail,String videotitle,int checked){
-        this.checked = checked;
+    public VideoInfo(String imgUrl, String videodetail, String videoTitle) {
         this.ImgUrl = imgUrl;
-        this.videodetail = videodetail;
-        this.videotitle = videotitle;
-    }
-
-    public int getChecked() {
-        return checked;
-    }
-
-    public void setChecked(int checked) {
-        this.checked = checked;
+        this.videoDes = videodetail;
+        this.videoTitle = videoTitle;
     }
 
     public String getImgUrl() {
@@ -43,20 +40,20 @@ public class VideoInfo {
         ImgUrl = imgUrl;
     }
 
-    public String getVideodetail() {
-        return videodetail;
+    public String getVideoDes() {
+        return videoDes;
     }
 
-    public void setVideodetail(String videodetail) {
-        this.videodetail = videodetail;
+    public void setVideoDes(String videoDes) {
+        this.videoDes = videoDes;
     }
 
-    public String getVideotitle() {
-        return videotitle;
+    public String getVideoTitle() {
+        return videoTitle;
     }
 
-    public void setVideotitle(String videotitle) {
-        this.videotitle = videotitle;
+    public void setVideoTitle(String videoTitle) {
+        this.videoTitle = videoTitle;
     }
 
     public String getVideoType() {
