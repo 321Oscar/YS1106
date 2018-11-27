@@ -146,7 +146,7 @@ public class ChangeInfoActivity extends BasicActivity {
             }
 
             @Override
-            public void failure(String failCode, String failMsg) {
+            public void failure(String failCode) {
                 DoFail();
             }
         });

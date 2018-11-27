@@ -38,7 +38,7 @@ import weidong.com.ys1106.adapter.VideoInfoAdapter;
 public class TypeVideosActivity extends BasicActivity implements SwipeRefreshLayout.OnRefreshListener {
 
     private int FISRT_LOAD = 1;//是否是第一次加载
-    private int CK = 0;//该类型的关注状态
+    private int CK;
 
     private TextView mBack;
     private TextView mTypeName;
@@ -73,16 +73,51 @@ public class TypeVideosActivity extends BasicActivity implements SwipeRefreshLay
         mTypeName.setText(bundle.getString("name"));
 
         //获取关注状态
-        if (bundle.getInt("isChecked") == 1) {
-            mIsGuanZhu.setChecked(true);
-            CK = 1;
-        } else if (bundle.getInt("isChecked") == 0) {
-            mIsGuanZhu.setChecked(false);
-            mIsGuanZhu.setText("关注");
-            CK = 0;
-        }
+        getChecked();
 
         setClick();
+    }
+
+    private void getChecked() {
+        //确认
+        CommonRequest request = new CommonRequest();
+
+        //请求码：82 ——  查找是否关注某一类别
+        request.setRequestCode("82");
+        //参数 类型名称 + 用户名
+        request.addRequestParam("typename", bundle.getString("name"));
+        request.addRequestParam("account", AnalysisUtils.readloginUserName(TypeVideosActivity.this));
+
+        sendHttpPostRequst(Constant.URL_Login, request, new ResponseHandle() {
+            @Override
+            public void success(CommonResponse response) {
+                setCK_1();
+            }
+
+            @Override
+            public void failure(String failCode) {
+                if (failCode.equals("10")) {
+                    setCK_2();
+                } else if (failCode.equals("00")) {
+                    MyToast.SysInfo( "关注信息出错");
+                }
+            }
+        });
+
+    }
+
+    //已关注
+    private void setCK_1() {
+        CK = 1;
+        mIsGuanZhu.setChecked(true);
+        mIsGuanZhu.setText("已关注");
+    }
+
+    //未关注
+    private void setCK_2() {
+        CK = 0;
+        mIsGuanZhu.setChecked(false);
+        mIsGuanZhu.setText("关注");
     }
 
     private void setClick() {
@@ -100,6 +135,7 @@ public class TypeVideosActivity extends BasicActivity implements SwipeRefreshLay
 
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                //如果原先是选定状态 现在是非选定 则开始取消关注
                 if (isChecked == false && CK == 1) {
                     //取消关注
                     //弹出dialog确认取消关注
@@ -122,6 +158,7 @@ public class TypeVideosActivity extends BasicActivity implements SwipeRefreshLay
                                 }
                             }).show();
                 } else if (isChecked == true && CK == 0) {
+                    //如果原先是非选中状态 现在是选中 则开始关注
                     //关注
                     GuanZhu();
                 }
@@ -146,7 +183,7 @@ public class TypeVideosActivity extends BasicActivity implements SwipeRefreshLay
             }
 
             @Override
-            public void failure(String failCode, String failMsg) {
+            public void failure(String failCode) {
                 MyToast.MyToastShow(TypeVideosActivity.this, "数据库连接失败");
             }
         });
@@ -176,7 +213,7 @@ public class TypeVideosActivity extends BasicActivity implements SwipeRefreshLay
             }
 
             @Override
-            public void failure(String failCode, String failMsg) {
+            public void failure(String failCode) {
                 MyToast.MyToastShow(TypeVideosActivity.this, "数据库连接失败");
             }
         });
@@ -189,9 +226,8 @@ public class TypeVideosActivity extends BasicActivity implements SwipeRefreshLay
         CK = 0;//关注状态为 0 未关注
     }
 
-
     /*
-     *  从服务端的数据库中取出数据
+     *  从服务端的数据库中取出视频数据
      * */
     public void initData() {
         CommonRequest request = new CommonRequest();
@@ -212,7 +248,7 @@ public class TypeVideosActivity extends BasicActivity implements SwipeRefreshLay
             }
 
             @Override
-            public void failure(String failCode, String failMsg) {
+            public void failure(String failCode) {
                 MyToast.MyToastShow(TypeVideosActivity.this, "数据库连接失败");
             }
         });

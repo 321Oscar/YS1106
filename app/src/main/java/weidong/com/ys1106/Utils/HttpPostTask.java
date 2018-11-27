@@ -69,7 +69,7 @@ public class HttpPostTask extends AsyncTask<String, String, String> {
                         "["+responseCode+"]"+connection.getResponseMessage()).sendToTarget();
             }
         } catch (IOException e) {
-            //网络请求过程中发生IO异常 mhandle
+            //网络请求过程中发生IO异常
             e.printStackTrace();
         }
         return resultBuf.toString();
@@ -84,7 +84,7 @@ public class HttpPostTask extends AsyncTask<String, String, String> {
                 if("11".equals(response.getResCode())){//正确
                     rHandle.success(response);
                 }else {
-                    rHandle.failure(response.getResCode(),response.getResMsg());
+                    rHandle.failure(response.getResCode());
                 }
             }
         }

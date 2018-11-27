@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="@dimen/margindp_10">
+        android:padding="@dimen/margindp_10"
+        android:background="@color/color_white">
         <TextView
             android:id="@+id/back"
             android:layout_width="0dp"
@@ -36,8 +37,6 @@
             android:layout_height="wrap_content"
             android:background="@drawable/radiobutton"
             android:button="@null"
-            android:checked="true"
-            android:text="已关注"
             android:textSize="16sp"/>
 
     </LinearLayout>
@@ -49,7 +48,8 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/typerv"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/home_item">
 
         </android.support.v7.widget.RecyclerView>
 

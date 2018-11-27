@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activity.VideoPlayActivity">
+    tools:context=".Activity.VideoPlayActivity"
+    android:background="@color/color_gray_d">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,35 +35,75 @@
 
     </LinearLayout>
 
-
-    <cn.jzvd.JzvdStd
-        android:id="@+id/play"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"></cn.jzvd.JzvdStd>
-
-
-    <TextView
-        android:id="@+id/play_title"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:text="Biaoti"
-        android:textColor="@color/color_black"
-        android:textSize="18sp" />
+        android:orientation="vertical"
+        android:background="@color/color_white">
 
-    <TextView
-        android:id="@+id/play_des"
+        <cn.jzvd.JzvdStd
+            android:id="@+id/play"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"></cn.jzvd.JzvdStd>
+
+        <!--<VideoView-->
+            <!--android:id="@+id/play_1"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="200dp" />-->
+        
+        <SurfaceView
+            android:layout_marginTop="10dp"
+            android:id="@+id/play_2"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+        
+        <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/play_2_1"/>
+
+        <TextView
+            android:padding="@dimen/margindp_5"
+            android:id="@+id/play_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="Biaoti"
+            android:textColor="@color/color_black"
+            android:textSize="18sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/color_gray_d"
+            ></View>
+
+        <TextView
+            android:padding="@dimen/margindp_5"
+            android:id="@+id/play_des"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="miaoshu"
+            android:textColor="@color/color_gray"
+            android:textSize="16sp"/>
+    </LinearLayout>
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:text="miaoshu"
-        android:textColor="@color/color_gray" />
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/sameType"
+            tools:layoutManager="StaggeredGridLayoutManager"
+            tools:listitem="@layout/home_item"
+            tools:spanCount="2"
+            >
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/sameType">
+        </android.support.v7.widget.RecyclerView>
+    </ScrollView>
 
-    </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>

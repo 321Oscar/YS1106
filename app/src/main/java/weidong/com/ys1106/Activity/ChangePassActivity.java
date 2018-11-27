@@ -90,7 +90,7 @@ public class ChangePassActivity extends BasicActivity {
             }
 
             @Override
-            public void failure(String failCode, String failMsg) {
+            public void failure(String failCode) {
                 doFail(failCode);
             }
         });

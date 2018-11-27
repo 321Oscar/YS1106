@@ -88,7 +88,7 @@ public class GuanzhuFragment extends BasicFragment implements SwipeRefreshLayout
             }
 
             @Override
-            public void failure(String failCode, String failMsg) {
+            public void failure(String failCode) {
                 ArrayList<YangShInfo> infoArrayList = null;
                 initRecyclerView(infoArrayList);
             }
@@ -119,7 +119,6 @@ public class GuanzhuFragment extends BasicFragment implements SwipeRefreshLayout
                 Bundle bundle = new Bundle();
                 bundle.putString("name", Info.getName());
                 bundle.putString("type", Info.getType());
-                bundle.putInt("isChecked", Info.getChecked());
                 intent.putExtras(bundle);
                 startActivity(intent);
             }

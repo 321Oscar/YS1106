@@ -87,7 +87,7 @@ public class HomeFragment extends BasicFragment implements SwipeRefreshLayout.On
             }
 
             @Override
-            public void failure(String failCode, String failMsg) {
+            public void failure(String failCode) {
                 MyToast.MyToastShow(getActivity(), "数据库连接失败");
             }
         });

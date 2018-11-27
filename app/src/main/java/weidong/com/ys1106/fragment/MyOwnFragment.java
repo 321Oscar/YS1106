@@ -1,12 +1,14 @@
 package weidong.com.ys1106.fragment;
 
 
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +32,8 @@ import weidong.com.ys1106.Utils.UserInfo;
 public class MyOwnFragment extends BasicFragment implements View.OnClickListener {
 
     private View view;
+    private DrawerLayout mDrawerLayout;
+    private TextView mSet;
     private TextView mChangeAccount;
     private TextView mChangesex;
     private TextView mChangeAge;
@@ -168,7 +172,7 @@ public class MyOwnFragment extends BasicFragment implements View.OnClickListener
             }
 
             @Override
-            public void failure(String failCode, String failMsg) {
+            public void failure(String failCode) {
                 MyToast.MyToastShow(getActivity(), "数据库连接失败");
             }
         });
@@ -213,6 +217,16 @@ public class MyOwnFragment extends BasicFragment implements View.OnClickListener
      * */
     public void initView(View view) {
         //设置 改密码，退出，换账户，注销
+        mSet = view.findViewById(R.id.frag_myOwn_tv_set);
+        mDrawerLayout = view.findViewById(R.id.drawer_layout);
+
+        mSet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDrawerLayout.openDrawer(Gravity.RIGHT);
+            }
+        });
+
         mChangePass = view.findViewById(R.id.btn_changepass);
         mChangeUser = view.findViewById(R.id.btn_changeUser);
         mExit = view.findViewById(R.id.exit);
@@ -390,7 +404,7 @@ public class MyOwnFragment extends BasicFragment implements View.OnClickListener
             }
 
             @Override
-            public void failure(String failCode, String failMsg) {
+            public void failure(String failCode) {
                 MyToast.MyToastShow(getActivity(), "更改失败！");
             }
         });

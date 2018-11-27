@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="#fff">
+    android:background="@drawable/roundbackground">
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -13,9 +14,12 @@
             android:id="@+id/item_home_iv"
             android:layout_width="180dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/roundbackground"
+            tools:src="@sample/imgtest"
             />
 
         <TextView
+
             android:id="@+id/item_home_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

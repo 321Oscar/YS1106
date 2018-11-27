@@ -1,365 +1,366 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#DDD">
+    android:background="#DDD"
+    android:id="@+id/drawer_layout">
 
-    <TextView
-        android:id="@+id/frag_myOwn_tv_title"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:background="#0DBDD1"
-        android:padding="10dp"
-        android:text="个人信息"
-        android:textColor="#fff"
-        android:textSize="18sp" />
-
-    <ScrollView
-        android:id="@+id/sv_2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/frag_myOwn_tv_title"
-        android:background="@color/color_gray_d">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
+            android:orientation="horizontal">
 
-            <TableLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/frag_myOwn_tv_title"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/frag_myOwn_tv_title"
-                android:background="@color/color_white"
-                android:layout_marginTop="20dp"
-                >
-                <!--<TableRow>-->
+                android:layout_weight="1"
+                android:background="#0DBDD1"
+                android:padding="10dp"
+                android:text="个人信息"
+                android:textColor="#fff"
+                android:textSize="18sp" />
 
-                    <!--<TextView-->
-                        <!--android:padding="10dp"-->
-                        <!--android:layout_marginLeft="20dp"-->
-                        <!--android:text="基本信息"-->
-                        <!--android:textColor="@color/color_black"-->
-                        <!--android:textSize="18sp"-->
-                        <!--/>-->
-                <!--</TableRow>-->
-
-                <!--<View-->
-                    <!--android:layout_height="@dimen/margindp_10"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:background="@color/color_gray_d"></View>-->
-
-                <TableRow
-                    android:id="@+id/change_account"
-                    android:padding="@dimen/margindp_10"
-                    android:clickable="true"
-                    android:background="@drawable/usertextview"
-                    >
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.2"
-                        android:text="用户名"
-                        android:textColor="@color/color_black"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/frag_myOwn_tv_account"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.7"
-                        android:text="用户名测试1"
-                        android:textColor="@color/color_gray"
-                        android:gravity="right"
-                        android:textSize="16sp"
-                        />
-                </TableRow>
-
-                <View
-                    android:layout_marginLeft="@dimen/margindp_10"
-                    android:layout_marginRight="@dimen/margindp_10"
-                    android:layout_height="0.5dp"
-                    android:layout_width="match_parent"
-                    android:background="@color/color_gray_d"></View>
-
-                <TableRow
-                    android:id="@+id/change_sex"
-                    android:padding="@dimen/margindp_10"
-                    android:clickable="true"
-                    android:background="@drawable/usertextview">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.2"
-                        android:text="性别"
-                        android:textColor="@color/color_black"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/frag_myOwn_tv_sex"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.7"
-                        android:gravity="right"
-                        android:textColor="@color/color_gray"
-                        android:textSize="16sp" />
-                </TableRow>
-
-                <View
-                    android:layout_marginLeft="@dimen/margindp_10"
-                    android:layout_marginRight="@dimen/margindp_10"
-                    android:layout_height="0.1dp"
-                    android:layout_width="match_parent"
-                    android:background="@color/color_gray_d"></View>
-
-                <TableRow
-                    android:id="@+id/change_age"
-                    android:padding="@dimen/margindp_10"
-                    android:clickable="true"
-                    android:background="@drawable/usertextview">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.2"
-                        android:text="年龄"
-                        android:textColor="@color/color_black"
-                        android:textSize="18sp" />
-
-
-                    <TextView
-                        android:id="@+id/frag_myOwn_tv_age"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.7"
-                        android:textColor="@color/color_gray"
-                        android:textSize="16sp"
-                        android:gravity="right"/>
-                </TableRow>
-
-                <View
-                    android:layout_marginLeft="@dimen/margindp_10"
-                    android:layout_marginRight="@dimen/margindp_10"
-                    android:layout_height="0.5dp"
-                    android:layout_width="match_parent"
-                    android:background="@color/color_gray_d"></View>
-
-                <TableRow
-                    android:id="@+id/change_name"
-                    android:padding="@dimen/margindp_10"
-                    android:clickable="true"
-                    android:background="@drawable/usertextview">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.3"
-                        android:text="真实姓名"
-                        android:textColor="@color/color_black"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/frag_myOwn_tv_name"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.7"
-                        android:textColor="@color/color_gray"
-                        android:textSize="16sp"
-                        android:gravity="right"/>
-                </TableRow>
-
-                <View
-                    android:layout_marginLeft="@dimen/margindp_10"
-                    android:layout_marginRight="@dimen/margindp_10"
-                    android:layout_height="0.5dp"
-                    android:layout_width="match_parent"
-                    android:background="@color/color_gray_d"></View>
-
-                <TableRow
-                    android:id="@+id/change_qq"
-                    android:padding="@dimen/margindp_10"
-                    android:clickable="true"
-                    android:background="@drawable/usertextview">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.2"
-                        android:text="QQ"
-                        android:textColor="@color/color_black"
-                        android:textSize="18sp" />
-
-
-
-                    <TextView
-                        android:id="@+id/frag_myOwn_tv_qq"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.7"
-                        android:textColor="@color/color_gray"
-                        android:textSize="16sp"
-                        android:gravity="right"/>
-                </TableRow>
-
-                <View
-                    android:layout_marginLeft="@dimen/margindp_10"
-                    android:layout_marginRight="@dimen/margindp_10"
-                    android:layout_height="0.5dp"
-                    android:layout_width="match_parent"
-                    android:background="@color/color_gray_d"></View>
-
-                <TableRow
-                    android:id="@+id/change_email"
-                    android:padding="@dimen/margindp_10"
-                    android:clickable="true"
-                    android:background="@drawable/usertextview">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.2"
-                        android:text="Email"
-                        android:textColor="@color/color_black"
-                        android:textSize="18sp" />
-
-
-
-                    <TextView
-                        android:id="@+id/frag_myOwn_tv_email"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.7"
-                        android:textColor="@color/color_gray"
-                        android:textSize="16sp"
-                        android:gravity="right"/>
-                </TableRow>
-
-                <View
-                    android:layout_marginLeft="@dimen/margindp_10"
-                    android:layout_marginRight="@dimen/margindp_10"
-                    android:layout_height="0.5dp"
-                    android:layout_width="match_parent"
-                    android:background="@color/color_gray_d"></View>
-
-                <TableRow
-                    android:id="@+id/change_ph"
-                    android:padding="@dimen/margindp_10"
-                    android:clickable="true"
-                    android:background="@drawable/usertextview">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.2"
-                        android:text="手机"
-                        android:textColor="@color/color_black"
-                        android:textSize="18sp" />
-
-
-                    <TextView
-                        android:id="@+id/frag_myOwn_tv_ph"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.7"
-                        android:text="23141"
-                        android:textColor="@color/color_gray"
-                        android:textSize="16sp"
-                        android:gravity="right"/>
-                </TableRow>
-
-            </TableLayout>
-
-            <LinearLayout
-                android:layout_marginTop="20dp"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/frag_myOwn_tv_set"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="#fff">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:layout_marginLeft="20dp"
-                    android:text="设置"
-                    android:textColor="@color/color_black"
-                    android:textSize="18sp" />
+                android:layout_weight="0.2"
+                android:background="#0DBDD1"
+                android:padding="10dp"
+                android:text="设置"
+                android:textColor="#fff"
+                android:textSize="18sp" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:background="#ccc" />
-
-                <TextView
-                    android:padding="@dimen/margindp_10"
-                    android:id="@+id/btn_changepass"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:text="修改密码"
-                    android:textSize="18sp"
-                    android:background="@drawable/usertextview"
-                    android:textColor="@color/color_black"/>
-                <View
-                    android:layout_marginLeft="@dimen/margindp_10"
-                    android:layout_marginRight="@dimen/margindp_10"
-                    android:layout_height="0.5dp"
-                    android:layout_width="match_parent"
-                    android:background="@color/color_gray_d"></View>
-                <TextView
-                    android:id="@+id/btn_changeUser"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:text="切换账号"
-                    android:padding="@dimen/margindp_10"
-                    android:textSize="18sp"
-                    android:background="@drawable/usertextview"
-                    android:textColor="@color/color_black" />
-
-                <View
-                    android:layout_marginLeft="@dimen/margindp_10"
-                    android:layout_marginRight="@dimen/margindp_10"
-                    android:layout_height="0.5dp"
-                    android:layout_width="match_parent"
-                    android:background="@color/color_gray_d"></View>
-
-                <TextView
-                    android:id="@+id/exit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="退出程序"
-                    android:padding="@dimen/margindp_10"
-                    android:textSize="18sp"
-                    android:background="@drawable/usertextview"
-                    android:textColor="@color/color_black" />
-
-                <View
-                    android:layout_marginLeft="@dimen/margindp_10"
-                    android:layout_marginRight="@dimen/margindp_10"
-                    android:layout_height="0.5dp"
-                    android:layout_width="match_parent"
-                    android:background="@color/color_gray_d"></View>
-
-                <TextView
-                    android:id="@+id/deleteaccount"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="注销账号"
-                    android:padding="@dimen/margindp_10"
-                    android:textSize="18sp"
-                    android:background="@drawable/usertextview"
-                    android:textColor="@color/color_black" />
-            </LinearLayout>
 
         </LinearLayout>
 
+        <ScrollView
+            android:id="@+id/sv_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/frag_myOwn_tv_title"
+            android:background="@color/color_gray_d">
 
-    </ScrollView>
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/frag_myOwn_tv_title"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/color_white">
+
+                    <TableRow
+                        android:id="@+id/change_account"
+                        android:background="@drawable/usertextview"
+                        android:clickable="true"
+                        android:padding="@dimen/margindp_10">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.2"
+                            android:text="用户名"
+                            android:textColor="@color/color_black"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/frag_myOwn_tv_account"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.7"
+                            android:gravity="right"
+                            android:text="用户名测试1"
+                            android:textColor="@color/color_gray"
+                            android:textSize="16sp" />
+                    </TableRow>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginLeft="@dimen/margindp_10"
+                        android:layout_marginRight="@dimen/margindp_10"
+                        android:background="@color/color_gray_d"></View>
+
+                    <TableRow
+                        android:id="@+id/change_sex"
+                        android:background="@drawable/usertextview"
+                        android:clickable="true"
+                        android:padding="@dimen/margindp_10">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.2"
+                            android:text="性别"
+                            android:textColor="@color/color_black"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/frag_myOwn_tv_sex"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.7"
+                            android:gravity="right"
+                            android:textColor="@color/color_gray"
+                            android:textSize="16sp" />
+                    </TableRow>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp"
+                        android:layout_marginLeft="@dimen/margindp_10"
+                        android:layout_marginRight="@dimen/margindp_10"
+                        android:background="@color/color_gray_d"></View>
+
+                    <TableRow
+                        android:id="@+id/change_age"
+                        android:background="@drawable/usertextview"
+                        android:clickable="true"
+                        android:padding="@dimen/margindp_10">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.2"
+                            android:text="年龄"
+                            android:textColor="@color/color_black"
+                            android:textSize="18sp" />
 
 
-</RelativeLayout>
+                        <TextView
+                            android:id="@+id/frag_myOwn_tv_age"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.7"
+                            android:gravity="right"
+                            android:textColor="@color/color_gray"
+                            android:textSize="16sp" />
+                    </TableRow>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginLeft="@dimen/margindp_10"
+                        android:layout_marginRight="@dimen/margindp_10"
+                        android:background="@color/color_gray_d"></View>
+
+                    <TableRow
+                        android:id="@+id/change_name"
+                        android:background="@drawable/usertextview"
+                        android:clickable="true"
+                        android:padding="@dimen/margindp_10">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.3"
+                            android:text="真实姓名"
+                            android:textColor="@color/color_black"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/frag_myOwn_tv_name"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.7"
+                            android:gravity="right"
+                            android:textColor="@color/color_gray"
+                            android:textSize="16sp" />
+                    </TableRow>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginLeft="@dimen/margindp_10"
+                        android:layout_marginRight="@dimen/margindp_10"
+                        android:background="@color/color_gray_d"></View>
+
+                    <TableRow
+                        android:id="@+id/change_qq"
+                        android:background="@drawable/usertextview"
+                        android:clickable="true"
+                        android:padding="@dimen/margindp_10">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.2"
+                            android:text="QQ"
+                            android:textColor="@color/color_black"
+                            android:textSize="18sp" />
+
+
+                        <TextView
+                            android:id="@+id/frag_myOwn_tv_qq"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.7"
+                            android:gravity="right"
+                            android:textColor="@color/color_gray"
+                            android:textSize="16sp" />
+                    </TableRow>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginLeft="@dimen/margindp_10"
+                        android:layout_marginRight="@dimen/margindp_10"
+                        android:background="@color/color_gray_d"></View>
+
+                    <TableRow
+                        android:id="@+id/change_email"
+                        android:background="@drawable/usertextview"
+                        android:clickable="true"
+                        android:padding="@dimen/margindp_10">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.2"
+                            android:text="Email"
+                            android:textColor="@color/color_black"
+                            android:textSize="18sp" />
+
+
+                        <TextView
+                            android:id="@+id/frag_myOwn_tv_email"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.7"
+                            android:gravity="right"
+                            android:textColor="@color/color_gray"
+                            android:textSize="16sp" />
+                    </TableRow>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginLeft="@dimen/margindp_10"
+                        android:layout_marginRight="@dimen/margindp_10"
+                        android:background="@color/color_gray_d"></View>
+
+                    <TableRow
+                        android:id="@+id/change_ph"
+                        android:background="@drawable/usertextview"
+                        android:clickable="true"
+                        android:padding="@dimen/margindp_10">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.2"
+                            android:text="手机"
+                            android:textColor="@color/color_black"
+                            android:textSize="18sp" />
+
+
+                        <TextView
+                            android:id="@+id/frag_myOwn_tv_ph"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.7"
+                            android:gravity="right"
+                            android:text="23141"
+                            android:textColor="@color/color_gray"
+                            android:textSize="16sp" />
+                    </TableRow>
+
+                </TableLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="280dp"
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:orientation="vertical"
+        android:layout_gravity="end"
+        android:clickable="true">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:padding="10dp"
+            android:text="设置"
+            android:textColor="@color/color_black"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="#ccc" />
+
+        <TextView
+            android:id="@+id/btn_changepass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/usertextview"
+            android:gravity="center_vertical"
+            android:padding="@dimen/margindp_10"
+            android:text="修改密码"
+            android:textColor="@color/color_black"
+            android:textSize="18sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="@dimen/margindp_10"
+            android:layout_marginRight="@dimen/margindp_10"
+            android:background="@color/color_gray_d"></View>
+
+        <TextView
+            android:id="@+id/btn_changeUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/usertextview"
+            android:gravity="center_vertical"
+            android:padding="@dimen/margindp_10"
+            android:text="切换账号"
+            android:textColor="@color/color_black"
+            android:textSize="18sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="@dimen/margindp_10"
+            android:layout_marginRight="@dimen/margindp_10"
+            android:background="@color/color_gray_d"></View>
+
+        <TextView
+            android:id="@+id/exit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/usertextview"
+            android:padding="@dimen/margindp_10"
+            android:text="退出程序"
+            android:textColor="@color/color_black"
+            android:textSize="18sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="@dimen/margindp_10"
+            android:layout_marginRight="@dimen/margindp_10"
+            android:background="@color/color_gray_d"></View>
+
+        <TextView
+            android:id="@+id/deleteaccount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/usertextview"
+            android:padding="@dimen/margindp_10"
+            android:text="注销账号"
+            android:textColor="@color/color_black"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+</android.support.v4.widget.DrawerLayout>

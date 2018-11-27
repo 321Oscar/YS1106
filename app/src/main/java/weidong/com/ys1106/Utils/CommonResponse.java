@@ -34,7 +34,6 @@ public class CommonResponse {
             JSONObject root = new JSONObject(responseString);
 
             resCode = root.getString("resCode");
-            //resMsg = root.getString("resMsg");
 
             JSONObject property = root.optJSONObject("property");
             if(property!=null){
@@ -89,10 +88,6 @@ public class CommonResponse {
 
     public String getResMsg(){
         return resMsg;
-    }
-
-    public HashMap<String,String> getPropertyMap(){
-        return propertyMap;
     }
 
     public ArrayList<HashMap<String,String>> getDataList(){

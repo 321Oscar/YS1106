@@ -24,10 +24,14 @@
         android:layout_below="@+id/frag_home_tv_title">
 
         <android.support.v7.widget.RecyclerView
+            xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/frag_home_rv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="7.5dp"
+            tools:layoutManager="GridLayoutManager"
+            tools:listitem="@layout/home_item"
+            tools:spanCount="2"
             ></android.support.v7.widget.RecyclerView>
 
     </android.support.v4.widget.SwipeRefreshLayout>
