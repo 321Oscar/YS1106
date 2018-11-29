@@ -1,17 +1,18 @@
 package weidong.com.ys1106.Activity;
 
-import android.accounts.Account;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
-import weidong.com.ys1106.MainActivity;
 import weidong.com.ys1106.R;
 import weidong.com.ys1106.Utils.AnalysisUtils;
 import weidong.com.ys1106.Utils.CommonRequest;
@@ -25,6 +26,11 @@ import weidong.com.ys1106.Utils.UserInfo;
 public class RegisterActivity extends BasicActivity {
     private UserInfo userInfo;
     private ProgressDialog wait1;
+    private EditText acc;
+    private EditText pass;
+    private TextView wrong_pass_show;
+
+    private boolean WRONGPASS = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,33 +38,67 @@ public class RegisterActivity extends BasicActivity {
         setContentView(R.layout.activity_register);
 
         ImageView finish = findViewById(R.id.btn_finish);
+        Button register = findViewById(R.id.btn_commit);
+
+        acc = findViewById(R.id.et_acc);
+        pass = findViewById(R.id.et_pass);
+        wrong_pass_show = findViewById(R.id.wrong_psw);
+
+        pass.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() < 6) {
+                    wrong_pass_show.setText("不少于6位");
+                    wrong_pass_show.setVisibility(View.VISIBLE);
+                    WRONGPASS = true;
+                } else if (s.length() > 11) {
+                    wrong_pass_show.setText("不多于11位");
+                    wrong_pass_show.setVisibility(View.VISIBLE);
+                    WRONGPASS = true;
+                } else {
+                    wrong_pass_show.setVisibility(View.INVISIBLE);
+                    WRONGPASS = false;
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
         finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-
-        Button register = findViewById(R.id.btn_commit);
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int res1 = getInfo();
                 if (res1 == 1) {
-                    initWaitDialog("注册中...");
-                    register(userInfo);
+                    if (!WRONGPASS){
+                        initWaitDialog("注册中...");
+                        register(userInfo);
+                    }else{
+                        MyToast.MyToastShow(RegisterActivity.this, "密码格式错误！");
+                    }
                 } else {
-                    MyToast.MyToastShow(RegisterActivity.this, "填写有误！");
+                    MyToast.MyToastShow(RegisterActivity.this, "请填写用户名密码！");
                 }
             }
         });
     }
 
-    //把界面上的信息绑定到Userinfo中
+    //把界面上的信息绑定到UserInfo中
     private int getInfo() {
         userInfo = new UserInfo();
-        EditText acc = findViewById(R.id.et_acc);
-        EditText pass = findViewById(R.id.et_pass);
 
         if (acc.getText().toString().isEmpty() || pass.getText().toString().isEmpty()) {
             return 0;
@@ -113,29 +153,29 @@ public class RegisterActivity extends BasicActivity {
 
     }
 
-    private void regSuc(){
+    private void regSuc() {
         DelyWait();
         save();
         //成功之后跳转到首页
-        Intent intent = new Intent(RegisterActivity.this,HomeActivity.class);
+        Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
         startActivity(intent);
         finish();
     }
 
-    private void initWaitDialog(String Msg){
+    private void initWaitDialog(String Msg) {
         wait1 = new ProgressDialog(RegisterActivity.this);
         wait1.setMessage(Msg);
         wait1.show();
     }
 
     //基本信息存入本地
-    private void save(){
-        AnalysisUtils.saveLoginStatus(RegisterActivity.this,true,userInfo.getAccount());
-        AnalysisUtils.addloginPass(RegisterActivity.this,userInfo.getPass(),userInfo.getAccount());
+    private void save() {
+        AnalysisUtils.saveLoginStatus(RegisterActivity.this, true, userInfo.getAccount());
+        AnalysisUtils.addloginPass(RegisterActivity.this, userInfo.getPass(), userInfo.getAccount());
     }
 
     //progressDialog 延时
-    private void DelyWait(){
+    private void DelyWait() {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -154,8 +194,8 @@ public class RegisterActivity extends BasicActivity {
         }).start();
     }
 
-    private void SetFailDialog(String Msg){
-        AlertDialog.Builder builder= new AlertDialog.Builder(RegisterActivity.this);
+    private void SetFailDialog(String Msg) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
         builder.setTitle("登录失败").setMessage(Msg).setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

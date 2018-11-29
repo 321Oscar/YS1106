@@ -39,3 +39,7 @@
 但与Viewpager滑动冲突； 未解决
 视频展示 增加圆角 但包含的imageView没有圆角 导致只有下方有圆角；
 视频播放出问题 加载不出来
+11/29
+侧边栏改为首页显示 首页增加toolbar
+视频和类型改为CardView 关注页改为LinearLayoutManager
+密码等的输入限制

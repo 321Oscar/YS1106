@@ -1,43 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="@drawable/roundbackground">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="@dimen/margindp_5"
+    app:contentPadding="@dimen/margindp_5">
 
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/item_gz_iv"
-            android:layout_width="200dp"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="2.5"
             android:layout_height="wrap_content"
-            />
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/item_gz_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margindp_10"
+                android:maxLines="1"
+                android:text="标题"
+                android:textColor="@color/color_black"
+                android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/item_gz_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="3dp"
-            android:layout_marginTop="5dp"
-            android:maxLines="1"
-            android:text="标题"
-            android:textColor="#fff"
-            android:textSize="12sp"
-            android:layout_gravity="bottom"/>
-    </FrameLayout>
 
-    <TextView
-        android:id="@+id/item_gz_tv_des"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="5dp"
-        android:maxLines="1"
-        android:text="描述"
-        android:textSize="15sp"
-        android:textColor="#000"
-        android:layout_marginBottom="5dp"/>
+            <TextView
+                android:id="@+id/item_gz_tv_des"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margindp_10"
+                android:maxLines="2"
+                android:text="描述"
+                android:textColor="@color/color_gray"
+                android:textSize="13sp" />
 
-</LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>

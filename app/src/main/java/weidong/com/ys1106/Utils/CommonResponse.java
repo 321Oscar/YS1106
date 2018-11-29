@@ -13,21 +13,24 @@ import java.util.Iterator;
 * */
 public class CommonResponse {
 
-    //交易状态代码
+    //交易结果代码
     private String resCode="";
 
     //交易失败说明
-    private String resMsg="";
+//    private String resMsg="";
 
     //简单信息
-    private HashMap<String,String> propertyMap;
+//    private HashMap<String,String> propertyMap;
 
     //列表类信息
+    //用户个人信息
+    //视频类型信息
+    //视频信息
     private ArrayList<HashMap<String,String>> mapList;
 
     //报文返回构造函数
     public CommonResponse(String responseString){
-        propertyMap = new HashMap<>();
+//        propertyMap = new HashMap<>();
         mapList = new ArrayList<>();
 
         try {
@@ -35,10 +38,10 @@ public class CommonResponse {
 
             resCode = root.getString("resCode");
 
-            JSONObject property = root.optJSONObject("property");
-            if(property!=null){
-                parseProperty(property,propertyMap);
-            }
+//            JSONObject property = root.optJSONObject("property");
+//            if(property!=null){
+//                parseProperty(property,propertyMap);
+//            }
 
             JSONArray list = root.getJSONArray("list");
             if(list != null){
@@ -86,9 +89,9 @@ public class CommonResponse {
         return resCode;
     }
 
-    public String getResMsg(){
-        return resMsg;
-    }
+//    public String getResMsg(){
+//        return resMsg;
+//    }
 
     public ArrayList<HashMap<String,String>> getDataList(){
         return mapList;

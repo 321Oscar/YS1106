@@ -46,11 +46,11 @@ public class VideoPlayActivity extends BasicActivity {
     private VideoInfoAdapter mTypeVideosAdapter;
 
     private JzvdStd play;
-    private VideoView play_1;
-    private SurfaceView play_2;
-    private ProgressBar play_2_1;
-    private MediaPlayer player;
-    private SurfaceHolder surfaceHolder;
+//    private VideoView play_1;
+//    private SurfaceView play_2;
+//    private ProgressBar play_2_1;
+//    private MediaPlayer player;
+//    private SurfaceHolder surfaceHolder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,61 +76,17 @@ public class VideoPlayActivity extends BasicActivity {
         mTvTitle = findViewById(R.id.play_title);
         mTvDes = findViewById(R.id.play_des);
         mVideoType = findViewById(R.id.videotype);
-//视频播放 method 3
-        //使用VideoView + mediaController 拉进度条就会 die掉
-//        play_1 = findViewById(R.id.play_1);
-//        MediaController mediaController = new MediaController(this);
-//        play_1.setMediaController(mediaController);
-//        play_1.setVideoURI(Uri.parse(VideoUrl));
-
-        //视频播放 method 2
-        //使用SurfaceView+MediaPlayer
-        play_2 = findViewById(R.id.play_2);
-        play_2_1 = findViewById(R.id.play_2_1);
-        player = new MediaPlayer();
-        try {
-            player.setDataSource(this,Uri.parse(VideoUrl));
-            surfaceHolder = play_2.getHolder();
-            surfaceHolder.addCallback(new MyCallBack());
-            player.prepare();
-            player.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                @Override
-                public void onPrepared(MediaPlayer mp) {
-                    play_2_1.setVisibility(View.INVISIBLE);
-                    player.start();
-                    player.setLooping(true);
-                }
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
         //视频播放 method 1
         //使用网上的插件 JiaoZiVideoPlayer
         play = findViewById(R.id.play);
         play.setUp(VideoUrl,null,Jzvd.SCREEN_WINDOW_NORMAL);
+//        play.setUp("http://jzvd.nathen.cn/c6e3dc12a1154626b3476d9bf3bd7266/6b56c5f0dc31428083757a45764763b0-5287d2089db37e62345123a1be272f8b.mp4",null,Jzvd.SCREEN_WINDOW_NORMAL);
 
         //设置显示文本
         mTvDes.setText(Des);
         mTvTitle.setText(Title);
         mVideoType.setText(Type);
-    }
-
-    private class MyCallBack implements SurfaceHolder.Callback{
-        @Override
-        public void surfaceCreated(SurfaceHolder holder) {
-            player.setDisplay(surfaceHolder);
-        }
-
-        @Override
-        public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-
-        }
-
-        @Override
-        public void surfaceDestroyed(SurfaceHolder holder) {
-
-        }
     }
 
     private void setClick(){

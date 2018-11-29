@@ -1,30 +1,45 @@
 package weidong.com.ys1106.Activity;
 
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import weidong.com.ys1106.MainActivity;
 import weidong.com.ys1106.R;
+import weidong.com.ys1106.Utils.AnalysisUtils;
+import weidong.com.ys1106.Utils.MyToast;
 import weidong.com.ys1106.adapter.FragmentAdapter;
 import weidong.com.ys1106.fragment.GuanzhuFragment;
 import weidong.com.ys1106.fragment.HomeFragment;
 import weidong.com.ys1106.fragment.MyOwnFragment;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private RadioGroup mRgTab;
     private ViewPager vp;
     private List<Fragment> mFragmentList = new ArrayList<>();
-    private FragmentAdapter mFragmentAdapter;
+
+    private DrawerLayout drawerLayout;
+    private Toolbar home_toolbar;
 
     private long lastBack = 0;
 
@@ -51,7 +66,7 @@ public class HomeActivity extends AppCompatActivity {
 
         initViews();
 
-        mFragmentAdapter = new FragmentAdapter(this.getSupportFragmentManager(), mFragmentList);
+        FragmentAdapter mFragmentAdapter = new FragmentAdapter(this.getSupportFragmentManager(), mFragmentList);
         //设置为三块
         vp.setOffscreenPageLimit(3);
         vp.setAdapter(mFragmentAdapter);
@@ -82,7 +97,32 @@ public class HomeActivity extends AppCompatActivity {
      * */
     public void initViews() {
         //定义控件
-        mRgTab = findViewById(R.id.rg_main);
+        //侧边栏吗以及标题
+        drawerLayout = findViewById(R.id.home_drawer);
+        home_toolbar = findViewById(R.id.home_toolbar);
+
+        setSupportActionBar(home_toolbar);
+        home_toolbar.setTitle("首页");
+        home_toolbar.setNavigationIcon(R.mipmap.menu64);
+        home_toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.openDrawer(Gravity.START);
+            }
+        });
+
+        TextView mChangePass = findViewById(R.id.btn_changepass);
+        TextView mChangeUser = findViewById(R.id.btn_changeUser);
+        TextView mExit = findViewById(R.id.exit);
+        TextView mDeleteUser = findViewById(R.id.deleteaccount);
+
+        mDeleteUser.setOnClickListener(this);
+        mChangePass.setOnClickListener(this);
+        mChangeUser.setOnClickListener(this);
+        mExit.setOnClickListener(this);
+        
+        //底部导航栏
+        RadioGroup mRgTab = findViewById(R.id.rg_main);
         mRgTab.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -106,18 +146,109 @@ public class HomeActivity extends AppCompatActivity {
         mFragmentList.add(new MyOwnFragment());
     }
 
-    /*改变按钮的选中状态*/
+    /*改变按钮的选中状态 以及标题*/
     public void changeRadioChecked(int index) {
         if (index == 0) {
             RadioButton rb = findViewById(R.id.rb_guanzhu);
             rb.setChecked(true);
+            home_toolbar.setTitle("关注");
         } else if (index == 1) {
             RadioButton rb = findViewById(R.id.rb_home);
             rb.setChecked(true);
+            home_toolbar.setTitle("首页");
         } else if (index == 2) {
             RadioButton rb = findViewById(R.id.rb_myown);
             rb.setChecked(true);
+            home_toolbar.setTitle("个人信息");
         }
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            //注销账户
+            case R.id.deleteaccount:
+                DeleteUser();
+                break;
+            //退出程序
+            case R.id.exit:
+                ExitThis();
+                break;
+            //更换用户
+            case R.id.btn_changeUser:
+                ChangeUser();
+                break;
+            //更改密码
+            case R.id.btn_changepass:
+                ChangePass();
+                break;
+        }
+    }
+
+    //修改密码
+    private void ChangePass() {
+        Intent intent = new Intent(HomeActivity.this, ChangePassActivity.class);
+        startActivity(intent);
+    }
+
+    //切换账号
+    private void ChangeUser() {
+        //清除当前账号信息
+        AnalysisUtils.cleanlogin(HomeActivity.this);
+
+        //打开新的登录界面
+        Intent intent = new Intent(HomeActivity.this, MainActivity.class);
+        startActivity(intent);
+        HomeActivity.this.finish();
+    }
+
+    //退出程序
+    private void ExitThis() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
+        builder.setTitle("退出").
+                setMessage("退出程序吗？").
+                setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                }).
+                setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        HomeActivity.this.finish();
+                    }
+                }).show();
+    }
+
+    /* 注销账号
+     * 数据库中的用户存在标识改为0
+     * 先确定密码，密码正确以后再执行注销
+     * */
+    private void DeleteUser() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
+        View view = LayoutInflater.from(HomeActivity.this).inflate(R.layout.layout_confirm_pass, null);
+        final EditText pass = view.findViewById(R.id.et_confirmpass);
+        Button sure = view.findViewById(R.id.btn_cofmpas_sure);
+
+        //确认密码
+        sure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!pass.getText().toString().isEmpty()) {
+                    if ((pass.getText().toString().trim()).
+                            equals(AnalysisUtils.readloginpass(HomeActivity.this, AnalysisUtils.readloginUserName(HomeActivity.this)))) {
+                        //注销
+                        MyToast.MyToastShow(HomeActivity.this, "密码正确！");
+                        //返回到登录界面
+                    } else {
+                        MyToast.MyToastShow(HomeActivity.this, "密码不正确！");
+                    }
+                } else {
+                    MyToast.MyToastShow(HomeActivity.this, "密码不能为空！");
+                }
+            }
+        });
+        builder.setTitle("账号注销").setView(view).show();
+    }
 }

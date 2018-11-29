@@ -8,7 +8,7 @@
         android:id="@+id/tv_empty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="没有数据!"
+        android:text="你还没有关注任一养生类型哦！"
         android:gravity="center"/>
 
 </LinearLayout>

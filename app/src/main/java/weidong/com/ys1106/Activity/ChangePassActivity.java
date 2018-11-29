@@ -5,10 +5,13 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import weidong.com.ys1106.MainActivity;
 import weidong.com.ys1106.R;
@@ -22,10 +25,12 @@ import weidong.com.ys1106.Utils.ResponseHandle;
 
 public class ChangePassActivity extends BasicActivity {
 
-    private EditText mOldPsw, mOldPsw_1;
-    private EditText mNewPsw, mNewPsw_1;
-    private Button mChangePsw;
-    private ImageView mBack;
+    private EditText mOldPsw;
+    private EditText mNewPsw;
+    private TextView Wrong_old, Wrong_new;
+
+    private boolean OLDWrongtype = true;
+    private boolean NEWWrongtype = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +42,64 @@ public class ChangePassActivity extends BasicActivity {
 
     private void init() {
         mOldPsw = findViewById(R.id.et_oldpass);
-        mOldPsw_1 = findViewById(R.id.et_oldpass_confirm);
         mNewPsw = findViewById(R.id.et_newpass);
-        mNewPsw_1 = findViewById(R.id.et_newpass_confirm);
-        mBack = findViewById(R.id.btn_finish);
+        ImageView mBack = findViewById(R.id.btn_finish);
+        Button mChangePsw = findViewById(R.id.btn_commit);
+        Wrong_old = findViewById(R.id.oldwrong);
+        Wrong_new = findViewById(R.id.newwrong);
+
+        //设置监听
+        mOldPsw.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //格式判断
+                if (s.length() < 6) {
+                    Wrong_old.setText("不能少于6位");
+                    Wrong_old.setVisibility(View.VISIBLE);
+                    OLDWrongtype = true;
+                } else {
+                    Wrong_old.setVisibility(View.GONE);
+                    OLDWrongtype = false;
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        mNewPsw.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //格式判断
+                if (s.length() < 6) {
+                    Wrong_new.setText("不能少于6位");
+                    Wrong_new.setVisibility(View.VISIBLE);
+                    NEWWrongtype = true;
+                } else {
+                    Wrong_new.setVisibility(View.GONE);
+                    NEWWrongtype = false;
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
         //返回键
         mBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,16 +108,14 @@ public class ChangePassActivity extends BasicActivity {
             }
         });
 
-        mChangePsw = findViewById(R.id.btn_commit);
+        //提交更改
         mChangePsw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (PswEmpty()) {
                     MyToast.MyToastShow(ChangePassActivity.this, "请填写完整的信息！");
-                } else if (!OldPswSame()) {
-                    MyToast.MyToastShow(ChangePassActivity.this, "两次输入的旧密码不一致！");
-                } else if (!NewPswSame()) {
-                    MyToast.MyToastShow(ChangePassActivity.this, "两次输入的新密码不一致！");
+                } else if (NEWWrongtype || OLDWrongtype) {
+                    MyToast.MyToastShow(ChangePassActivity.this, "密码格式不正确！");
                 } else if (SameOldNew()) {
                     MyToast.MyToastShow(ChangePassActivity.this, "新旧密码不能相同");
                 } else {
@@ -125,39 +182,14 @@ public class ChangePassActivity extends BasicActivity {
 
     //旧密码和新密码是否相同
     private boolean SameOldNew() {
-        if (mOldPsw.getText().toString().equals(mNewPsw.getText().toString())) {
-            return true;
-        }
-        return false;
-    }
-
-    //两次旧密码是否填写一致
-    private boolean OldPswSame() {
-        if (mOldPsw.getText().toString().equals(mOldPsw_1.getText().toString())) {
-            return true;
-        }
-        return false;
-    }
-
-    //两次新密码是否填写一致
-    private boolean NewPswSame() {
-        if (mNewPsw.getText().toString().equals(mNewPsw_1.getText().toString())) {
-            return true;
-        }
-        return false;
+        return mOldPsw.getText().toString().equals(mNewPsw.getText().toString());
     }
 
     //是否为空
     private boolean PswEmpty() {
         if (mOldPsw.getText().toString().isEmpty()) {
             return true;
-        } else if (mOldPsw_1.getText().toString().isEmpty()) {
-            return true;
-        } else if (mNewPsw.getText().toString().isEmpty()) {
-            return true;
-        } else if (mNewPsw_1.getText().toString().isEmpty()) {
-            return true;
-        }
-        return false;
+        } else
+            return mNewPsw.getText().toString().isEmpty();
     }
 }

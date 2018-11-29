@@ -55,7 +55,7 @@ public class YangShInfoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             };
         }
         //其他的引入正常的
-        View homeInfo = View.inflate(context, R.layout.guanzhu_item, null);
+        View homeInfo = LayoutInflater.from(context).inflate(R.layout.guanzhu_item,viewGroup,false);
         return new YangShViewHolder(homeInfo);
     }
 

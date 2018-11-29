@@ -7,7 +7,6 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -41,11 +40,9 @@ public class TypeVideosActivity extends BasicActivity implements SwipeRefreshLay
     private int CK;
 
     private TextView mBack;
-    private TextView mTypeName;
     private CheckBox mIsGuanZhu;
     private Bundle bundle;
 
-    private VideoInfoAdapter mTypeAdapter;
     private RecyclerView mRecyclerView;
     private SwipeRefreshLayout mSwipeRefresh;
 
@@ -60,7 +57,7 @@ public class TypeVideosActivity extends BasicActivity implements SwipeRefreshLay
 
     private void initView() {
         mBack = findViewById(R.id.back);
-        mTypeName = findViewById(R.id.typename);
+        TextView mTypeName = findViewById(R.id.typename);
         mIsGuanZhu = findViewById(R.id.isChecked);
         mRecyclerView = findViewById(R.id.typerv);
         mSwipeRefresh = findViewById(R.id.typerefresh);
@@ -136,7 +133,7 @@ public class TypeVideosActivity extends BasicActivity implements SwipeRefreshLay
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 //如果原先是选定状态 现在是非选定 则开始取消关注
-                if (isChecked == false && CK == 1) {
+                if (!isChecked && CK == 1) {
                     //取消关注
                     //弹出dialog确认取消关注
                     AlertDialog.Builder builder = new AlertDialog.Builder(TypeVideosActivity.this);
@@ -157,7 +154,7 @@ public class TypeVideosActivity extends BasicActivity implements SwipeRefreshLay
                                     CancelGuanZ();
                                 }
                             }).show();
-                } else if (isChecked == true && CK == 0) {
+                } else if (isChecked && CK == 0) {
                     //如果原先是非选中状态 现在是选中 则开始关注
                     //关注
                     GuanZhu();
@@ -260,7 +257,7 @@ public class TypeVideosActivity extends BasicActivity implements SwipeRefreshLay
      * */
     public void initRecyclerView(ArrayList<VideoInfo> videoInfoList) {
         //创建adapter
-        mTypeAdapter = new VideoInfoAdapter(TypeVideosActivity.this, videoInfoList);
+        VideoInfoAdapter mTypeAdapter = new VideoInfoAdapter(TypeVideosActivity.this, videoInfoList);
 
         //给RecyclerView设置adapter
         mRecyclerView.setAdapter(mTypeAdapter);

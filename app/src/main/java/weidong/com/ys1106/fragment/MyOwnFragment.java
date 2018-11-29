@@ -31,9 +31,6 @@ import weidong.com.ys1106.Utils.UserInfo;
 
 public class MyOwnFragment extends BasicFragment implements View.OnClickListener {
 
-    private View view;
-    private DrawerLayout mDrawerLayout;
-    private TextView mSet;
     private TextView mChangeAccount;
     private TextView mChangesex;
     private TextView mChangeAge;
@@ -41,18 +38,6 @@ public class MyOwnFragment extends BasicFragment implements View.OnClickListener
     private TextView mChangeqq;
     private TextView mChangeEmail;
     private TextView mChangePh;
-    private TextView mChangeUser;
-    private TextView mChangePass;
-    private TextView mExit;
-    private TextView mDeleteUser;
-
-    private TableRow mAccount;
-    private TableRow mAge;
-    private TableRow mSex;
-    private TableRow mName;
-    private TableRow mQQ;
-    private TableRow mEmail;
-    private TableRow mPh;
 
     final int CODE = 0x717;
 
@@ -83,7 +68,7 @@ public class MyOwnFragment extends BasicFragment implements View.OnClickListener
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_myinfo, container, false);
+        View view = inflater.inflate(R.layout.fragment_myinfo, container, false);
 
         initData();
         initView(view);
@@ -121,22 +106,6 @@ public class MyOwnFragment extends BasicFragment implements View.OnClickListener
 //          更改手机
             case R.id.change_ph:
                 updateUserInfo("ph", mChangePh);
-                break;
-            //注销账户
-            case R.id.deleteaccount:
-                DeleteUser();
-                break;
-            //退出程序
-            case R.id.exit:
-                ExitThis();
-                break;
-            //更换用户
-            case R.id.btn_changeUser:
-                ChangeUser();
-                break;
-            //更改密码
-            case R.id.btn_changepass:
-                ChangePass();
                 break;
         }
     }
@@ -216,35 +185,15 @@ public class MyOwnFragment extends BasicFragment implements View.OnClickListener
      * 绑定控件点击事件
      * */
     public void initView(View view) {
-        //设置 改密码，退出，换账户，注销
-        mSet = view.findViewById(R.id.frag_myOwn_tv_set);
-        mDrawerLayout = view.findViewById(R.id.drawer_layout);
-
-        mSet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mDrawerLayout.openDrawer(Gravity.RIGHT);
-            }
-        });
-
-        mChangePass = view.findViewById(R.id.btn_changepass);
-        mChangeUser = view.findViewById(R.id.btn_changeUser);
-        mExit = view.findViewById(R.id.exit);
-        mDeleteUser = view.findViewById(R.id.deleteaccount);
-
-        mDeleteUser.setOnClickListener(this);
-        mChangePass.setOnClickListener(this);
-        mChangeUser.setOnClickListener(this);
-        mExit.setOnClickListener(this);
 
         //个人信息修改 用户名，年龄，性别，姓名，qq，邮箱，手机
-        mAccount = view.findViewById(R.id.change_account);
-        mSex = view.findViewById(R.id.change_sex);
-        mAge = view.findViewById(R.id.change_age);
-        mName = view.findViewById(R.id.change_name);
-        mQQ = view.findViewById(R.id.change_qq);
-        mEmail = view.findViewById(R.id.change_email);
-        mPh = view.findViewById(R.id.change_ph);
+        TableRow mAccount = view.findViewById(R.id.change_account);
+        TableRow mSex = view.findViewById(R.id.change_sex);
+        TableRow mAge = view.findViewById(R.id.change_age);
+        TableRow mName = view.findViewById(R.id.change_name);
+        TableRow mQQ = view.findViewById(R.id.change_qq);
+        TableRow mEmail = view.findViewById(R.id.change_email);
+        TableRow mPh = view.findViewById(R.id.change_ph);
 
         mAccount.setOnClickListener(this);
         mSex.setOnClickListener(this);
@@ -262,73 +211,6 @@ public class MyOwnFragment extends BasicFragment implements View.OnClickListener
         mChangeEmail = view.findViewById(R.id.frag_myOwn_tv_email);
         mChangePh = view.findViewById(R.id.frag_myOwn_tv_ph);
 
-    }
-
-    //修改密码
-    private void ChangePass() {
-        Intent intent = new Intent(getActivity(), ChangePassActivity.class);
-        startActivity(intent);
-    }
-
-    //切换账号
-    private void ChangeUser() {
-        //清除当前账号信息
-        AnalysisUtils.cleanlogin(getActivity());
-
-        //打开新的登录界面
-        Intent intent = new Intent(getActivity(), MainActivity.class);
-        startActivity(intent);
-        getActivity().finish();
-    }
-
-    //退出程序
-    private void ExitThis() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("退出").
-                setMessage("退出程序吗？").
-                setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                }).
-                setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        getActivity().finish();
-                    }
-                }).show();
-    }
-
-    /* 注销账号
-     * 数据库中的用户存在标识改为0
-     * 先确定密码，密码正确以后再执行注销
-     * */
-    private void DeleteUser() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        View view = LayoutInflater.from(getActivity()).inflate(R.layout.layout_confirm_pass, null);
-        final EditText pass = view.findViewById(R.id.et_confirmpass);
-        Button sure = view.findViewById(R.id.btn_cofmpas_sure);
-
-        //确认密码
-        sure.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!pass.getText().toString().isEmpty()) {
-                    if ((pass.getText().toString().trim()).
-                            equals(AnalysisUtils.readloginpass(getActivity(), AnalysisUtils.readloginUserName(getActivity())))) {
-                        //注销
-                        MyToast.MyToastShow(getActivity(), "密码正确！");
-                        //返回到登录界面
-                    } else {
-                        MyToast.MyToastShow(getActivity(), "密码不正确！");
-                    }
-                } else {
-                    MyToast.MyToastShow(getActivity(), "密码不能为空！");
-                }
-            }
-        });
-        builder.setTitle("账号注销").setView(view).show();
     }
 
     /*

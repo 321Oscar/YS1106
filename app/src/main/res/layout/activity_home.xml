@@ -1,71 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout
+    android:id="@+id/home_drawer"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".Activity.HomeActivity">
+    tools:context=".Activity.HomeActivity"
+    tools:openDrawer="start"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vp_rbHome"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"></android.support.v4.view.ViewPager>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="#999"/>
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/home_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_blue_1"
+            app:titleTextColor="@color/color_white"
+            app:navigationIcon="@mipmap/menu64"
+            app:title="@string/homeInfo">
 
-    <RadioGroup
-        android:id="@+id/rg_main"
-        android:layout_width="match_parent"
-        android:layout_height="49dp"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal">
+        </android.support.v7.widget.Toolbar>
 
-        <RadioButton
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:button="@null"
-            android:textSize="@dimen/textsize"
-            android:drawablePadding="@dimen/homeimgpadding"
-            android:gravity="center"
-            android:textColor="@color/main_tab_text_selector_tab"
-            android:id="@+id/rb_guanzhu"
-            android:drawableTop="@drawable/rb_guanzhu"
-            android:text="@string/Gz"
-            />
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_rbHome"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-        <RadioButton
-            android:id="@+id/rb_home"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:button="@null"
-            android:textSize="@dimen/textsize"
-            android:drawablePadding="@dimen/homeimgpadding"
-            android:gravity="center"
-            android:text="@string/homeInfo"
-            android:checked="true"
-            android:drawableTop="@drawable/rb_home"
-            android:textColor="@color/main_tab_text_selector_tab"
-             />
+        </android.support.v4.view.ViewPager>
 
-        <RadioButton
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:button="@null"
-            android:textSize="@dimen/textsize"
-            android:drawablePadding="@dimen/homeimgpadding"
-            android:gravity="center"
-            android:textColor="@color/main_tab_text_selector_tab"
-            android:drawableTop="@drawable/rb_myown"
-            android:text="@string/myOwn"
-            android:id="@+id/rb_myown"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#999"/>
 
-    </RadioGroup>
+        <RadioGroup
+            android:id="@+id/rg_main"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
 
-</LinearLayout>
+            <RadioButton
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:textSize="@dimen/textsize"
+                android:drawablePadding="@dimen/homeimgpadding"
+                android:gravity="center"
+                android:textColor="@color/main_tab_text_selector_tab"
+                android:id="@+id/rb_guanzhu"
+                android:drawableTop="@drawable/rb_guanzhu"
+                android:text="@string/Gz"
+                />
+
+            <RadioButton
+                android:id="@+id/rb_home"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:textSize="@dimen/textsize"
+                android:drawablePadding="@dimen/homeimgpadding"
+                android:gravity="center"
+                android:text="@string/homeInfo"
+                android:checked="true"
+                android:drawableTop="@drawable/rb_home"
+                android:textColor="@color/main_tab_text_selector_tab"
+                />
+
+            <RadioButton
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:textSize="@dimen/textsize"
+                android:drawablePadding="@dimen/homeimgpadding"
+                android:gravity="center"
+                android:textColor="@color/main_tab_text_selector_tab"
+                android:drawableTop="@drawable/rb_myown"
+                android:text="@string/myOwn"
+                android:id="@+id/rb_myown"/>
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="280dp"
+        android:layout_height="match_parent"
+        android:background="@color/color_gray_d"
+        android:orientation="vertical"
+        android:layout_gravity="start"
+        android:clickable="true">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:text="设置"
+            android:gravity="center|left"
+            android:paddingLeft="15dp"
+            android:background="@color/color_blue_1"
+            android:textColor="@color/color_white"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="@color/color_gray_d" />
+
+        <TextView
+            android:id="@+id/btn_changepass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/usertextview"
+            android:gravity="center_vertical"
+            android:padding="@dimen/margindp_10"
+            android:text="修改密码"
+            android:textColor="@color/color_gray_1"
+            android:textSize="18sp"
+            android:drawableLeft="@mipmap/cpass"
+            android:drawablePadding="@dimen/margindp_10"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="@dimen/margindp_10"
+            android:layout_marginRight="@dimen/margindp_10"
+            android:background="@color/color_gray_d">
+
+        </View>
+
+        <TextView
+            android:id="@+id/btn_changeUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/usertextview"
+            android:gravity="center_vertical"
+            android:padding="@dimen/margindp_10"
+            android:text="切换账号"
+            android:textColor="@color/color_gray_1"
+            android:drawableLeft="@mipmap/cuser"
+            android:drawablePadding="@dimen/margindp_10"
+            android:textSize="18sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="@dimen/margindp_10"
+            android:layout_marginRight="@dimen/margindp_10"
+            android:background="@color/color_gray_d">
+
+        </View>
+
+        <TextView
+            android:id="@+id/deleteaccount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/usertextview"
+            android:padding="@dimen/margindp_10"
+            android:text="注销账号"
+            android:drawableLeft="@mipmap/duser"
+            android:textColor="@color/color_gray_1"
+            android:drawablePadding="@dimen/margindp_10"
+            android:textSize="18sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="@dimen/margindp_10"
+            android:layout_marginRight="@dimen/margindp_10"
+            android:background="@color/color_gray_d">
+
+        </View>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="@color/color_gray_d" />
+
+        <TextView
+            android:id="@+id/exit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/usertextview"
+            android:padding="@dimen/margindp_10"
+            android:text="退出程序"
+            android:textColor="@color/color_gray_1"
+            android:textSize="18sp"
+            android:drawablePadding="@dimen/margindp_10"
+            android:drawableLeft="@mipmap/exit"/>
+    </LinearLayout>
+
+</android.support.v4.widget.DrawerLayout>

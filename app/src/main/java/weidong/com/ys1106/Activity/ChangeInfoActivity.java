@@ -2,7 +2,9 @@ package weidong.com.ys1106.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.InputType;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -18,11 +20,12 @@ import weidong.com.ys1106.Utils.ResponseHandle;
 
 public class ChangeInfoActivity extends BasicActivity {
 
-    private ImageView back;
-    private TextView mCommitChange;
     private EditText mChangeInfo;
     private Intent intent;
     private Bundle bundle;
+
+    //更改的格式是否正确
+    private boolean textTypeWrong = true;
 
     //修改结果码
     private int CODE = 0x710;
@@ -40,9 +43,10 @@ public class ChangeInfoActivity extends BasicActivity {
         intent = this.getIntent();
         bundle = this.getIntent().getExtras();
 
-        back = findViewById(R.id.btn_finish);
-        mCommitChange = findViewById(R.id.btn_change_commit);
+        ImageView back = findViewById(R.id.btn_finish);
+        TextView mCommitChange = findViewById(R.id.btn_change_commit);
         mChangeInfo = findViewById(R.id.et_change);
+        TextView mTitle = findViewById(R.id.tv_title);
 
         //返回键
         back.setOnClickListener(new View.OnClickListener() {
@@ -53,25 +57,59 @@ public class ChangeInfoActivity extends BasicActivity {
         });
 
         //在textView上显示旧的信息
-        mChangeInfo.setText(bundle.getString("oldInfo"));
+        mChangeInfo.setHint(bundle.getString("oldInfo"));
 
         //确定是更改那个类型，设置EditText的输入类型
         switch (bundle.getString("type")) {
             case "account":
+                mTitle.setText("更改用户名");
+                mChangeInfo.setInputType(InputType.TYPE_CLASS_TEXT);
                 break;
-            case "age":
+            case "age"://年龄输入限制0-120；
+                mTitle.setText("更改年龄");
                 mChangeInfo.setInputType(InputType.TYPE_CLASS_NUMBER);
+                mChangeInfo.setHint("0-120之间的整数");
+                mChangeInfo.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        try {
+                            int age = Integer.parseInt(mChangeInfo.getText().toString());
+                            if (age < 0 || age > 120) {
+                                textTypeWrong = true;
+                            }else if(age >= 0 && age <= 120){
+                                textTypeWrong = false;
+                            }
+                        }catch (Exception e){
+
+                        }
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                    }
+                });
                 break;
             case "name":
+                mTitle.setText("更改姓名");
                 mChangeInfo.setInputType(InputType.TYPE_CLASS_TEXT);
                 break;
             case "qq":
+                mTitle.setText("更改QQ");
                 mChangeInfo.setInputType(InputType.TYPE_CLASS_NUMBER);
                 break;
             case "email":
-                mChangeInfo.setInputType(InputType.TYPE_TEXT_VARIATION_WEB_EMAIL_ADDRESS);
+                mTitle.setText("更改邮箱");
+                mChangeInfo.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
                 break;
             case "ph":
+                mTitle.setText("更改手机号");
                 mChangeInfo.setInputType(InputType.TYPE_CLASS_PHONE);
                 break;
 
@@ -81,11 +119,21 @@ public class ChangeInfoActivity extends BasicActivity {
         mCommitChange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!IsSame()) {
-                    UpdateInfo();
-                } else {
-                    MyToast.MyToastShow(ChangeInfoActivity.this, "不能和以前的信息相同！");
+                if (!mChangeInfo.getText().toString().isEmpty()){
+                    if(!textTypeWrong){
+                        if (!IsSame()) {
+                            UpdateInfo();
+                        } else {
+                            MyToast.MyToastShow(ChangeInfoActivity.this, "不能和以前的信息相同！");
+                        }
+                    }else {
+                        MyToast.MyToastShow(ChangeInfoActivity.this, "格式错误！");
+                    }
+                }else {
+                    MyToast.MyToastShow(ChangeInfoActivity.this, "不能为空！");
                 }
+
+
 
             }
         });
@@ -94,10 +142,7 @@ public class ChangeInfoActivity extends BasicActivity {
 
     //判断新的信息和旧的信息是否相同
     private boolean IsSame() {
-        if (mChangeInfo.getText().toString().equals(bundle.getString("oldInfo"))) {
-            return true;
-        }
-        return false;
+        return mChangeInfo.getText().toString().equals(bundle.getString("oldInfo"));
     }
 
     //更新信息

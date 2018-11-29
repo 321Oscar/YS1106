@@ -3,25 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#DDD">
+    android:background="@color/color_gray_d">
 
-    <TextView
-        android:id="@+id/frag_home_tv_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:background="#0DBDD1"
-        android:gravity="center"
-        android:padding="10dp"
-        android:text="@string/frag_home_title"
-        android:textColor="#fff"
-        android:textSize="18sp" />
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/frag_home_refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/frag_home_tv_title">
+        android:layout_height="match_parent">
 
         <android.support.v7.widget.RecyclerView
             xmlns:tools="http://schemas.android.com/tools"
@@ -32,7 +20,9 @@
             tools:layoutManager="GridLayoutManager"
             tools:listitem="@layout/home_item"
             tools:spanCount="2"
-            ></android.support.v7.widget.RecyclerView>
+            >
+
+        </android.support.v7.widget.RecyclerView>
 
     </android.support.v4.widget.SwipeRefreshLayout>
 

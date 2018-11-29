@@ -29,119 +29,71 @@
             android:padding="10dp"
             android:text="修改密码"
             android:textColor="#fff"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 
-    <TableLayout
+
+    <TextView
+        android:padding="@dimen/margindp_10"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/textsize">
+        android:gravity="left"
+        android:text="旧密码:"
+        android:textSize="18sp" />
 
-        <TableRow>
+    <EditText
+        android:id="@+id/et_oldpass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:inputType="textPassword"
+        android:maxLength="11"
+        android:textSize="18sp" />
 
-            <TextView
+    <TextView
+        android:id="@+id/oldwrong"
+        android:visibility="gone"
+        android:padding="@dimen/margindp_5"
+        android:layout_marginLeft="15dp"
+        android:textColor="#ee1111"
+        android:text="格式错误"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.1"
-                android:gravity="right"
-                android:text="旧密码"
-                android:textSize="20sp" />
+    <TextView
+        android:padding="@dimen/margindp_10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="新密码确认:"
+        android:textSize="18sp" />
 
-            <EditText
-                android:id="@+id/et_oldpass"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_weight="2"
-                android:textSize="20sp"
-                android:inputType="numberPassword"/>
+    <EditText
+        android:id="@+id/et_newpass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:maxLength="11"
+        android:inputType="textPassword"
+        android:textSize="18sp" />
 
-        </TableRow>
+    <TextView
+        android:id="@+id/newwrong"
+        android:visibility="gone"
+        android:padding="@dimen/margindp_5"
+        android:layout_marginLeft="15dp"
+        android:textColor="#ee1111"
+        android:text="格式错误"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-        <TableRow>
-
-            <TextView
-
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.1"
-                android:gravity="right"
-                android:text="旧密码确认"
-                android:maxLines="1"
-                android:textSize="20sp" />
-
-            <EditText
-                android:id="@+id/et_oldpass_confirm"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_weight="2"
-                android:textSize="20sp"
-                android:inputType="numberPassword"/>
-
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.1"
-                android:gravity="right"
-                android:text="新密码"
-                android:textSize="20sp" />
-
-            <EditText
-                android:id="@+id/et_newpass"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_weight="2"
-                android:textSize="20sp"
-                android:inputType="numberPassword"/>
-
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.1"
-                android:gravity="right"
-                android:text="新密码确认"
-                android:textSize="20sp" />
-
-            <EditText
-                android:id="@+id/et_newpass_confirm"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_weight="2"
-                android:textSize="20sp"
-                android:inputType="numberPassword"/>
-
-        </TableRow>
-
-        <TableRow android:layout_marginTop="20dp">
-
-            <View android:layout_weight="1" />
-
-            <Button
-                android:id="@+id/btn_commit"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="确  认"
-                android:textSize="20sp" />
-
-            <View android:layout_weight="1" />
-        </TableRow>
-    </TableLayout>
+    <Button
+        android:id="@+id/btn_commit"
+        android:layout_margin="@dimen/margindp_10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="确  认"
+        android:textSize="18sp" />
 
 
 </LinearLayout>

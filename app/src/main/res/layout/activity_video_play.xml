@@ -9,20 +9,21 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="?attr/actionBarSize"
         android:background="@color/color_blue_1"
         android:orientation="horizontal"
-        android:padding="@dimen/margindp_10">
+        android:padding="@dimen/margindp_10"
+        android:gravity="center">
 
         <TextView
             android:id="@+id/play_back"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="top|left"
-            android:layout_weight="0.5"
-            android:text="返回"
+            android:layout_gravity="center"
+            android:layout_weight="0.3"
             android:textColor="@color/color_white"
-            android:textSize="18sp"/>
+            android:textSize="18sp"
+            android:drawableLeft="@mipmap/backwhite"/>
 
         <TextView
             android:id="@+id/videotype"
@@ -30,7 +31,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="3"
             android:text="type"
-            android:gravity="center"
+            android:gravity="start"
+            android:textColor="@color/color_white"
             android:textSize="18sp"/>
 
     </LinearLayout>
@@ -44,47 +46,35 @@
         <cn.jzvd.JzvdStd
             android:id="@+id/play"
             android:layout_width="match_parent"
-            android:layout_height="200dp"></cn.jzvd.JzvdStd>
+            android:layout_height="200dp">
 
-        <!--<VideoView-->
-            <!--android:id="@+id/play_1"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="200dp" />-->
-        
-        <SurfaceView
-            android:layout_marginTop="10dp"
-            android:id="@+id/play_2"
-            android:layout_width="match_parent"
-            android:layout_height="200dp" />
-        
-        <ProgressBar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:id="@+id/play_2_1"/>
+        </cn.jzvd.JzvdStd>
 
         <TextView
             android:padding="@dimen/margindp_5"
             android:id="@+id/play_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="@dimen/dp_15"
             android:text="Biaoti"
             android:textColor="@color/color_black"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:maxLines="1"/>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:background="@color/color_gray_d"
-            ></View>
+            >
+
+        </View>
 
         <TextView
             android:padding="@dimen/margindp_5"
             android:id="@+id/play_des"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="@dimen/margindp_10"
             android:text="miaoshu"
             android:textColor="@color/color_gray"
             android:textSize="16sp"/>

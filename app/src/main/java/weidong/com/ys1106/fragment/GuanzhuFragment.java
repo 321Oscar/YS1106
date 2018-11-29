@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
@@ -29,10 +30,7 @@ import weidong.com.ys1106.adapter.YangShInfoAdapter;
 public class GuanzhuFragment extends BasicFragment implements SwipeRefreshLayout.OnRefreshListener {
 
     private int FISRT_LOAD = 1;
-    private View view;
-    private YangShInfoAdapter adapter;
     private RecyclerView rv;
-
     private SwipeRefreshLayout mSwipeRefresh;
 
     public GuanzhuFragment() {
@@ -52,7 +50,7 @@ public class GuanzhuFragment extends BasicFragment implements SwipeRefreshLayout
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_guanzhu, container, false);
+        View view = inflater.inflate(R.layout.fragment_guanzhu, container, false);
         //获取RecyclerView
         rv = view.findViewById(R.id.frag_gz_rv);
         mSwipeRefresh = view.findViewById(R.id.frag_gz_refresh);
@@ -89,8 +87,7 @@ public class GuanzhuFragment extends BasicFragment implements SwipeRefreshLayout
 
             @Override
             public void failure(String failCode) {
-                ArrayList<YangShInfo> infoArrayList = null;
-                initRecyclerView(infoArrayList);
+                initRecyclerView(null);
             }
         });
 
@@ -98,13 +95,15 @@ public class GuanzhuFragment extends BasicFragment implements SwipeRefreshLayout
 
     public void initRecyclerView(ArrayList<YangShInfo> infoArrayList) {
         //创建adapter
-        adapter = new YangShInfoAdapter(getActivity(), infoArrayList);
+        YangShInfoAdapter adapter = new YangShInfoAdapter(getActivity(), infoArrayList);
 
         //给RecyclerView设置adapter
         rv.setAdapter(adapter);
 
         //设置layoutManager，可以设置显示效果
-        rv.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        LinearLayoutManager manager = new LinearLayoutManager(getActivity());
+        manager.setOrientation(LinearLayoutManager.VERTICAL);
+        rv.setLayoutManager(manager);
 
         //设置item的分割线
         if (FISRT_LOAD == 1){

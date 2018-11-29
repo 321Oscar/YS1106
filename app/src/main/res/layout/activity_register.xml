@@ -9,17 +9,17 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="?attr/actionBarSize"
         android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/btn_finish"
-            android:padding="10dp"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="0.5"
-            android:src="@mipmap/back"
-            android:background="@color/color_blue_1"/>
+            android:background="@color/color_blue_1"
+            android:padding="10dp"
+            android:src="@mipmap/back" />
 
         <TextView
             android:id="@+id/tv_title"
@@ -37,17 +37,14 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_title">
+        android:layout_height="wrap_content">
 
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:padding="@dimen/dp_15">
 
-            <TableRow android:padding="10dp">
-
-            </TableRow>
 
             <TableRow android:padding="@dimen/margindp_5">
 
@@ -56,7 +53,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center|right"
                     android:text="@string/reg_username"
                     android:textSize="20sp" />
 
@@ -64,9 +60,10 @@
                     android:id="@+id/et_acc"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2.5"
-                    android:hint="@string/notNull"
-                    android:textSize="20sp" />
+                    android:layout_weight="4"
+                    android:textSize="20sp"
+                    android:inputType="text"
+                    android:hint="@string/reg_username"/>
 
             </TableRow>
 
@@ -77,7 +74,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center|right"
                     android:text="@string/reg_pass"
                     android:textSize="20sp" />
 
@@ -85,168 +81,37 @@
                     android:id="@+id/et_pass"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2.5"
-                    android:hint="必填(限数字)"
-                    android:inputType="numberPassword"
+                    android:layout_weight="4"
+                    android:hint="6位以上 11位以下"
+                    android:inputType="textPassword"
                     android:textSize="20sp" />
+
             </TableRow>
 
-            <!--<TableRow android:padding="@dimen/margindp_5">-->
+            <TextView
+                android:id="@+id/wrong_psw"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:visibility="invisible" />
 
-                <!--<TextView-->
-                    <!--android:id="@+id/tv_name"-->
-                    <!--android:layout_width="0dp"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:gravity="right|center"-->
-                    <!--android:text="@string/reg_name"-->
-                    <!--android:textSize="20sp"-->
-                    <!--app:layout_constraintTop_toBottomOf="@+id/tv_pass" />-->
+            <TableRow
+                android:gravity="center"
+                android:padding="@dimen/margindp_5">
 
-                <!--<EditText-->
-                    <!--android:id="@+id/et_name"-->
-                    <!--android:layout_width="0dp"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_weight="2.5"-->
-                    <!--android:hint="@string/canNull"-->
-                    <!--android:inputType="number"-->
-                    <!--android:textSize="20sp" />-->
-            <!--</TableRow>-->
+                <TextView android:layout_weight="1" />
 
-            <!--<TableRow android:padding="@dimen/margindp_5">-->
-
-                <!--<TextView-->
-                    <!--android:id="@+id/tv_age"-->
-                    <!--android:layout_width="0dp"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:gravity="right|center"-->
-                    <!--android:text="@string/reg_age"-->
-                    <!--android:textSize="20sp"-->
-                    <!--app:layout_constraintTop_toBottomOf="@+id/tv_pass" />-->
-
-                <!--<EditText-->
-                    <!--android:id="@+id/et_age"-->
-                    <!--android:layout_width="0dp"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_weight="2.5"-->
-                    <!--android:hint="@string/canNull"-->
-                    <!--android:inputType="number"-->
-                    <!--android:textSize="20sp" />-->
-            <!--</TableRow>-->
-
-            <!--<TableRow android:padding="@dimen/margindp_5">-->
-
-                <!--<TextView-->
-                    <!--android:id="@+id/tv_sex"-->
-                    <!--android:layout_width="0dp"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:gravity="right|center"-->
-                    <!--android:text="@string/reg_sex"-->
-                    <!--android:textSize="20sp" />-->
-
-                <!--<RadioGroup-->
-                    <!--android:id="@+id/rg_sex"-->
-                    <!--android:layout_width="0dp"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_weight="2.5"-->
-                    <!--android:gravity="left"-->
-                    <!--android:orientation="horizontal">-->
-
-                    <!--<RadioButton-->
-                        <!--android:id="@+id/rb_sex_1"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_marginLeft="5dp"-->
-                        <!--android:layout_marginRight="10dp"-->
-                        <!--android:checked="true"-->
-                        <!--android:text="@string/reg_sex_1"-->
-                        <!--android:textSize="20sp" />-->
-
-                    <!--<RadioButton-->
-                        <!--android:id="@+id/rb_sex_2"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:text="@string/reg_sex_2"-->
-                        <!--android:textSize="20sp" />-->
-                <!--</RadioGroup>-->
-
-            <!--</TableRow>-->
-
-            <!--<TableRow android:padding="@dimen/margindp_5">-->
-
-                <!--<TextView-->
-                    <!--android:id="@+id/tv_phone"-->
-                    <!--android:layout_width="0dp"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:gravity="right|center"-->
-                    <!--android:text="@string/reg_ph"-->
-                    <!--android:textSize="20sp"></TextView>-->
-
-                <!--<EditText-->
-                    <!--android:id="@+id/et_phone"-->
-                    <!--android:layout_width="0dp"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_weight="2.5"-->
-                    <!--android:hint="@string/canNull"-->
-                    <!--android:inputType="phone"-->
-                    <!--android:textSize="20sp" />-->
-            <!--</TableRow>-->
-
-            <!--<TableRow android:padding="@dimen/margindp_5">-->
-
-                <!--<TextView-->
-                    <!--android:id="@+id/tv_qq"-->
-                    <!--android:layout_width="0dp"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:gravity="right|center"-->
-                    <!--android:text="@string/reg_q"-->
-                    <!--android:textSize="20sp" />-->
-
-                <!--<EditText-->
-                    <!--android:id="@+id/et_qq"-->
-                    <!--android:layout_width="0dp"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_weight="2.5"-->
-                    <!--android:hint="@string/canNull"-->
-                    <!--android:inputType="phone"-->
-                    <!--android:textSize="20sp" />-->
-            <!--</TableRow>-->
-
-            <!--<TableRow android:padding="@dimen/margindp_5">-->
-
-                <!--<TextView-->
-                    <!--android:id="@+id/tv_email"-->
-                    <!--android:layout_width="0dp"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:gravity="right|center"-->
-                    <!--android:text="@string/reg_em"-->
-                    <!--android:textSize="20sp" />-->
-
-                <!--<EditText-->
-                    <!--android:id="@+id/et_email"-->
-                    <!--android:layout_width="0dp"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_weight="2.5"-->
-                    <!--android:hint="@string/canNull"-->
-                    <!--android:inputType="textEmailAddress"-->
-                    <!--android:textSize="20sp" />-->
-            <!--</TableRow>-->
-
-            <TableRow android:padding="@dimen/margindp_5"
-                android:gravity="center">
-                <TextView android:layout_weight="1"/>
                 <Button
                     android:id="@+id/btn_commit"
                     android:layout_width="0dp"
-                    android:layout_weight="2"
                     android:layout_height="50dp"
-                    android:text="@string/reg_com" />
-                <TextView android:layout_weight="1"/>
+                    android:layout_weight="2"
+                    android:background="@drawable/button"
+                    android:text="@string/reg_com"
+                    android:textSize="22sp"
+                    android:textColor="@color/color_white"/>
+
+                <TextView android:layout_weight="1" />
             </TableRow>
 
         </TableLayout>
