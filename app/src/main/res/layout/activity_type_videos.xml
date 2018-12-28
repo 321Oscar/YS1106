@@ -46,6 +46,14 @@
 
     </LinearLayout>
 
+    <!--<TextView-->
+        <!--android:id="@+id/typeDes"-->
+        <!--android:padding="@dimen/dp_15"-->
+        <!--android:textSize="18sp"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="描述"/>-->
+
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/typerefresh"
         android:layout_width="match_parent"

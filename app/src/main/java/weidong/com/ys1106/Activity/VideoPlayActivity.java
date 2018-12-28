@@ -2,23 +2,19 @@ package weidong.com.ys1106.Activity;
 
 import android.content.Intent;
 import android.graphics.Rect;
-import android.media.MediaPlayer;
-import android.net.Uri;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.view.View;
-import android.widget.MediaController;
-import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.VideoView;
 
-import java.io.IOException;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -41,11 +37,13 @@ public class VideoPlayActivity extends BasicActivity {
     private TextView mTvDes;
     private TextView back;
     private TextView mVideoType;
+    private RadioGroup Qxd;
 
     private RecyclerView mTypeVideos;
     private VideoInfoAdapter mTypeVideosAdapter;
 
     private JzvdStd play;
+    String[] urls = new String[3];
 //    private VideoView play_1;
 //    private SurfaceView play_2;
 //    private ProgressBar play_2_1;
@@ -65,7 +63,17 @@ public class VideoPlayActivity extends BasicActivity {
     private void initView(){
         //获取数据
         bundle = this.getIntent().getExtras();
-        String VideoUrl = Constant.UEL_Img + bundle.getString("url");
+
+        try {
+            JSONObject videourls = new JSONObject(bundle.getString("url"));
+            urls[0] = videourls.getString("360p");
+            urls[1] = videourls.getString("720p");
+            urls[2] = videourls.getString("1080p");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
         String Title = bundle.getString("title");
         String Des = bundle.getString("des");
         String Type = bundle.getString("type");
@@ -77,9 +85,34 @@ public class VideoPlayActivity extends BasicActivity {
         mTvDes = findViewById(R.id.play_des);
         mVideoType = findViewById(R.id.videotype);
 
+        Qxd = findViewById(R.id.qxd);
+        RadioButton bq = findViewById(R.id.bq);
+
+        play = findViewById(R.id.play);
+        //默认标清
+        String VideoUrl = Constant.URL_Img + urls[0];
+        MyToast.SysInfo("URL----"+VideoUrl);
+        bq.setChecked(true);
+        //清晰度改变
+        Qxd.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId){
+                    case R.id.bq:
+                        setQxd(Constant.URL_Img+urls[0]);
+                        break;
+                    case R.id.gq:
+                        setQxd(Constant.URL_Img+urls[1]);
+                        break;
+                    case R.id.cq:
+                        setQxd(Constant.URL_Img+urls[2]);
+                        break;
+                }
+            }
+        });
+
         //视频播放 method 1
         //使用网上的插件 JiaoZiVideoPlayer
-        play = findViewById(R.id.play);
         play.setUp(VideoUrl,null,Jzvd.SCREEN_WINDOW_NORMAL);
 //        play.setUp("http://jzvd.nathen.cn/c6e3dc12a1154626b3476d9bf3bd7266/6b56c5f0dc31428083757a45764763b0-5287d2089db37e62345123a1be272f8b.mp4",null,Jzvd.SCREEN_WINDOW_NORMAL);
 
@@ -87,6 +120,12 @@ public class VideoPlayActivity extends BasicActivity {
         mTvDes.setText(Des);
         mTvTitle.setText(Title);
         mVideoType.setText(Type);
+    }
+
+    private void setQxd(String url){
+        Jzvd.releaseAllVideos();
+        play.setUp(url,null,Jzvd.SCREEN_WINDOW_NORMAL);
+        play.startVideo();
     }
 
     private void setClick(){

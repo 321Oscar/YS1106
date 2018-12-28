@@ -71,7 +71,7 @@ public class YangShInfoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
             //设置图片的URL
             if(data.getImgUrl()!=null){
-                Glide.with(context).load(Constant.UEL_Img + data.getImgUrl()).into(hd.mImg);
+                Glide.with(context).load(Constant.URL_Img + data.getImgUrl()).into(hd.mImg);
             }
             hd.mDes.setText(data.getDes());
             hd.mName.setText(data.getName());

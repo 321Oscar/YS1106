@@ -37,10 +37,12 @@
                 android:id="@+id/item_gz_tv_des"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/margindp_10"
+                android:paddingLeft="@dimen/margindp_10"
+                android:paddingRight="@dimen/margindp_10"
                 android:maxLines="2"
                 android:text="描述"
                 android:textColor="@color/color_gray"
+                android:ellipsize="end"
                 android:textSize="13sp" />
 
         </LinearLayout>

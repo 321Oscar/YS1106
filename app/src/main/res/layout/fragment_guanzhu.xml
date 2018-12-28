@@ -16,7 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/itemdp_left"
-            tools:listitem="@layout/guanzhu_item">
+            tools:listitem="@layout/guanzhu_item"
+            tools:itemCount="5">
 
         </android.support.v7.widget.RecyclerView>
 

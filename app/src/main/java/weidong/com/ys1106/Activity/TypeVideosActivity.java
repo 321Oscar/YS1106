@@ -153,7 +153,7 @@ public class TypeVideosActivity extends BasicActivity implements SwipeRefreshLay
                                     //确认 -- 数据库取消
                                     CancelGuanZ();
                                 }
-                            }).show();
+                            }).setCancelable(false).show();
                 } else if (isChecked && CK == 0) {
                     //如果原先是非选中状态 现在是选中 则开始关注
                     //关注

@@ -31,7 +31,8 @@
             android:name=".Activity.VideoPlayActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
-        <activity android:name=".Activity.TypeVideosActivity"></activity>
+        <activity android:name=".Activity.TypeVideosActivity" />
+        <activity android:name=".Activity.QuestionsActivity"></activity>
     </application>
 
 </manifest>

@@ -8,4 +8,8 @@
         <item name="colorAccent">@color/color_blue_1</item>
     </style>
 
+    <style name="dialog" parent="android:Theme.Dialog">
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
 </resources>

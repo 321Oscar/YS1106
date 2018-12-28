@@ -27,13 +27,17 @@ import java.util.List;
 import weidong.com.ys1106.MainActivity;
 import weidong.com.ys1106.R;
 import weidong.com.ys1106.Utils.AnalysisUtils;
+import weidong.com.ys1106.Utils.CommonRequest;
+import weidong.com.ys1106.Utils.CommonResponse;
+import weidong.com.ys1106.Utils.Constant;
 import weidong.com.ys1106.Utils.MyToast;
+import weidong.com.ys1106.Utils.ResponseHandle;
 import weidong.com.ys1106.adapter.FragmentAdapter;
 import weidong.com.ys1106.fragment.GuanzhuFragment;
 import weidong.com.ys1106.fragment.HomeFragment;
 import weidong.com.ys1106.fragment.MyOwnFragment;
 
-public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
+public class HomeActivity extends BasicActivity implements View.OnClickListener {
 
     private ViewPager vp;
     private List<Fragment> mFragmentList = new ArrayList<>();
@@ -115,11 +119,13 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         TextView mChangeUser = findViewById(R.id.btn_changeUser);
         TextView mExit = findViewById(R.id.exit);
         TextView mDeleteUser = findViewById(R.id.deleteaccount);
+        TextView WenJuan = findViewById(R.id.Wenjuan);
 
         mDeleteUser.setOnClickListener(this);
         mChangePass.setOnClickListener(this);
         mChangeUser.setOnClickListener(this);
         mExit.setOnClickListener(this);
+        WenJuan.setOnClickListener(this);
         
         //底部导航栏
         RadioGroup mRgTab = findViewById(R.id.rg_main);
@@ -182,6 +188,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_changepass:
                 ChangePass();
                 break;
+            case R.id.Wenjuan:
+                Intent intent= new Intent(HomeActivity.this,QuestionsActivity.class);
+                startActivity(intent);
+                break;
         }
     }
 
@@ -239,8 +249,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     if ((pass.getText().toString().trim()).
                             equals(AnalysisUtils.readloginpass(HomeActivity.this, AnalysisUtils.readloginUserName(HomeActivity.this)))) {
                         //注销
-                        MyToast.MyToastShow(HomeActivity.this, "密码正确！");
-                        //返回到登录界面
+                        deleteuser();
                     } else {
                         MyToast.MyToastShow(HomeActivity.this, "密码不正确！");
                     }
@@ -250,5 +259,26 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
         builder.setTitle("账号注销").setView(view).show();
+    }
+
+    private void deleteuser(){
+        CommonRequest request = new CommonRequest();
+        request.setRequestCode("9");
+        request.addRequestParam("account",AnalysisUtils.readloginUserName(HomeActivity.this));
+
+        sendHttpPostRequst(Constant.URL_Login, request, new ResponseHandle() {
+            @Override
+            public void success(CommonResponse response) {
+                //返回登录界面，清除本地用户信息
+                AnalysisUtils.cleanlogin(HomeActivity.this);
+                Intent intent = new Intent(HomeActivity.this,MainActivity.class);
+                startActivity(intent);
+            }
+
+            @Override
+            public void failure(String failCode) {
+                MyToast.MyToastShow(HomeActivity.this,"注销失败了");
+            }
+        });
     }
 }
