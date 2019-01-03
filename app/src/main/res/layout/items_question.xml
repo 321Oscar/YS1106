@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="110dp"
+    android:layout_height="wrap_content"
     android:padding="@dimen/dp_15"
     android:background="@color/color_white">
 
@@ -10,8 +10,10 @@
         android:id="@+id/question_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="问题1："
+        android:text="1.瑞国爱上电话卡很舒服就看看解放后萨克九分萨芬科技大会上大家看法就开始大幅："
         android:textSize="18sp"
+        android:textColor="@color/color_black"
+        android:padding="@dimen/margindp_5"
         />
 
     <RadioGroup
@@ -26,16 +28,15 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="答案1"/>
+            android:text="A:afsdkjfh"/>
 
         <RadioButton
             android:id="@+id/answer_B"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="答案1"/>
+            android:text="B:daksjfhf"/>
 
     </RadioGroup>
-
 
 </LinearLayout>

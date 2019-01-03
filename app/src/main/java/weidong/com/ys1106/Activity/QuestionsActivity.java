@@ -2,6 +2,7 @@ package weidong.com.ys1106.Activity;
 
 
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -80,5 +81,6 @@ public class QuestionsActivity extends BasicActivity {
         LinearLayoutManager manager = new LinearLayoutManager(QuestionsActivity.this);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         WenJuan.setLayoutManager(manager);
+        WenJuan.addItemDecoration(new DividerItemDecoration(QuestionsActivity.this,DividerItemDecoration.VERTICAL));
     }
 }

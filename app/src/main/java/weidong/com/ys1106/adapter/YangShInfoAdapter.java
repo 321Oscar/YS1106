@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 import weidong.com.ys1106.R;
 import weidong.com.ys1106.Utils.Constant;
+import weidong.com.ys1106.Utils.MyToast;
 import weidong.com.ys1106.Utils.YangShInfo;
 
 /*
@@ -70,6 +71,7 @@ public class YangShInfoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             YangShInfo data = yangShInfos.get(i);
 
             //设置图片的URL
+            MyToast.SysInfo("---IMGURL:"+data.getImgUrl()+"----");
             if(data.getImgUrl()!=null){
                 Glide.with(context).load(Constant.URL_Img + data.getImgUrl()).into(hd.mImg);
             }
