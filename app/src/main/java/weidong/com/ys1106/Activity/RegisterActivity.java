@@ -22,7 +22,9 @@ import weidong.com.ys1106.Utils.MD5Utils;
 import weidong.com.ys1106.Utils.MyToast;
 import weidong.com.ys1106.Utils.ResponseHandle;
 import weidong.com.ys1106.Utils.UserInfo;
-
+/*
+* 注册界面
+* */
 public class RegisterActivity extends BasicActivity {
     private UserInfo userInfo;
     private ProgressDialog wait1;
@@ -196,7 +198,7 @@ public class RegisterActivity extends BasicActivity {
 
     private void SetFailDialog(String Msg) {
         AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
-        builder.setTitle("登录失败").setMessage(Msg).setPositiveButton("确定", new DialogInterface.OnClickListener() {
+        builder.setTitle("注册失败").setMessage(Msg).setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 

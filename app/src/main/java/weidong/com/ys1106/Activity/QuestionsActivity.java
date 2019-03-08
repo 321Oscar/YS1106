@@ -6,6 +6,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -16,6 +17,17 @@ import weidong.com.ys1106.Utils.MyToast;
 import weidong.com.ys1106.Utils.Question;
 import weidong.com.ys1106.Utils.WenJuanDialog;
 import weidong.com.ys1106.adapter.QuestionAdapter;
+
+/*
+* 问卷调查界面
+* 选A 10分 选B 5分 共十道题
+* 得分区间为 50-100
+* 50-60（包括60）推荐 "饮食养生", "运动养生"
+* 60-70 "情志养生", "针灸养生",
+* 70-80 "房事养生", "按摩养生",
+* 80-90 "药饵养生", "起居养生"
+* 90-100 "沐浴养生", "休闲养生"
+* */
 
 public class QuestionsActivity extends BasicActivity {
 
@@ -32,9 +44,18 @@ public class QuestionsActivity extends BasicActivity {
     }
 
     private void initView() {
+        ImageView back = findViewById(R.id.question_finish);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         final TextView WenjuanTiJiao = findViewById(R.id.question_btn);
         WenJuan = findViewById(R.id.question_rv);
 
+        //提交问卷
         WenjuanTiJiao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,7 +72,7 @@ public class QuestionsActivity extends BasicActivity {
                 }
                 if (0 == kong) {//全部答完
                     WenjuanTiJiao.setText(String.valueOf(mak));
-                    WenJuanDialog dialog = new WenJuanDialog(QuestionsActivity.this);
+                    WenJuanDialog dialog = new WenJuanDialog(QuestionsActivity.this,mak);
                     dialog.show();
                 } else {
                     MyToast.MyToastShow(QuestionsActivity.this, "第" + kong + "个问题未回答。");
@@ -61,6 +82,7 @@ public class QuestionsActivity extends BasicActivity {
         });
     }
 
+    //问题演示
     private void initData() {
         ArrayList<Question> data = new ArrayList<>();
         for (int i = 1; i < 11; i++) {

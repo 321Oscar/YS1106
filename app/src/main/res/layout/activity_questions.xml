@@ -15,6 +15,15 @@
         android:orientation="horizontal"
         android:background="#0DBDD1">
 
+        <ImageView
+            android:id="@+id/question_finish"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="0.6"
+            android:background="#0DBDD1"
+            android:padding="5dp"
+            android:src="@mipmap/back" />
+
         <TextView
             android:id="@+id/tv_title"
             android:layout_width="0dp"

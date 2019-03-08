@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 import weidong.com.ys1106.R;
+import weidong.com.ys1106.Utils.AnalysisUtils;
 import weidong.com.ys1106.Utils.Constant;
 import weidong.com.ys1106.Utils.VideoInfo;
 
@@ -56,6 +57,9 @@ public class VideoInfoAdapter extends RecyclerView.Adapter<VideoInfoAdapter.Line
         if (null != data.getImgUrl()){
             Glide.with(context).load(Constant.URL_Img + data.getImgUrl()).into(viewHolder.mVideoImg);
         }
+//        if (null!= data.getVideoURL()){
+//            AnalysisUtils.LoadVideoScreenShot(context,Constant.URL_Img + data.getVideoURL(),viewHolder.mVideoImg,10);
+//        }
 //        viewHolder.mType.setText(data.getVideoType());
         viewHolder.mDetails.setText(data.getVideoDes());
         viewHolder.mTitle.setText(data.getVideoTitle());

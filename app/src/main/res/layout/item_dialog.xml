@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/usertextview"
         android:textSize="20sp"
-        android:gravity="left"
+        android:gravity="center"
         android:text="视频类型"
         android:padding="@dimen/dp_15"/>
 

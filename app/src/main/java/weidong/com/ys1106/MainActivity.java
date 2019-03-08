@@ -3,9 +3,11 @@ package weidong.com.ys1106;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,7 +25,7 @@ import weidong.com.ys1106.Utils.Constant;
 import weidong.com.ys1106.Utils.MD5Utils;
 import weidong.com.ys1106.Utils.MyToast;
 import weidong.com.ys1106.Utils.ResponseHandle;
-import weidong.com.ys1106.Utils.UserInfo;
+
 
 public class MainActivity extends BasicActivity {
 
@@ -85,6 +87,12 @@ public class MainActivity extends BasicActivity {
                         pass.getText().toString().isEmpty()) {
                     MyToast.MyToastShow(MainActivity.this, "用户名和密码不能为空！");
                 } else {
+                    //检测网络，无法检测WIFI
+                    if (!checkNetWork()){
+                        MyToast.MyToastShow(MainActivity.this,"网络未连接");
+                        return;
+                    }
+
                     //登录等待Dialog
                     initWaitDialog("登录中...");
 
@@ -93,6 +101,15 @@ public class MainActivity extends BasicActivity {
 
             }
         });
+    }
+
+    //检测网络
+    private boolean checkNetWork(){
+        ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connManager.getActiveNetworkInfo() !=null){
+            return connManager.getActiveNetworkInfo().isConnected();
+        }
+        return false;
     }
 
     private void initWaitDialog(String Msg) {
@@ -113,6 +130,8 @@ public class MainActivity extends BasicActivity {
         String Md5Psw = MD5Utils.ToMD5(pass);
         request.addRequestParam("account", account);
         request.addRequestParam("password", Md5Psw);
+
+        MyToast.MyToastShow(MainActivity.this,Constant.URL_Login);
 
         //向服务端发送请求
         sendHttpPostRequst(Constant.URL_Login, request, new ResponseHandle() {

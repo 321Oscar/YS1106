@@ -6,10 +6,17 @@
     android:background="@color/color_gray_d"
     android:orientation="vertical">
 
+    <!--<TextView-->
+        <!--android:id="@+id/toAll"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="查看所有类型"-->
+        <!--android:gravity="center"/>-->
+
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/frag_gz_refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/frag_gz_rv"

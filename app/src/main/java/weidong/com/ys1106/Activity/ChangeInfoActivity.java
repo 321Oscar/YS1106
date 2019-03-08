@@ -79,9 +79,9 @@ public class ChangeInfoActivity extends BasicActivity {
                     public void onTextChanged(CharSequence s, int start, int before, int count) {
                         try {
                             int age = Integer.parseInt(mChangeInfo.getText().toString());
-                            if (age < 0 || age > 120) {
+                            if (age <= 0 || age > 120) {
                                 textTypeWrong = true;
-                            }else if(age >= 0 && age <= 120){
+                            }else if(age > 0 && age <= 120){
                                 textTypeWrong = false;
                             }
                         }catch (Exception e){

@@ -303,6 +303,7 @@ public class TypeVideosActivity extends BasicActivity implements SwipeRefreshLay
         return videoInfoList;
     }
 
+    //下拉刷新
     @Override
     public void onRefresh() {
         mSwipeRefresh.setRefreshing(true);
@@ -318,6 +319,7 @@ public class TypeVideosActivity extends BasicActivity implements SwipeRefreshLay
         }, 500);
     }
 
+    //边距
     class myDecoration extends RecyclerView.ItemDecoration {
         @Override
         public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {

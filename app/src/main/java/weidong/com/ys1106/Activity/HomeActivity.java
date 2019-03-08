@@ -37,7 +37,9 @@ import weidong.com.ys1106.fragment.GuanzhuFragment;
 import weidong.com.ys1106.fragment.HomeFragment;
 import weidong.com.ys1106.fragment.MyOwnFragment;
 
+//    登录成功进入的首页
 public class HomeActivity extends BasicActivity implements View.OnClickListener {
+
 
     private ViewPager vp;
     private List<Fragment> mFragmentList = new ArrayList<>();

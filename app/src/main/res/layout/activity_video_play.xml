@@ -52,6 +52,7 @@
 
         <RadioGroup
             android:id="@+id/qxd"
+            android:padding="@dimen/margindp_10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -78,17 +79,6 @@
                 android:text="超清" />
         </RadioGroup>
 
-        <TextView
-            android:id="@+id/play_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dp_15"
-            android:maxLines="1"
-            android:padding="@dimen/margindp_5"
-            android:text="养生视频标题栏"
-            android:textColor="@color/color_black"
-            android:textSize="18sp" />
-
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
@@ -96,30 +86,66 @@
 
         </View>
 
-        <TextView
-            android:id="@+id/play_des"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margindp_10"
-            android:padding="@dimen/margindp_5"
-            android:text="具体描述栏：拉萨的看法和高科技的规划安康时间发货过度开发了结果阿凡达健康噶的观点看国家的法规啊的开发工具反对管理会计的风格放噶客房价格大幅"
-            android:textColor="@color/color_gray"
-            android:textSize="16sp" />
+
     </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/sameType"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:layoutManager="StaggeredGridLayoutManager"
-            tools:listitem="@layout/home_item"
-            tools:spanCount="2">
+            android:orientation="vertical">
 
-        </android.support.v7.widget.RecyclerView>
+            <TextView
+                android:id="@+id/play_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:padding="@dimen/margindp_10"
+                android:text="养生视频标题栏"
+                android:textColor="@color/color_black"
+                android:textSize="18sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/color_gray_d">
+
+            </View>
+
+            <TextView
+                android:id="@+id/play_des"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margindp_10"
+                android:padding="@dimen/margindp_5"
+                android:text="具体描述栏：拉萨的看法和高科技的规划安康时间发货过度开发了结果阿凡达健康噶的观点看国家的法规啊的开发工具反对管理会计的风格放噶客房价格大幅"
+                android:textColor="@color/color_gray"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="同类更多"
+                android:padding="@dimen/margindp_10"
+                android:textColor="@color/color_black"
+                android:textSize="18sp"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/sameType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:layoutManager="StaggeredGridLayoutManager"
+                tools:listitem="@layout/home_item"
+                tools:spanCount="2">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </LinearLayout>
+
+
     </ScrollView>
 
 
